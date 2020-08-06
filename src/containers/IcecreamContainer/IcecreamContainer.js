@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import SingleBox from '../../components/Boxes/SingleBox/SingleBox';
+import React, { Component, Fragment } from 'react'
 import Boxes from '../../components/Boxes/Boxes';
+import Checkout from '../../components/Checkout/Checkout'
 
 const ICECREAM_PRICES = {
   small: 1200,
@@ -9,24 +9,48 @@ const ICECREAM_PRICES = {
 
 class IcecreamContainer extends Component {
   state = {
-    icreams: {
+    icecreams: {
       carmel: {
         fullname: 'Carmel',
-        available: true
+        available: true,
       },
       cream: {
         fullname: 'Cream',
-        available: true
+        available: true,
       },
       vanilla: {
         fullname: 'Vanilla',
-        available: true
+        available: true,
       },
       whiteChocolate: {
         fullname: 'White Chocolate',
-        available: true
-      }
+        available: true,
+      },
     },
+    // selectedIcecreams: {
+    //   carmel: {
+    //     small: 0,
+    //     large: 0,
+    //   },
+    //   cream: {
+    //     small: 0,
+    //     large: 0,
+    //   },
+    //   vanilla: {
+    //     small: 0,
+    //     large: 0,
+    //   },
+    //   whiteChocolate: {
+    //     small: 0,
+    //     large: 0,
+    //   },
+    // },
+    // icecreams: {
+    //   carmel: 1,
+    //   cream: 1,
+    //   vanilla: 1,
+    //   whiteChocolate: 3,
+    // },
     selectedIcecreams: {
       carmel: 0,
       cream: 0,
@@ -47,11 +71,14 @@ class IcecreamContainer extends Component {
 
   render() {
     return (
-      <Boxes 
-        prices={ICECREAM_PRICES}
-        icecreams={this.state.icecreams}
-        selected={this.state.selectedIcecreams}
-      />
+      <Fragment>
+        <Boxes
+          prices={ICECREAM_PRICES}
+          icecreams={this.state.icecreams}
+          selected={this.state.selectedIcecreams}
+        />
+        <Checkout />
+      </Fragment>
     );
   }
 }

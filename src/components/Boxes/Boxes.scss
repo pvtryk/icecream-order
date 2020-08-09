@@ -1,0 +1,10 @@
+@import '../../styles/reusable.scss';
+
+.m-boxes {
+  background-color: $color-bg;
+  
+  &__wrap {
+    @include flex(space-between, stretch, wrap);
+
+  }
+}

@@ -1,0 +1,78 @@
+// colors
+$color-primary: #00eded;
+$color-bg: #ededed;
+
+// font
+$font-main: 'Helvetica', sans-serif;
+
+// typography
+
+
+// mixins
+@mixin flex($x: flex-start, $y: flex-start, $wrap: wrap) {
+  display: flex;
+  justify-content: $x;
+  align-items: $y;
+  flex-wrap: $wrap
+}
+
+@mixin transition($property: all, $duration: .3s, $ease: ease-in-out){
+  -webkit-transition: $property $duration $ease;
+  -moz-transition: $property $duration $ease;
+  -o-transition: $property $duration $ease;
+  transition: $property $duration $ease;
+}
+
+// grid
+$grid-gutter: 15px;
+$grid-gutter-container: 15px;
+
+$grid-container: 100%;
+$grid-container-sm: 540px;
+$grid-container-md: 720px;
+$grid-container-lg: 960px;
+$grid-container-xl: 1140px;
+$grid-container-xxl: 1560px;
+
+$min-sm: 576px;
+$min-md: 768px;
+$min-lg: 992px;
+$min-xl: 1200px;
+$min-xxl: 1640px;
+
+$max-xs: 575px;
+$max-sm: 767px;
+$max-md: 991px;
+$max-lg: 1199px;
+$max-xl: 1639px;
+
+// breakpoints
+$xs: "only screen and (max-width: #{$max-xs})";
+$sm: "only screen and (min-width: #{$min-sm})";
+$md: "only screen and (min-width: #{$min-md})";
+$lg: "only screen and (min-width: #{$min-lg})";
+$xl: "only screen and (min-width: #{$min-xl})";
+$xxl: "only screen and (min-width: #{$min-xxl})";
+
+
+// selection
+::selection {
+    background: $color-primary;
+    color: $color-bg;
+}
+
+
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  font-family: $font-main;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  overflow: hidden;
+}
+

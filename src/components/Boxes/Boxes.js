@@ -1,6 +1,8 @@
 import React from 'react'
 import SingleBox from './SingleBox/SingleBox'
 
+import './Boxes.scss';
+
 function Boxes(props) {
   // const transformedIcecreams = Object.keys(props.icecreams)
   //   .map(icecreamKey => {
@@ -11,27 +13,27 @@ function Boxes(props) {
   //   });
 
 
-    const icecreams = Object.values(props.icecreams)
+  const icecreams = Object.values(props.icecreams)
     .map( icKey => {
       return icKey;
     });
-    
-    console.log(icecreams);
-
-    // props.icecreams.forEach(element => {
-    //   console.log(element);
-    // });
-  
-  // console.log(transformedIcecreams);
 
   return (
     
-    <div className="boxes">
-      {icecreams.map(val => {
-        return (
-          <SingleBox key={val.fullname} prices={props.prices} fullname={val.fullname} />
-        )
-      })}
+    <div className="m-boxes">
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <div className="m-boxes__wrap">
+              {icecreams.map(val => {
+                return (
+                  <SingleBox key={val.fullname} prices={props.prices} fullname={val.fullname} />
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

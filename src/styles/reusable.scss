@@ -53,26 +53,3 @@ $md: "only screen and (min-width: #{$min-md})";
 $lg: "only screen and (min-width: #{$min-lg})";
 $xl: "only screen and (min-width: #{$min-xl})";
 $xxl: "only screen and (min-width: #{$min-xxl})";
-
-
-// selection
-::selection {
-    background: $color-primary;
-    color: $color-bg;
-}
-
-
-html {
-  -webkit-overflow-scrolling: touch;
-}
-
-body {
-  font-family: $font-main;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-main {
-  overflow: hidden;
-}
-

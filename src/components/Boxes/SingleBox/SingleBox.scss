@@ -1,6 +1,51 @@
-.s-box {
-  background-color: lightgray;
-  margin-bottom: 20px;
-  flex: 0 0 30%;
+@import '../../../styles/reusable.scss';
 
+.s-box {
+  background-color: $color-bg;
+  margin-bottom: 50px;
+  flex: 0 0 28%;
+
+  &__image {
+    box-shadow: 0 0 5px 5px rgba($color-bg-alt, .4);
+    background-color: #ffffff;
+    height: 200px;
+    margin-bottom: 15px;
+  }
+
+  &__name {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  &__options {
+    @include flex(space-between, stretch, nowrap);
+  }
+
+  &__item {
+    flex: 0 0 45%;
+    text-align: center;
+  }
+
+  &__price {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  &__btn {
+    @include transition;
+    width: 40px;
+    height: 25px;
+    border-radius: 999px;
+    margin: 0 2.5px;
+    background-color: $color-primary;
+    color: $color-text-white;
+    font-weight: 700;
+
+
+    &:hover {
+      opacity: .8;
+    }
+  }
 }

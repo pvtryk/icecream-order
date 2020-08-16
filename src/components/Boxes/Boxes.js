@@ -27,7 +27,13 @@ function Boxes(props) {
             <div className="m-boxes__wrap">
               {icecreams.map(val => {
                 return (
-                  <SingleBox key={val.fullname} prices={props.prices} fullname={val.fullname} />
+                  <SingleBox 
+                    key={val.shortname}
+                    prices={props.prices}
+                    fullname={val.fullname}
+                    addSmallIcecream={() => props.addSmallIcecream(val.shortname)}
+                    removeSmallIcecream={() => props.removeSmallIcecream(val.shortname)}
+                  />
                 )
               })}
             </div>

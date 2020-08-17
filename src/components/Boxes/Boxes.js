@@ -31,8 +31,13 @@ function Boxes(props) {
                     key={val.shortname}
                     prices={props.prices}
                     fullname={val.fullname}
-                    addSmallIcecream={() => props.addSmallIcecream(val.shortname)}
-                    removeSmallIcecream={() => props.removeSmallIcecream(val.shortname)}
+                    addSmallIcecream={() => props.addIcecream(val.shortname, 'small')}
+                    addLargeIcecream={() => props.addIcecream(val.shortname, 'large')}
+                    removeSmallIcecream={() => props.removeIcecream(val.shortname, 'small')}
+                    removeLargeIcecream={() => props.removeIcecream(val.shortname, 'large')}
+                    // disabledSmall={props.disabledSmall[val.shortname]['small']}
+                    cart={props.cart[val.shortname]}
+                    // disabledLarge={props.disabledLarge[val.shortname]['large']}
                   />
                 )
               })}

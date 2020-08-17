@@ -28,10 +28,16 @@
     text-align: center;
   }
 
-  &__price {
+  &__type {
     text-align: center;
     font-size: 16px;
     margin-bottom: 5px;
+  }
+  &__price {
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 5px;
   }
   &__btn {
     @include transition;
@@ -43,9 +49,12 @@
     color: $color-text-white;
     font-weight: 700;
 
-
-    &:hover {
-      opacity: .8;
+    &[disabled] {
+      opacity: .2;
+      cursor: default;
+    }
+    &:hover:not([disabled]) {
+      background-color: darken($color-primary, 10%);
     }
   }
 }

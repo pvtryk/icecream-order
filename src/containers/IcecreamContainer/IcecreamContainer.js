@@ -54,47 +54,81 @@ class IcecreamContainer extends Component {
     purchasing: false,
   };
 
-  addSmallIcecreamHandler = (shortname, type) => {
-    console.log('addSmallIcecreamHandler:', shortname);
+  
 
-    // ADD TYPE
+  updatePurchase () {
+    let finalValue = 0;
+
+    const cart = {
+      ...this.state.cart
+    }
+    // const values = Object.values(cart);
+
+    for (const key in cart) {
+      const element = cart[key]
+      for (const value in cart[key]) {
+        const newValue = element[value];
+        finalValue += newValue;
+      }
+    }
+    
+    console.log(finalValue);
+
+
+    // for (const key in cart) {
+    //   let value = Object.values(cart[key]).map(val => val).reduce((sum, el) => {
+    //     return sum + el
+    //   }, 0);
+    //   console.log(value);
+    // }
+  }
+
+  addIcecreamHandler = (shortname, type) => {
     // get old value
-    let oldValue = this.state.cart[shortname]['small'];
-    console.log('oldValue is', oldValue);
-
+    let oldValue = this.state.cart[shortname][type];
     // add one to value
     const updatedValue = ++oldValue;
     // const updatedValue = oldValue + 1;
-    console.log('updatedValue', updatedValue);
-
     // get previous cart object
     const cart = {
       ...this.state.cart
     }
-    console.log('cart', cart);
-
     // update cart element by new value
-    cart[shortname].small = updatedValue;
-
+    cart[shortname][type] = updatedValue;
     // set new value
     this.setState({cart});
+    this.updatePurchase();
   };
 
-  removeSmallIcecreamHandler = (shortname) => {
-    console.log('removeSmallIcecreamHandler:', shortname);
+  removeIcecreamHandler = (shortname, type) => {
+    let oldValue = this.state.cart[shortname][type];
+
+    if (oldValue <= 0) {
+      return;
+    }
+    const updatedValue = --oldValue;
+    const cart = {
+      ...this.state.cart
+    }
+    cart[shortname][type] = updatedValue;
+    this.setState({cart});
+    this.updatePurchase();
   };
 
   render() {
+
     return (
       <Fragment>
         <Boxes
           prices={ICECREAM_PRICES}
           icecreams={this.state.icecreams}
           cart={this.state.cart}
-          addSmallIcecream={this.addSmallIcecreamHandler}
-          removeSmallIcecream={this.removeSmallIcecreamHandler}
+          addIcecream={this.addIcecreamHandler}
+          removeIcecream={this.removeIcecreamHandler}
         />
         <Checkout />
+
+
       </Fragment>
     );
   }

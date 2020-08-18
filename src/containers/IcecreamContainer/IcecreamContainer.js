@@ -1,6 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react';
 import Boxes from '../../components/Boxes/Boxes';
-import Checkout from '../../components/Checkout/Checkout'
+import Checkout from '../../components/Checkout/Checkout';
+
+import './IcecreamContainer.scss';
 
 const ICECREAM_PRICES = {
   small: 1200,
@@ -13,22 +15,27 @@ class IcecreamContainer extends Component {
       carmel: {
         shortname: 'carmel',
         fullname: 'Carmel',
-        available: true,
+        available: true
       },
       cream: {
         shortname: 'cream',
         fullname: 'Cream',
-        available: true,
+        available: true
       },
       vanilla: {
         shortname: 'vanilla',
         fullname: 'Vanilla',
-        available: true,
+        available: true
       },
       whiteChocolate: {
         shortname: 'whiteChocolate',
         fullname: 'White Chocolate',
-        available: true,
+        available: true
+      },
+      chocolate: {
+        shortname: 'chocolate',
+        fullname: 'Chocolate',
+        available: true
       },
     },
     cart: {
@@ -48,55 +55,76 @@ class IcecreamContainer extends Component {
         small: 0,
         large: 0,
       },
+      chocolate: {
+        small: 0,
+        large: 0,
+      },
     },
     totalPrice: 0,
     purchasable: false,
     purchasing: false,
   };
 
-  
-
-  updatePurchase () {
+  updatePurchase() {
     let finalValue = 0;
 
     const cart = {
-      ...this.state.cart
-    }
-    // const values = Object.values(cart);
+      ...this.state.cart,
+    };
 
     for (const key in cart) {
-      const element = cart[key]
+      const element = cart[key];
       for (const value in cart[key]) {
         const newValue = element[value];
         finalValue += newValue;
       }
     }
-    
+
+    this.setState({
+      purchasable: finalValue > 0,
+    });
+  }
+
+  NEWupdatePurchase() {
+    let finalValue = 0;
+
+    const cart = {
+      ...this.state.icecreams,
+    };
+
+    for (const key in cart) {
+      const element = cart[key].cart;
+      console.log(element);
+
+      for (const value in cart[key]) {
+        const newValue = element[value];
+        // console.log('new', newValue);
+        // finalValue += newValue;
+      }
+    }
     console.log(finalValue);
 
-
-    // for (const key in cart) {
-    //   let value = Object.values(cart[key]).map(val => val).reduce((sum, el) => {
-    //     return sum + el
-    //   }, 0);
-    //   console.log(value);
-    // }
+    // this.setState({
+    //   purchasable: finalValue > 0
+    // })
   }
 
   addIcecreamHandler = (shortname, type) => {
     // get old value
     let oldValue = this.state.cart[shortname][type];
+    
     // add one to value
-    const updatedValue = ++oldValue;
+    const updatedValue = ++oldValue;  
     // const updatedValue = oldValue + 1;
     // get previous cart object
+    
     const cart = {
       ...this.state.cart
-    }
+    };
     // update cart element by new value
     cart[shortname][type] = updatedValue;
     // set new value
-    this.setState({cart});
+    this.setState({ cart });
     this.updatePurchase();
   };
 
@@ -109,26 +137,38 @@ class IcecreamContainer extends Component {
     const updatedValue = --oldValue;
     const cart = {
       ...this.state.cart
-    }
+    };
     cart[shortname][type] = updatedValue;
-    this.setState({cart});
+    this.setState({ cart });
     this.updatePurchase();
   };
 
   render() {
-
     return (
       <Fragment>
-        <Boxes
-          prices={ICECREAM_PRICES}
-          icecreams={this.state.icecreams}
-          cart={this.state.cart}
-          addIcecream={this.addIcecreamHandler}
-          removeIcecream={this.removeIcecreamHandler}
-        />
-        <Checkout />
-
-
+        <div className="icecreams">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-12 col-lg-8">
+                <Boxes
+                  prices={ICECREAM_PRICES}
+                  icecreams={this.state.icecreams}
+                  cart={this.state.cart}
+                  addIcecream={this.addIcecreamHandler}
+                  removeIcecream={this.removeIcecreamHandler}
+                />
+              </div>
+              <div className="col-12 col-lg-4">
+                <Checkout
+                  cart={this.state.cart}
+                  icecreams={this.state.icecreams}
+                  purchasable={this.state.purchasable}
+                  purchasing={this.state.purchasing}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </Fragment>
     );
   }

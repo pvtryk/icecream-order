@@ -21,29 +21,23 @@ function Boxes(props) {
   return (
     
     <div className="m-boxes">
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <div className="m-boxes__wrap">
-              {icecreams.map(val => {
-                return (
-                  <SingleBox 
-                    key={val.shortname}
-                    prices={props.prices}
-                    fullname={val.fullname}
-                    addSmallIcecream={() => props.addIcecream(val.shortname, 'small')}
-                    addLargeIcecream={() => props.addIcecream(val.shortname, 'large')}
-                    removeSmallIcecream={() => props.removeIcecream(val.shortname, 'small')}
-                    removeLargeIcecream={() => props.removeIcecream(val.shortname, 'large')}
-                    // disabledSmall={props.disabledSmall[val.shortname]['small']}
-                    cart={props.cart[val.shortname]}
-                    // disabledLarge={props.disabledLarge[val.shortname]['large']}
-                  />
-                )
-              })}
-            </div>
-          </div>
-        </div>
+      <div className="m-boxes__wrap">
+        {icecreams.map(val => {
+          return (
+            <SingleBox 
+              key={val.shortname}
+              prices={props.prices}
+              fullname={val.fullname}
+              addSmallIcecream={() => props.addIcecream(val.shortname, 'small')}
+              addLargeIcecream={() => props.addIcecream(val.shortname, 'large')}
+              removeSmallIcecream={() => props.removeIcecream(val.shortname, 'small')}
+              removeLargeIcecream={() => props.removeIcecream(val.shortname, 'large')}
+              // disabledSmall={props.disabledSmall[val.shortname]['small']}
+              cart={props.cart[val.shortname]}
+              // disabledLarge={props.disabledLarge[val.shortname]['large']}
+            />
+          )
+        })}
       </div>
     </div>
   );

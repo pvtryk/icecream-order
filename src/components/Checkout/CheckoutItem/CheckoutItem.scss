@@ -1,0 +1,15 @@
+@import '../../../styles/reusable.scss';
+
+.checkout-item {
+  margin-bottom: 30px;
+
+  &__name {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  &__value {
+    display: block;
+  }
+}

@@ -85,30 +85,6 @@ class IcecreamContainer extends Component {
     });
   }
 
-  NEWupdatePurchase() {
-    let finalValue = 0;
-
-    const cart = {
-      ...this.state.icecreams,
-    };
-
-    for (const key in cart) {
-      const element = cart[key].cart;
-      console.log(element);
-
-      for (const value in cart[key]) {
-        const newValue = element[value];
-        // console.log('new', newValue);
-        // finalValue += newValue;
-      }
-    }
-    console.log(finalValue);
-
-    // this.setState({
-    //   purchasable: finalValue > 0
-    // })
-  }
-
   addIcecreamHandler = (shortname, type) => {
     // get old value
     let oldValue = this.state.cart[shortname][type];
@@ -160,6 +136,7 @@ class IcecreamContainer extends Component {
               </div>
               <div className="col-12 col-lg-4">
                 <Checkout
+                  prices={ICECREAM_PRICES}
                   cart={this.state.cart}
                   icecreams={this.state.icecreams}
                   purchasable={this.state.purchasable}

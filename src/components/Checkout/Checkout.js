@@ -1,4 +1,6 @@
 import React from 'react';
+import CheckoutItem from './CheckoutItem/CheckoutItem';
+
 import './Checkout.scss';
 
 function Checkout(props) {  
@@ -11,26 +13,24 @@ function Checkout(props) {
   const cart = props.cart;
   const icecreams = props.icecreams;
 
-  const summary = Object.entries(cart).map((item, index) => {
-    // console.log(index);
-    const fullname = icecreams[item[0]].fullname;
-    return (
-      <p>{fullname}</p>
-    );
-    // console.log('fullname: ', fullname);
-    // const value = Object.entries(item[1]).map(val => {
-    //   const val0 = val[0];
-    //   const val1 = val[1];
-    //   return (
-    //     <p>val1</p>
-    //   )
-    // });
-    // console.log(value);
-  });
+  const summary = Object.keys(cart)
+    .map(igKey => {
+      return [...Array(props.cart[igKey])].map(value => {
+        if (value.small >= 1 || value.large >= 1) {
+          return (
+            <CheckoutItem
+              key={icecreams[igKey].shortname}
+              prices={props.prices}
+              small={value.small}
+              large={value.large}
+              name={icecreams[igKey].fullname}
+            />
+          );
+        }
+      });
+    });
 
-
-
-  // console.log(summary);
+  console.log(summary);
   
 
   return (
@@ -38,7 +38,10 @@ function Checkout(props) {
       <h2 className="checkout__title">Your Order</h2>
 
       {!props.purchasable && isSomething}
-      {summary}
+
+      <ol className="checkout__list">
+        {summary}
+      </ol>
     </div>
   );
 }

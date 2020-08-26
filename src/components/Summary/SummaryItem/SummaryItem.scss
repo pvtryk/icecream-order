@@ -1,12 +1,18 @@
 @import '../../../styles/reusable.scss';
 
-.checkout-item {
+.summary-item {
   margin-bottom: 30px;
 
   &__name {
     display: block;
     font-size: 16px;
     font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  &__wrap {
+    @include flex(space-between, center, nowrap);
+    margin-bottom: 6px;
   }
 
   &__value {

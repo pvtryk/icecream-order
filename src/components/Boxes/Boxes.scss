@@ -2,7 +2,7 @@
 
 .m-boxes {
   background-color: $color-bg;
-  padding: 40px 0;
+  // padding: 40px 0;
   
   &__wrap {
     @include flex(space-between, stretch, wrap);

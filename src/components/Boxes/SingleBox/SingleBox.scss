@@ -7,10 +7,16 @@
   flex: 0 0 44%;
 
   &__image {
-    box-shadow: 0 0 5px 5px rgba($color-bg-alt, .4);
+    box-shadow: 0 5px 12px 6px rgba($color-bg-alt, .5);
     background-color: #ffffff;
     height: 200px;
     margin-bottom: 15px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   &__name {

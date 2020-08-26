@@ -2,4 +2,8 @@
 
 .icecreams {
   min-height: 100vh;
+
+  &__relative {
+    position: relative;
+  }
 }

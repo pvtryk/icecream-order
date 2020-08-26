@@ -1,11 +1,14 @@
 import React from 'react';
 
 import './SingleBox.scss';
+import BoxImage from '../../../assets/images/icecream-box.jpg';
 
 function SingleBox(props) {
   return (
     <div className="s-box">
-      <div className="s-box__image">image</div>
+      <div className="s-box__image">
+        <img src={BoxImage} alt=""/>
+      </div>
       <p className="s-box__name">{props.fullname}</p>
       <div className="s-box__options">
         <div className="s-box__item">
@@ -21,7 +24,7 @@ function SingleBox(props) {
             -
           </button>
           <p className="s-box__price">
-            {(props.prices.small / 100).toFixed(2)} $
+            {props.prices.small.toFixed(2)} $
           </p>
         </div>
         <div className="s-box__item">
@@ -37,7 +40,7 @@ function SingleBox(props) {
             -
           </button>
           <p className="s-box__price">
-            {(props.prices.large / 100).toFixed(2)} $
+            {props.prices.large.toFixed(2)} $
           </p>
         </div>
       </div>

@@ -1,12 +1,15 @@
 import React, { Component, Fragment } from 'react';
+import { Route } from 'react-router-dom';
 import Boxes from '../../components/Boxes/Boxes';
-import Checkout from '../../components/Checkout/Checkout';
+import Summary from '../../components/Summary/Summary';
+import CheckoutContainer from '../CheckoutContainer/CheckoutContainer';
 
 import './IcecreamContainer.scss';
 
 const ICECREAM_PRICES = {
-  small: 1200,
-  large: 2000
+  small: 12.50,
+  large: 20.00,
+  discount: 5
 }
 
 class IcecreamContainer extends Component {
@@ -79,7 +82,6 @@ class IcecreamContainer extends Component {
         finalValue += newValue;
       }
     }
-
     this.setState({
       purchasable: finalValue > 0,
     });
@@ -134,8 +136,8 @@ class IcecreamContainer extends Component {
                   removeIcecream={this.removeIcecreamHandler}
                 />
               </div>
-              <div className="col-12 col-lg-4">
-                <Checkout
+              <div className="col-12 col-lg-4 icecreams__relative">
+                <Summary
                   prices={ICECREAM_PRICES}
                   cart={this.state.cart}
                   icecreams={this.state.icecreams}
@@ -146,6 +148,7 @@ class IcecreamContainer extends Component {
             </div>
           </div>
         </div>
+        <Route path="/checkout" exact component={CheckoutContainer} />
       </Fragment>
     );
   }

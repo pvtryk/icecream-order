@@ -1,14 +1,17 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import IcecreamContainer from './containers/IcecreamContainer/IcecreamContainer';
 
 function App() {
   return (
-    <div className="App">
-      <Layout>
-        <IcecreamContainer />
-      </Layout>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Layout>
+          <IcecreamContainer />
+        </Layout>
+      </div>
+    </BrowserRouter>
   );
 }
 

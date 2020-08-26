@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from 'react'
+import TopBar from '../TopBar/TopBar';
 
 class Layout extends Component {
 
   render() {
     return (
       <Fragment>
-        <header>
-          topBar js here
-        </header>
+        <TopBar />
         <main>
           {this.props.children}
         </main>

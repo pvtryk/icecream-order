@@ -41,6 +41,7 @@ function Summary(props) {
   let finalPrice = (small * prices.small + large * prices.large).toFixed(2);
   let isDiscount = false;
 
+  // TODO: after implement reducer, dicount not working
   if (small + large >= 10) {
     finalPrice = (finalPrice * ( 1 - prices.discount / 100)).toFixed(2);
     isDiscount = true;

@@ -71,7 +71,7 @@ const reducer = (state = initialState, action) => {
           ...state.cart,
           [name]: {
             ...state.cart[name],
-            [size]: +state.cart[name][size] + 1
+            [size]: state.cart[name][size] + 1
           },
         },
       };

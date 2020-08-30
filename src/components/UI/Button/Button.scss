@@ -1,0 +1,16 @@
+@import '../../../styles/reusable.scss';
+
+.button {
+  text-align: center;
+  
+  &__btn {
+    background-color: $color-secondary;
+    color: $color-primary;
+    border-radius: 8px;
+    line-height: 36px;
+    border: solid 2px $color-secondary;
+    font-size: 14px;
+    padding: 0 30px;
+    display: inline-block;
+  }
+}

@@ -127,13 +127,29 @@ class IcecreamContainer extends Component {
         <div className="icecreams">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-12 col-lg-8">
-                <Boxes
-                  prices={ICECREAM_PRICES}
-                  icecreams={this.state.icecreams}
-                  cart={this.state.cart}
-                  addIcecream={this.addIcecreamHandler}
-                  removeIcecream={this.removeIcecreamHandler}
+              <div className="col-12 col-lg-8 icecreams__content">
+                <Route
+                  exact
+                  path="/"
+                  render={(props) => (
+                    <Boxes
+                      prices={ICECREAM_PRICES}
+                      icecreams={this.state.icecreams}
+                      cart={this.state.cart}
+                      addIcecream={this.addIcecreamHandler}
+                      removeIcecream={this.removeIcecreamHandler}
+                    />
+                  )}
+                />
+                <Route
+                  path="/checkout"
+                  render={(props) => (
+                    <CheckoutContainer
+                      {...this.state}
+                      isAuthed={true}
+                      ic={this.state.icecreams}
+                    />
+                  )}
                 />
               </div>
               <div className="col-12 col-lg-4 icecreams__relative">
@@ -148,7 +164,6 @@ class IcecreamContainer extends Component {
             </div>
           </div>
         </div>
-        <Route path="/checkout" exact component={CheckoutContainer} />
       </Fragment>
     );
   }

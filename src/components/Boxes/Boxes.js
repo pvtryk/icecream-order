@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import SingleBox from './SingleBox/SingleBox'
 
 import './Boxes.scss';
@@ -43,4 +44,13 @@ function Boxes(props) {
   );
 }
 
-export default Boxes
+const mapStateToProaps = (state) => {
+  return {
+    prices: state.prices,
+    icecreams: state.icecreams,
+    cart: state.cart,
+  };
+};
+
+
+export default connect(mapStateToProaps)(Boxes);

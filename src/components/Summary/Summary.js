@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SummaryItem from './SummaryItem/SummaryItem';
 
 import './Summary.scss';
 
 function Summary(props) {
+  
   const isSomething = (
     <div className="summary__info">
       <p>Your cart is empty</p>
@@ -16,25 +18,25 @@ function Summary(props) {
   let large = 0;
 
   const summaryItems = Object.keys(cart)
-  .map(igKey => {
-    return [...Array(cart[igKey])].map(value => {
-      if (value.small >= 1 || value.large >= 1) {
-        small = small + value.small;
-        large = large + value.large;
+    .map(igKey => {
+      return [...Array(cart[igKey])].map(value => {
+        if (value.small >= 1 || value.large >= 1) {
+          small = small + value.small;
+          large = large + value.large;
 
-        return (
-          <SummaryItem
-          key={icecreams[igKey].shortname}
-          prices={prices}
-          small={value.small}
-          large={value.large}
-          name={icecreams[igKey].fullname}
-          />
-        );
-      }
-      return false;
+          return (
+            <SummaryItem
+            key={icecreams[igKey].shortname}
+            prices={prices}
+            small={value.small}
+            large={value.large}
+            name={icecreams[igKey].fullname}
+            />
+          );
+        }
+        return false;
+      });
     });
-  });
    
   let finalPrice = (small * prices.small + large * prices.large).toFixed(2);
   let isDiscount = false;
@@ -69,4 +71,14 @@ function Summary(props) {
   );
 }
 
-export default Summary;
+const mapStateToProaps = (state) => {
+  return {
+    prices: state.prices,
+    icecreams: state.icecreams,
+    cart: state.cart,
+  };
+};
+
+
+
+export default connect(mapStateToProaps, null)(Summary);

@@ -15,9 +15,9 @@ function Summary(props) {
 
   // get props from global store
   const {cart, icecreams, prices} = props;
+  
   let small = 0;
   let large = 0;
-
   const summaryItems = Object.keys(cart)
     .map(igKey => {
       return [...Array(cart[igKey])].map(value => {
@@ -39,15 +39,6 @@ function Summary(props) {
       });
     });
    
-  // let finalPrice = (small * prices.small + large * prices.large).toFixed(2);
-  // let isDiscount = false;
-
-  // discount
-  // TODO LATER: Update discount in global state
-  // if (small + large >= 10) {
-  //   finalPrice = (finalPrice * ( 1 - prices.discount / 100)).toFixed(2);
-  //   isDiscount = true;
-  // }
 
   return (
     <div className="summary">

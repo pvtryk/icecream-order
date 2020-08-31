@@ -13,6 +13,7 @@ function Summary(props) {
     </div>
   );
 
+  // get props from global store
   const {cart, icecreams, prices} = props;
   let small = 0;
   let large = 0;
@@ -38,14 +39,15 @@ function Summary(props) {
       });
     });
    
-  let finalPrice = (small * prices.small + large * prices.large).toFixed(2);
-  let isDiscount = false;
+  // let finalPrice = (small * prices.small + large * prices.large).toFixed(2);
+  // let isDiscount = false;
 
-  // TODO: after implement reducer, dicount not working
-  if (small + large >= 10) {
-    finalPrice = (finalPrice * ( 1 - prices.discount / 100)).toFixed(2);
-    isDiscount = true;
-  }
+  // discount
+  // TODO LATER: Update discount in global state
+  // if (small + large >= 10) {
+  //   finalPrice = (finalPrice * ( 1 - prices.discount / 100)).toFixed(2);
+  //   isDiscount = true;
+  // }
 
   return (
     <div className="summary">
@@ -58,10 +60,7 @@ function Summary(props) {
       {props.purchasable && (
         <div className="summary__footer">
           <div className="summary__summary">
-            <p>Summary: {finalPrice} $</p>
-            {isDiscount && (
-              <p>Your discount: {prices.discount}%</p>
-            )}
+            <p>Summary: {props.totalPrice} $</p>
             <div className="summary__btn-wrap">
               <Link to="/checkout" className="summary__btn">Checkout</Link>
             </div>
@@ -77,6 +76,7 @@ const mapStateToProaps = (state) => {
     prices: state.prices,
     icecreams: state.icecreams,
     cart: state.cart,
+    totalPrice: state.totalPrice
   };
 };
 

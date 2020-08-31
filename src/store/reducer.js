@@ -4,7 +4,7 @@ const initialState = {
   prices: {
     small: 12.50,
     large: 20.00,
-    discount: 5
+    // discount: 5
   },
   icecreams: {
     carmel: {
@@ -62,20 +62,32 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     // adding icecream to redux store
     case actionType.ADD_ICECREAM:
-      const name = action.icecreamName;
-      const size = action.icecreamSize;
-      console.log('reducer.js -  name:', name, size);
+      const addName = action.icecreamName;
+      const addSize = action.icecreamSize;
       return {
         ...state,
         cart: {
           ...state.cart,
-          [name]: {
-            ...state.cart[name],
-            [size]: state.cart[name][size] + 1
+          [addName]: {
+            ...state.cart[addName],
+            [addSize]: state.cart[addName][addSize] + 1
+          },
+        },
+        totalPrice: state.totalPrice + state.prices[addSize]
+      };
+    case actionType.REMOVE_ICECREAM:
+      const removeName = action.icecreamName;
+      const removeSize = action.icecreamSize;
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          [removeName]: {
+            ...state.cart[removeName],
+            [removeSize]: state.cart[removeName][removeSize] - 1
           },
         },
       };
-
     default:
       console.log('????? default reducer ????');
       console.log(action);

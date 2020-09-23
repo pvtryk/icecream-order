@@ -1,9 +1,9 @@
-import * as actionType from './actions';
+import * as actionType from '../actions/actionTypes';
 
 const initialState = {
   prices: {
-    small: 12.50,
-    large: 20.00,
+    small: 12.5,
+    large: 20.0,
     // discount: 5
   },
   icecreams: {
@@ -58,39 +58,44 @@ const initialState = {
   totalPrice: 0,
 };
 
+const addIcecream = (state, action) => {
+  const addName = action.icecreamName;
+  const addSize = action.icecreamSize;
+  return {
+    ...state,
+    cart: {
+      ...state.cart,
+      [addName]: {
+        ...state.cart[addName],
+        [addSize]: state.cart[addName][addSize] + 1,
+      },
+    },
+    totalPrice: state.totalPrice + state.prices[addSize],
+  };
+}
+
+const removeIcecream = (state, action) => {
+  const removeName = action.icecreamName;
+  const removeSize = action.icecreamSize;
+  return {
+    ...state,
+    cart: {
+      ...state.cart,
+      [removeName]: {
+        ...state.cart[removeName],
+        [removeSize]: state.cart[removeName][removeSize] - 1,
+      },
+    },
+  };
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    // adding icecream to redux store
     case actionType.ADD_ICECREAM:
-      const addName = action.icecreamName;
-      const addSize = action.icecreamSize;
-      return {
-        ...state,
-        cart: {
-          ...state.cart,
-          [addName]: {
-            ...state.cart[addName],
-            [addSize]: state.cart[addName][addSize] + 1
-          },
-        },
-        totalPrice: state.totalPrice + state.prices[addSize]
-      };
+      return addIcecream(state, action);
     case actionType.REMOVE_ICECREAM:
-      const removeName = action.icecreamName;
-      const removeSize = action.icecreamSize;
-      return {
-        ...state,
-        cart: {
-          ...state.cart,
-          [removeName]: {
-            ...state.cart[removeName],
-            [removeSize]: state.cart[removeName][removeSize] - 1
-          },
-        },
-      };
+      return removeIcecream(state, action);
     default:
-      console.log('????? default reducer ????');
-      console.log(action);
       return state;
   }
 };

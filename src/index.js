@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
-import reducer from './store/reducer';
-
 import * as serviceWorker from './serviceWorker';
+
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+
+import { BrowserRouter } from 'react-router-dom';
+
+// import reducer from './store/reducer';
+import icecreamsReducer from './store/reducers/icecreams';
+import orderReducer from './store/reducers/order';
+
+import App from './App';
+
 import './styles/reset.scss';
 import './styles/reusable.scss';
 import './styles/bootstrap.scss';
@@ -25,11 +32,17 @@ const logger = (store) => {
   };
 };
 
+const mainReducer = combineReducers({
+  ic: icecreamsReducer,
+  order: orderReducer,
+});
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(logger)));
-
-
+const store = createStore(
+  mainReducer,
+  composeEnhancers(applyMiddleware(logger, thunk))
+);
 
 const appIndex = (
   <Provider store={store}>

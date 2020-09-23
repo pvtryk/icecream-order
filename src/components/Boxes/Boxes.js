@@ -44,13 +44,13 @@ function Boxes(props) {
   );
 }
 
-const mapStateToProaps = (state) => {
+const mapStateToProps = (state) => {
   return {
-    prices: state.prices,
-    icecreams: state.icecreams,
-    cart: state.cart,
+    prices: state.ic.prices,
+    icecreams: state.ic.icecreams,
+    cart: state.ic.cart
   };
 };
 
 
-export default connect(mapStateToProaps)(Boxes);
+export default connect(mapStateToProps)(Boxes);

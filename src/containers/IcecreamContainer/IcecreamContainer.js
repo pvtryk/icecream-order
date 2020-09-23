@@ -5,14 +5,13 @@ import Boxes from '../../components/Boxes/Boxes';
 import Summary from '../../components/Summary/Summary';
 import CheckoutContainer from '../CheckoutContainer/CheckoutContainer';
 
-import * as actionType from '../../store/actions';
+import * as action from '../../store/actions/index';
 
 import './IcecreamContainer.scss';
 
 class IcecreamContainer extends PureComponent {
   state = {
     purchasable: false,
-    purchasing: false,
   };
 
   componentDidMount() {
@@ -23,7 +22,7 @@ class IcecreamContainer extends PureComponent {
     this.updatePurchase();
   }
 
-  // temporary off
+  // update purchasable state
   updatePurchase() {
     let finalValue = 0;
 
@@ -54,7 +53,7 @@ class IcecreamContainer extends PureComponent {
                 <Route
                   exact
                   path="/"
-                  render={(props) => (
+                  render={() => (
                     <Boxes
                       addIcecream={this.props.onIcecreamAdd}
                       removeIcecream={this.props.onIcecreamRemove}
@@ -63,7 +62,7 @@ class IcecreamContainer extends PureComponent {
                 />
                 <Route
                   path="/checkout"
-                  render={(props) => (
+                  render={() => (
                     <CheckoutContainer
                       {...this.state}
                       isAuthed={true}
@@ -75,7 +74,6 @@ class IcecreamContainer extends PureComponent {
               <div className="col-12 col-lg-4 icecreams__relative">
                 <Summary
                   purchasable={this.state.purchasable}
-                  purchasing={this.state.purchasing}
                 />
               </div>
             </div>
@@ -88,15 +86,16 @@ class IcecreamContainer extends PureComponent {
 
 const mapStateToProaps = state => {
   return {
-    icecreams: state.icecreams,
-    cart: state.cart
+    icecreams: state.ic.icecreams,
+    cart: state.ic.cart
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIcecreamAdd: (icName, icSize) => dispatch({ type: actionType.ADD_ICECREAM, icecreamName: icName, icecreamSize: icSize }),
-    onIcecreamRemove: (icName, icSize) => dispatch({ type: actionType.REMOVE_ICECREAM, icecreamName: icName, icecreamSize: icSize }),
+    onIcecreamAdd: (icName, icSize) => dispatch(action.addIcecream(icName, icSize)),
+
+    onIcecreamRemove: (icName, icSize) => dispatch(action.removeIcecream(icName, icSize)),
   };
 
 }

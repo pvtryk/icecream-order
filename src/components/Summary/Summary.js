@@ -64,13 +64,11 @@ function Summary(props) {
 
 const mapStateToProaps = (state) => {
   return {
-    prices: state.prices,
-    icecreams: state.icecreams,
-    cart: state.cart,
-    totalPrice: state.totalPrice
+    prices: state.ic.prices,
+    icecreams: state.ic.icecreams,
+    cart: state.ic.cart,
+    totalPrice: state.ic.totalPrice
   };
 };
-
-
 
 export default connect(mapStateToProaps, null)(Summary);

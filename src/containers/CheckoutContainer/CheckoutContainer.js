@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import axios from '../../axios-orders';
 import CheckoutInput from '../../components/Checkout/CheckoutInput/CheckoutInput';
 import Button from '../../components/UI/Button/Button';
@@ -40,6 +42,9 @@ class CheckoutContainer extends Component {
       },
     },
   };
+  componentDidMount() {
+    console.log(this.props);
+  }
 
   inputChangedHandler = (event, inputId) => {
     const updatedForm = {
@@ -63,11 +68,14 @@ class CheckoutContainer extends Component {
       formData[formEl] = this.state.orderForm[formEl].value;
     }
     const order = {
-      formData: formData
+      formData: formData,
+      price: this.props.price
     }
     axios.post('/orders.json', order)
       .then(res => {
+        console.log(this.props);
         console.log(res);
+        this.props.history.push('/thank-you');
       })
       .catch(error => {
         console.log(error);
@@ -105,4 +113,12 @@ class CheckoutContainer extends Component {
   }
 }
 
-export default CheckoutContainer;
+const mapStateToProps = props => {
+  return {
+    icecreams: props.ic.icecreams,
+    cart: props.ic.cart,
+    price: props.ic.totalPrice
+  }
+}
+
+export default connect(mapStateToProps)(withRouter(CheckoutContainer));

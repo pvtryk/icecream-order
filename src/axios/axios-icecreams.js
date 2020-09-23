@@ -1,0 +1,1 @@
+// zainstalować axios, pobierac dane z firebase

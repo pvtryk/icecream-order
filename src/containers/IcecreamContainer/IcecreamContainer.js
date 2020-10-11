@@ -17,6 +17,7 @@ class IcecreamContainer extends PureComponent {
   componentDidMount() {
     // console.log(this.state.cart['cream']['small']);
     console.log('[icecreamContainer] mounted');
+    this.props.onInitIcecream();
   }
   componentDidUpdate() {
     this.updatePurchase();
@@ -94,10 +95,9 @@ const mapStateToProaps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onIcecreamAdd: (icName, icSize) => dispatch(action.addIcecream(icName, icSize)),
-
     onIcecreamRemove: (icName, icSize) => dispatch(action.removeIcecream(icName, icSize)),
+    onInitIcecream: () => dispatch(action.initIcecream())
   };
-
 }
 
 export default connect(mapStateToProaps, mapDispatchToProps)(IcecreamContainer);

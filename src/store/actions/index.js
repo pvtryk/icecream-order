@@ -1,5 +1,6 @@
 export {
   addIcecream,
-  removeIcecream
+  removeIcecream,
+  initIcecream
 } from './icecreams';
 // export {} from './order.js'

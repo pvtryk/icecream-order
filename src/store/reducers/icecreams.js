@@ -6,61 +6,18 @@ const initialState = {
     large: 20.0,
     // discount: 5
   },
-  icecreams: {
-    carmel: {
-      shortname: 'carmel',
-      fullname: 'Carmel',
-      available: true,
-    },
-    cream: {
-      shortname: 'cream',
-      fullname: 'Cream',
-      available: true,
-    },
-    vanilla: {
-      shortname: 'vanilla',
-      fullname: 'Vanilla',
-      available: true,
-    },
-    whiteChocolate: {
-      shortname: 'whiteChocolate',
-      fullname: 'White Chocolate',
-      available: true,
-    },
-    chocolate: {
-      shortname: 'chocolate',
-      fullname: 'Chocolate',
-      available: true,
-    },
-  },
-  cart: {
-    carmel: {
-      small: 0,
-      large: 0,
-    },
-    cream: {
-      small: 0,
-      large: 0,
-    },
-    vanilla: {
-      small: 0,
-      large: 0,
-    },
-    whiteChocolate: {
-      small: 0,
-      large: 0,
-    },
-    chocolate: {
-      small: 0,
-      large: 0,
-    },
-  },
+  icecreams: {},
+  cart: {},
   totalPrice: 0,
+  fetchError: false
 };
 
 const addIcecream = (state, action) => {
   const addName = action.icecreamName;
-  const addSize = action.icecreamSize;
+  const addSize = action.icecreamSize;  
+  // console.log('WARTOŚCI', 'name:', addName, "size:", addSize);
+  // console.log('AKCJA', action, 'AKTUALNE', state);
+
   return {
     ...state,
     cart: {
@@ -89,12 +46,46 @@ const removeIcecream = (state, action) => {
   };
 }
 
+const setIcecream = (state, action) => {
+  const icecreamsKeys = Object.keys(action.icecream);
+  let updatedCart = {}
+
+  for (const key in icecreamsKeys) {
+    const element = icecreamsKeys[key];
+
+    updatedCart[element] = {
+      small: 0,
+      large: 0
+    }
+  }
+
+
+  return {
+    ...state,
+    icecreams: action.icecream,
+    cart: updatedCart,
+    totalPrice: initialState.totalPrice,
+    fetchError: false,
+  };
+}
+
+const fetchFailIcecream = (state, action) => {
+  return {
+    ...state,
+    fetchError: true
+  }
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.ADD_ICECREAM:
       return addIcecream(state, action);
     case actionType.REMOVE_ICECREAM:
       return removeIcecream(state, action);
+    case actionType.SET_ICECREAM:
+      return setIcecream(state, action);
+    case actionType.FETCH_FAIL_ICECREAM:
+      return fetchFailIcecream(state, action);
     default:
       return state;
   }

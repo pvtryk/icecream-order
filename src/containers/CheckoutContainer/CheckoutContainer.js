@@ -22,64 +22,151 @@ class CheckoutContainer extends Component {
           type: 'text',
         },
         value: '',
+        validation: {
+          required: true,
+        },
+        valid: false,
+        touched: false
       },
       secondName: {
         elementType: 'input',
         labelEl: 'Second name',
+        additionalClass: '',
         config: {
           type: 'text',
         },
-        additionalClass: 'half',
         value: '',
+        validation: {
+          required: true,
+        },
+        valid: false,
+        touched: false
+      },
+      phoneNumber: {
+        elementType: 'input',
+        labelEl: 'Phone number',
+        additionalClass: '',
+        config: {
+          type: 'tel',
+        },
+        value: '',
+        validation: {
+          required: true,
+        },
+        valid: false,
+        touched: false
       },
       email: {
         elementType: 'email',
         labelEl: 'Email',
+        additionalClass: '',
         config: {
           type: 'email',
         },
-        additionalClass: '',
         value: '',
+        validation: {
+          required: true,
+        },
+        valid: false,
+        touched: false
+      },
+      address: {
+        elementType: 'input',
+        labelEl: 'Shipping address',
+        additionalClass: '',
+        config: {
+          type: 'text',
+        },
+        value: '',
+        validation: {
+          required: true,
+        },
+        valid: false,
+        touched: false
+      },
+      city: {
+        elementType: 'input',
+        labelEl: 'City',
+        additionalClass: '',
+        config: {
+          type: 'text',
+        },
+        value: '',
+        validation: {
+          required: true,
+        },
+        valid: false,
+        touched: false
+      },
+      postal: {
+        elementType: 'input',
+        labelEl: 'Postal code',
+        additionalClass: '',
+        config: {
+          type: 'text',
+        },
+        value: '',
+        validation: {
+          required: true,
+        },
+        valid: false,
+        touched: false
       },
     },
   };
-  
+
   // componentDidMount() {}
+
+  checkValidity(value, rules) {
+    let isValid = true;
+
+    if (rules.required) {
+      isValid = value.trim() !== '' && isValid;
+    }
+
+    return isValid;
+  }
 
   inputChangedHandler = (event, inputId) => {
     const updatedForm = {
-      ...this.state.orderForm
-    }
+      ...this.state.orderForm,
+    };
     const updatedFormElement = {
-      ...updatedForm[inputId]
-    }
+      ...updatedForm[inputId],
+    };
     updatedFormElement.value = event.target.value;
+    updatedFormElement.valid = this.checkValidity(
+      updatedFormElement.value,
+      updatedFormElement.validation
+    );
+    updatedFormElement.touched = true;
     updatedForm[inputId] = updatedFormElement;
 
-    this.setState({orderForm: updatedForm});
-  }
+    this.setState({ orderForm: updatedForm });
+  };
 
   formSubmitHandler = (event) => {
     event.preventDefault();
     console.log('[form] submitted!');
     let formData = {};
-    
+
     for (const formEl in this.state.orderForm) {
       formData[formEl] = this.state.orderForm[formEl].value;
     }
     const order = {
       formData: formData,
-      price: this.props.price
-    }
-    axios.post('/orders.json', order)
-      .then(res => {
+      price: this.props.price,
+    };
+    axios
+      .post('/orders.json', order)
+      .then((res) => {
         console.log(res);
         this.props.history.push('/thank-you');
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
-      })
-  }
+      });
+  };
 
   render() {
     const formElements = [];
@@ -92,7 +179,10 @@ class CheckoutContainer extends Component {
 
     return (
       <div className="checkout-container">
-        <form className="checkout-container__form" onSubmit={this.formSubmitHandler}>
+        <form
+          className="checkout-container__form"
+          onSubmit={this.formSubmitHandler}
+        >
           {formElements.map((input) => (
             <CheckoutInput
               key={input.id}
@@ -101,6 +191,8 @@ class CheckoutContainer extends Component {
               elementConfig={input.options.config}
               additionalClass={input.options.additionalClass}
               value={input.options.value}
+              valid={!input.options.valid}
+              touched={input.options.touched}
               changed={(event) => this.inputChangedHandler(event, input.id)}
             />
           ))}

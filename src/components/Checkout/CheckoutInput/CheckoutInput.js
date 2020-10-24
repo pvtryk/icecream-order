@@ -3,12 +3,21 @@ import './CheckoutInput.scss';
 
 const CheckoutInput = (props) => {
   let inputEl = null;
+  const inputClasses = ['checkout-input__input']
+
+  if (props.additionalClass) {
+    inputClasses.push(props.additionalClass);
+  }
+
+  if (props.valid && props.touched) {
+    inputClasses.push('invalid');
+  }
 
   switch (props.inputType) {
     case ('input'):
         inputEl = (
           <input
-            className={`checkout-input__input ${props.additionalClass} `}
+            className={inputClasses.join(' ')}
             {...props.elementConfig}
             value={props.value}
             onChange={props.changed}

@@ -6,9 +6,10 @@ import Loader from '../UI/Loader/Loader';
 import './Boxes.scss';
 
 function Boxes(props) {
+  const icecreamsObject = Object.getOwnPropertyNames(props.icecreams);
   let icereamLoaded = <Loader />
 
-  // if (props.icecreams) {
+  if (icecreamsObject.length >= 1) {
     const icecreams = Object.values(props.icecreams).map((icKey) => {
       return icKey;
     });
@@ -19,17 +20,22 @@ function Boxes(props) {
           key={val.shortname}
           prices={props.prices}
           fullname={val.fullname}
-          addSmallIcecream={ () => props.addIcecream(val.shortname, 'small') }
-          addLargeIcecream={ () => props.addIcecream(val.shortname, 'large') }
-          removeSmallIcecream={ () => props.removeIcecream(val.shortname, 'small') }
-          removeLargeIcecream={ () => props.removeIcecream(val.shortname, 'large') }
-          // disabledSmall={props.disabledSmall[val.shortname]['small']}
+          addSmallIcecream={() => props.addIcecream(val.shortname, 'small')}
+          addLargeIcecream={() => props.addIcecream(val.shortname, 'large')}
+          removeSmallIcecream={() =>
+            props.removeIcecream(val.shortname, 'small')
+          }
+          removeLargeIcecream={() =>
+            props.removeIcecream(val.shortname, 'large')
+          }
           cart={props.cart[val.shortname]}
-          // disabledLarge={props.disabledLarge[val.shortname]['large']}
         />
       );
     });
-  // }
+  } else if (props.fetchError) {
+    icereamLoaded = <p className="m-boxes__error">Ouch! Something went wrong</p>;
+  }
+  
 
   return (
     <div className="m-boxes">
@@ -42,7 +48,8 @@ const mapStateToProps = (state) => {
   return {
     prices: state.ic.prices,
     icecreams: state.ic.icecreams,
-    cart: state.ic.cart
+    cart: state.ic.cart,
+    fetchError: state.ic.fetchError,
   };
 };
 

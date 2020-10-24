@@ -15,7 +15,6 @@ class IcecreamContainer extends PureComponent {
   };
 
   componentDidMount() {
-    // console.log(this.state.cart['cream']['small']);
     console.log('[icecreamContainer] mounted');
     this.props.onInitIcecream();
   }

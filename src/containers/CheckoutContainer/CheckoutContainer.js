@@ -9,6 +9,7 @@ import './CheckoutContainer.scss';
 
 // TODO:
 // 1.validation
+// 2. Add adddress input with hints based on google maps & openstreet maps
 
 class CheckoutContainer extends Component {
   state = {
@@ -42,9 +43,8 @@ class CheckoutContainer extends Component {
       },
     },
   };
-  componentDidMount() {
-    console.log(this.props);
-  }
+  
+  // componentDidMount() {}
 
   inputChangedHandler = (event, inputId) => {
     const updatedForm = {
@@ -73,7 +73,6 @@ class CheckoutContainer extends Component {
     }
     axios.post('/orders.json', order)
       .then(res => {
-        console.log(this.props);
         console.log(res);
         this.props.history.push('/thank-you');
       })

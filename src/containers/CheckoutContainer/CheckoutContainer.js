@@ -45,16 +45,16 @@ class CheckoutContainer extends Component {
         touched: false,
       },
       phoneNumber: {
-        elementType: 'input',
+        elementType: 'tel',
         labelEl: 'Phone number',
         additionalClass: '',
         config: {
           type: 'tel',
-          message: 'Enter your correct phone number.',
         },
         value: '',
         validation: {
           required: true,
+          message: 'Enter your correct phone number.',
         },
         valid: false,
         touched: false,
@@ -121,9 +121,10 @@ class CheckoutContainer extends Component {
       },
     },
     formIsValid: false,
-    loader: false
+    loader: false,
   };
-
+  
+  // TODO: if cart is empty redirect to order page
   // componentDidMount() {}
 
   checkValidity(value, rules) {
@@ -136,6 +137,24 @@ class CheckoutContainer extends Component {
     return isValid;
   }
 
+  checkValidityOnSubmit() {
+    const inputs = {
+      ...this.state.orderForm
+    }
+
+    for (const single in inputs) {
+      const selected = inputs[single];
+      
+      if (selected.validation.required && !selected.touched) {
+        selected.touched = true;
+        console.log(selected.touched);
+      }
+
+      inputs[single] = selected;
+    }
+    this.setState({orderForm: inputs});
+  }
+
   inputChangedHandler = (event, inputId) => {
     const updatedForm = {
       ...this.state.orderForm,
@@ -144,10 +163,7 @@ class CheckoutContainer extends Component {
       ...updatedForm[inputId],
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(
-      updatedFormElement.value,
-      updatedFormElement.validation
-    );
+    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
     updatedFormElement.touched = true;
     updatedForm[inputId] = updatedFormElement;
 
@@ -162,7 +178,8 @@ class CheckoutContainer extends Component {
 
   formSubmitHandler = (event) => {
     event.preventDefault();
-    console.log('[form] submitted!');
+    console.log('[form] submit');
+    this.checkValidityOnSubmit();
     let formData = {};
 
     for (const formEl in this.state.orderForm) {
@@ -172,15 +189,22 @@ class CheckoutContainer extends Component {
       formData: formData,
       price: this.props.price,
     };
-    axios
-      .post('/orders.json', order)
-      .then((res) => {
-        console.log(res);
-        this.props.history.push('/thank-you');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+    if (this.state.formIsValid) {
+      console.log('send');
+
+      axios
+        .post('/orders.json', order)
+        .then((res) => {
+          console.log('form submitt', res);
+          this.props.history.push('/thank-you');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      console.log('[ERROR] form submitting!');
+    }
   };
 
   render() {
@@ -212,7 +236,6 @@ class CheckoutContainer extends Component {
               changed={(event) => this.inputChangedHandler(event, input.id)}
             />
           ))}
-
           <Button name="Order Now!" />
         </form>
       </div>

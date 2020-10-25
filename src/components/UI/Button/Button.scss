@@ -4,6 +4,7 @@
   text-align: center;
   
   &__btn {
+    @include transition($duration: 0.2s, $ease: ease-out);
     background-color: $color-secondary;
     color: $color-primary;
     border-radius: 8px;
@@ -12,5 +13,13 @@
     font-size: 14px;
     padding: 0 30px;
     display: inline-block;
+    background-clip: padding-box;
+
+    &[disabled] {
+      background-color: rgba($color-disabled, .5);
+      border-color: rgba($color-disabled, .5);
+      color: $color-text-white;
+      cursor: default;
+    }
   }
 }

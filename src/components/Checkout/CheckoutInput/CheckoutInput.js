@@ -17,6 +17,7 @@ const CheckoutInput = (props) => {
 
   switch (props.inputType) {
     case ('input'):
+    case ('tel'):
         inputEl = (
           <input
             className={inputClasses.join(' ')}
@@ -30,7 +31,7 @@ const CheckoutInput = (props) => {
       case ('email'):
         inputEl = (
           <input
-            className="checkout-input__input"
+            className={inputClasses.join(' ')}
             {...props.elementConfig}
             value={props.value}
             onChange={props.changed}

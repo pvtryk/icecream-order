@@ -24,9 +24,10 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
+          message: 'Enter your first name.',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       secondName: {
         elementType: 'input',
@@ -38,9 +39,10 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
+          message: 'Enter your second name.',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       phoneNumber: {
         elementType: 'input',
@@ -48,17 +50,18 @@ class CheckoutContainer extends Component {
         additionalClass: '',
         config: {
           type: 'tel',
+          message: 'Enter your correct phone number.',
         },
         value: '',
         validation: {
           required: true,
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       email: {
         elementType: 'email',
-        labelEl: 'Email',
+        labelEl: 'E-mail',
         additionalClass: '',
         config: {
           type: 'email',
@@ -66,9 +69,10 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
+          message: 'Enter your correct e-mail address.',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       address: {
         elementType: 'input',
@@ -80,9 +84,10 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
+          message: 'Enter your shipping address.',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       city: {
         elementType: 'input',
@@ -94,9 +99,10 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
+          message: 'Enter your city.',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       postal: {
         elementType: 'input',
@@ -108,11 +114,14 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
+          message: 'Enter your postal code.',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
     },
+    formIsValid: false,
+    loader: false
   };
 
   // componentDidMount() {}
@@ -142,7 +151,13 @@ class CheckoutContainer extends Component {
     updatedFormElement.touched = true;
     updatedForm[inputId] = updatedFormElement;
 
-    this.setState({ orderForm: updatedForm });
+    // check if form is valid
+    let formIsValid = true;
+    for (const inputId in updatedForm) {
+      formIsValid = updatedForm[inputId].valid && formIsValid;
+    }
+
+    this.setState({ orderForm: updatedForm, formIsValid: formIsValid });
   };
 
   formSubmitHandler = (event) => {
@@ -193,6 +208,7 @@ class CheckoutContainer extends Component {
               value={input.options.value}
               valid={!input.options.valid}
               touched={input.options.touched}
+              message={input.options.validation.message}
               changed={(event) => this.inputChangedHandler(event, input.id)}
             />
           ))}

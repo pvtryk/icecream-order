@@ -1,7 +1,19 @@
 @import '../../../styles/reusable.scss';
 
 .checkout-input {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  position: relative;
+
+  span {
+    font-size: 12px;
+    // margin-top: 5px;
+    color: $color-error;
+    font-weight: 300;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 2px;
+  }
 
   &__label {
     font-size: 12px;

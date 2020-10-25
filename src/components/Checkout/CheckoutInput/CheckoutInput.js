@@ -3,6 +3,7 @@ import './CheckoutInput.scss';
 
 const CheckoutInput = (props) => {
   let inputEl = null;
+  let errorMessage;
   const inputClasses = ['checkout-input__input']
 
   if (props.additionalClass) {
@@ -11,6 +12,7 @@ const CheckoutInput = (props) => {
 
   if (props.valid && props.touched) {
     inputClasses.push('invalid');
+    errorMessage = <span>{props.message}</span>
   }
 
   switch (props.inputType) {
@@ -46,10 +48,11 @@ const CheckoutInput = (props) => {
 
   return (
     <div className="checkout-input">
-      <label className="checkout-input__label">{ props.labelEl }</label>
+      <label className="checkout-input__label">{props.labelEl}</label>
       {inputEl}
+      {errorMessage}
     </div>
-  )
+  );
 }
 
 export default CheckoutInput;

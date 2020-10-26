@@ -113,7 +113,10 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
+          regex: 'postal',
+          maxLength: 6,
           message: 'Enter your postal code.',
+          tip: 'Example: 01-000'
         },
         valid: false,
         touched: false,
@@ -123,7 +126,6 @@ class CheckoutContainer extends Component {
     loader: false,
   };
   
-  // TODO: if cart is empty redirect to order page
   componentDidMount() {
     if ( Object.getOwnPropertyNames(this.props.cart).length === 0 ) {
       this.props.history.push('/');
@@ -132,9 +134,18 @@ class CheckoutContainer extends Component {
 
   checkValidity(value, rules) {
     let isValid = true;
+    const postalRegex = /\d{2}-\d{3}/g;
 
     if (rules.required) {
       isValid = value.trim() !== '' && isValid;
+    }
+
+    if (rules.regex === 'postal') {
+      isValid = value.match(postalRegex) && isValid;
+    }
+
+    if (rules.maxLength) {
+      isValid = value.length === rules.maxLength && isValid;
     }
 
     return isValid;
@@ -233,6 +244,7 @@ class CheckoutContainer extends Component {
               valid={!input.options.valid}
               touched={input.options.touched}
               message={input.options.validation.message}
+              tip={input.options.validation.tip}
               changed={(event) => this.inputChangedHandler(event, input.id)}
             />
           ))}

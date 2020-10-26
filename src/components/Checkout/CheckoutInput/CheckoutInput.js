@@ -4,6 +4,7 @@ import './CheckoutInput.scss';
 const CheckoutInput = (props) => {
   let inputEl = null;
   let errorMessage;
+  let tipMessage;
   const inputClasses = ['checkout-input__input']
 
   if (props.additionalClass) {
@@ -13,6 +14,10 @@ const CheckoutInput = (props) => {
   if (props.valid && props.touched) {
     inputClasses.push('invalid');
     errorMessage = <span>{props.message}</span>
+  }
+
+  if (props.tip !== undefined && props.valid && props.touched) {
+    tipMessage = <span className="input-tip">{props.tip}</span>
   }
 
   switch (props.inputType) {
@@ -52,6 +57,7 @@ const CheckoutInput = (props) => {
       <label className="checkout-input__label">{props.labelEl}</label>
       {inputEl}
       {errorMessage}
+      {tipMessage}
     </div>
   );
 }

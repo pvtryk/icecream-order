@@ -22,7 +22,6 @@ const CheckoutInput = (props) => {
 
   switch (props.inputType) {
     case ('input'):
-    case ('tel'):
         inputEl = (
           <input
             className={inputClasses.join(' ')}

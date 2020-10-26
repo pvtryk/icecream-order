@@ -23,7 +23,7 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
-          message: 'Enter your first name.',
+          message: 'Enter first name.',
         },
         valid: false,
         touched: false,
@@ -38,13 +38,13 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
-          message: 'Enter your second name.',
+          message: 'Enter second name.',
         },
         valid: false,
         touched: false,
       },
       phoneNumber: {
-        elementType: 'tel',
+        elementType: 'input',
         labelEl: 'Phone number',
         additionalClass: '',
         config: {
@@ -53,7 +53,8 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
-          message: 'Enter your correct phone number.',
+          regex: 'tel',
+          message: 'Enter correct phone number.',
         },
         valid: false,
         touched: false,
@@ -68,7 +69,7 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
-          message: 'Enter your correct e-mail address.',
+          message: 'Enter correct e-mail address.',
         },
         valid: false,
         touched: false,
@@ -83,7 +84,7 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
-          message: 'Enter your shipping address.',
+          message: 'Enter shipping address.',
         },
         valid: false,
         touched: false,
@@ -98,7 +99,7 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
-          message: 'Enter your city.',
+          message: 'Enter city.',
         },
         valid: false,
         touched: false,
@@ -115,7 +116,7 @@ class CheckoutContainer extends Component {
           required: true,
           regex: 'postal',
           maxLength: 6,
-          message: 'Enter your postal code.',
+          message: 'Enter postal code.',
           tip: 'Example: 01-000'
         },
         valid: false,
@@ -135,6 +136,7 @@ class CheckoutContainer extends Component {
   checkValidity(value, rules) {
     let isValid = true;
     const postalRegex = /\d{2}-\d{3}/g;
+    const telRegex = /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/g;
 
     if (rules.required) {
       isValid = value.trim() !== '' && isValid;
@@ -142,6 +144,10 @@ class CheckoutContainer extends Component {
 
     if (rules.regex === 'postal') {
       isValid = value.match(postalRegex) && isValid;
+    }
+    
+    if (rules.regex === 'tel') {
+      isValid = value.match(telRegex) && isValid;
     }
 
     if (rules.maxLength) {

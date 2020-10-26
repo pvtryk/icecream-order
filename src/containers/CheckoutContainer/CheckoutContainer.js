@@ -8,8 +8,7 @@ import Button from '../../components/UI/Button/Button';
 import './CheckoutContainer.scss';
 
 // TODO:
-// 1.validation
-// 2. Add adddress input with hints based on google maps & openstreet maps
+// 1. Add adddress input with hints based on google maps & openstreet maps
 
 class CheckoutContainer extends Component {
   state = {
@@ -125,7 +124,11 @@ class CheckoutContainer extends Component {
   };
   
   // TODO: if cart is empty redirect to order page
-  // componentDidMount() {}
+  componentDidMount() {
+    if ( Object.getOwnPropertyNames(this.props.cart).length === 0 ) {
+      this.props.history.push('/');
+    }
+  }
 
   checkValidity(value, rules) {
     let isValid = true;
@@ -147,7 +150,6 @@ class CheckoutContainer extends Component {
       
       if (selected.validation.required && !selected.touched) {
         selected.touched = true;
-        console.log(selected.touched);
       }
 
       inputs[single] = selected;
@@ -178,7 +180,6 @@ class CheckoutContainer extends Component {
 
   formSubmitHandler = (event) => {
     event.preventDefault();
-    console.log('[form] submit');
     this.checkValidityOnSubmit();
     let formData = {};
 
@@ -191,18 +192,17 @@ class CheckoutContainer extends Component {
     };
 
     if (this.state.formIsValid) {
-      console.log('send');
-
       axios
         .post('/orders.json', order)
         .then((res) => {
-          console.log('form submitt', res);
+          console.log('[SUCCESS] form sending!', res);
           this.props.history.push('/thank-you');
         })
         .catch((error) => {
           console.log(error);
         });
     } else {
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' }); 
       console.log('[ERROR] form submitting!');
     }
   };

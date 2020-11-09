@@ -1,11 +1,6 @@
 import * as actionType from '../actions/actionTypes';
 
 const initialState = {
-  prices: {
-    small: 12.5,
-    large: 20.0,
-    // discount: 5
-  },
   icecreams: {},
   cart: {},
   totalPrice: 0,
@@ -14,9 +9,8 @@ const initialState = {
 
 const addIcecream = (state, action) => {
   const addName = action.icecreamName;
-  const addSize = action.icecreamSize;  
-  // console.log('WARTOŚCI', 'name:', addName, "size:", addSize);
-  // console.log('AKCJA', action, 'AKTUALNE', state);
+  const addSize = action.icecreamSize;
+  const addPrice = action.icecreamPrice;
 
   return {
     ...state,
@@ -27,13 +21,15 @@ const addIcecream = (state, action) => {
         [addSize]: state.cart[addName][addSize] + 1,
       },
     },
-    totalPrice: state.totalPrice + state.prices[addSize],
+    totalPrice: state.totalPrice + addPrice,
   };
 }
 
 const removeIcecream = (state, action) => {
   const removeName = action.icecreamName;
   const removeSize = action.icecreamSize;
+  const removePrice = action.icecreamPrice;
+
   return {
     ...state,
     cart: {
@@ -43,22 +39,28 @@ const removeIcecream = (state, action) => {
         [removeSize]: state.cart[removeName][removeSize] - 1,
       },
     },
+    totalPrice: state.totalPrice - removePrice,
   };
 }
 
 const setIcecream = (state, action) => {
-  const icecreamsKeys = Object.keys(action.icecream);
+  const icecreamsValues = Object.values(action.icecream);
+  console.log(icecreamsValues);
   let updatedCart = {}
 
-  for (const key in icecreamsKeys) {
-    const element = icecreamsKeys[key];
+  for (const key in icecreamsValues) {
+    const name = icecreamsValues[key].shortname;
+    const element = icecreamsValues[key].variation;
 
-    updatedCart[element] = {
-      small: 0,
-      large: 0
+    for (const variation in element) {
+      const singleElement = element[variation];
+
+      updatedCart[name] =  {
+        ...updatedCart[name],
+        [singleElement.type]: 0
+      }
     }
   }
-
 
   return {
     ...state,

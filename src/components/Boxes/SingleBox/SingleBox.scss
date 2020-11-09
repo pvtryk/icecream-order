@@ -27,12 +27,13 @@
   }
 
   &__options {
-    @include flex(space-between, stretch, nowrap);
+    @include flex(space-between, stretch, wrap);
   }
 
   &__item {
-    flex: 0 0 45%;
+    flex: 0 0 30%;
     text-align: center;
+    margin-bottom: 15px;
   }
 
   &__type {
@@ -40,12 +41,14 @@
     font-size: 16px;
     margin-bottom: 5px;
   }
+
   &__price {
     text-align: center;
     font-weight: 700;
     font-size: 16px;
     margin-top: 5px;
   }
+  
   &__btn {
     @include transition;
     width: 40px;

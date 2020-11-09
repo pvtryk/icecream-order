@@ -147,6 +147,8 @@ class CheckoutContainer extends Component {
     }
     
     if (rules.regex === 'tel') {
+      value.replace(/\s/g, '');
+      // isValid = telRegex.test(String(value)) && isValid;
       isValid = value.match(telRegex) && isValid;
     }
 

@@ -1,19 +1,21 @@
 import * as actionType from './actionTypes';
 import axios from '../../axios/axios-icecreams';
 
-export const addIcecream = (icName, icSize) => {
+export const addIcecream = (icName, icSize, icPrice) => {
   return {
     type: actionType.ADD_ICECREAM,
     icecreamName: icName,
-    icecreamSize: icSize
-  }
-}
+    icecreamSize: icSize,
+    icecreamPrice: icPrice
+  };
+};
 
-export const removeIcecream = (icName, icSize) => {
+export const removeIcecream = (icName, icSize, icPrice) => {
   return {
     type: actionType.REMOVE_ICECREAM,
     icecreamName: icName,
-    icecreamSize: icSize
+    icecreamSize: icSize,
+    icecreamPrice: icPrice
   };
 }
 

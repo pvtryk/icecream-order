@@ -20,14 +20,8 @@ function Boxes(props) {
           key={val.shortname}
           prices={props.prices}
           fullname={val.fullname}
-          addSmallIcecream={() => props.addIcecream(val.shortname, 'small')}
-          addLargeIcecream={() => props.addIcecream(val.shortname, 'large')}
-          removeSmallIcecream={() =>
-            props.removeIcecream(val.shortname, 'small')
-          }
-          removeLargeIcecream={() =>
-            props.removeIcecream(val.shortname, 'large')
-          }
+          shortname={val.shortname}
+          variations={val.variation}
           cart={props.cart[val.shortname]}
         />
       );
@@ -53,5 +47,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-
-export default connect(mapStateToProps)(Boxes);
+export default connect(mapStateToProps, null)(Boxes);

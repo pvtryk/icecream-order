@@ -55,8 +55,8 @@ class IcecreamContainer extends PureComponent {
                   path="/"
                   render={() => (
                     <Boxes
-                      addIcecream={this.props.onIcecreamAdd}
-                      removeIcecream={this.props.onIcecreamRemove}
+                      // addIcecream={this.props.onIcecreamAdd}
+                      // removeIcecream={this.props.onIcecreamRemove}
                     />
                   )}
                 />
@@ -93,8 +93,6 @@ const mapStateToProaps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIcecreamAdd: (icName, icSize) => dispatch(action.addIcecream(icName, icSize)),
-    onIcecreamRemove: (icName, icSize) => dispatch(action.removeIcecream(icName, icSize)),
     onInitIcecream: () => dispatch(action.initIcecream())
   };
 }

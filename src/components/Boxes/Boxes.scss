@@ -2,10 +2,10 @@
 
 .m-boxes {
   background-color: $color-bg;
-  // padding: 40px 0;
   
   &__wrap {
-    @include flex(space-between, stretch, wrap);
+    @include flex(flex-start, stretch, wrap);
+    margin: 0 -5px;
   }
 
   &__error {

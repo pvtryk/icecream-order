@@ -4,7 +4,8 @@ const initialState = {
   icecreams: {},
   cart: {},
   totalPrice: 0,
-  fetchError: false
+  fetchError: false,
+  summaryType: false
 };
 
 const addIcecream = (state, action) => {
@@ -45,7 +46,6 @@ const removeIcecream = (state, action) => {
 
 const setIcecream = (state, action) => {
   const icecreamsValues = Object.values(action.icecream);
-  console.log(icecreamsValues);
   let updatedCart = {}
 
   for (const key in icecreamsValues) {
@@ -78,6 +78,14 @@ const fetchFailIcecream = (state, action) => {
   }
 }
 
+const openSummary = (state, action) => {
+  console.log('open summary action', !state.summaryType );
+  return {
+    ...state,
+    summaryType: !state.summaryType,
+  };
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.ADD_ICECREAM:
@@ -88,6 +96,8 @@ const reducer = (state = initialState, action) => {
       return setIcecream(state, action);
     case actionType.FETCH_FAIL_ICECREAM:
       return fetchFailIcecream(state, action);
+    case actionType.OPEN_SUMMARY:
+      return openSummary(state, action);
     default:
       return state;
   }

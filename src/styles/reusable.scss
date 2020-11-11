@@ -7,12 +7,10 @@ $color-text-white: #ffffff;
 $color-black: #000000;
 $color-error: #FF2244;
 $color-disabled: #333533;
+$color-summary-box: #dddddd;
 
 // font
 $font-main: 'Helvetica', sans-serif;
-
-// typography
-
 
 // mixins
 @mixin flex($x: flex-start, $y: flex-start, $wrap: wrap) {
@@ -59,3 +57,44 @@ $md: "only screen and (min-width: #{$min-md})";
 $lg: "only screen and (min-width: #{$min-lg})";
 $xl: "only screen and (min-width: #{$min-xl})";
 $xxl: "only screen and (min-width: #{$min-xxl})";
+
+
+// typography
+%product-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: normal;
+
+  @media #{$md} {
+    font-size: 18px;
+  }
+  @media #{$lg} {
+    font-size: 20px;
+  }
+}
+
+%product-type {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: normal;
+  
+  @media #{$md} {
+    font-size: 12px;
+  }
+}
+
+%product-price {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: normal;
+
+  @media #{$md} {
+    font-size: 14px;
+  }
+  @media #{$lg} {
+    font-size: 15px;
+  }
+}

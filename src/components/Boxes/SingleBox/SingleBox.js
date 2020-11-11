@@ -12,35 +12,45 @@ function SingleBox(props) {
         <img src={BoxImage} alt=""/>
       </div>
       <p className="s-box__name">{props.fullname}</p>
-      <div className="s-box__options">
-        {
-          props.variations.map(variation => {
-            return (
-              <div className="s-box__item" key={variation.type}>
+      {
+        props.variations.map(variation => {
+          return (
+            <div className="s-box__item" key={variation.type}>
+              <div className="s-box__col">
                 <p className="s-box__type">{variation.type}</p>
+                <p className="s-box__price">{variation.price.toFixed(2)} $</p>
+              </div>
+              <div className="s-box__col s-box__col--buttons">
                 <button
                   onClick={() =>
-                    props.onIcecreamAdd(props.shortname, variation.type, variation.price)
-                  }
-                  className="s-box__btn"
-                >
-                  +
-                </button>
-                <button
-                  onClick={() =>
-                    props.onIcecreamRemove(props.shortname, variation.type, variation.price)
+                    props.onIcecreamRemove(
+                      props.shortname,
+                      variation.type,
+                      variation.price
+                    )
                   }
                   disabled={props.cart[variation.type] <= 0 ? true : false}
                   className="s-box__btn"
                 >
                   -
                 </button>
-                <p className="s-box__price">{variation.price.toFixed(2)} $</p>
+                <button
+                  onClick={() =>
+                    props.onIcecreamAdd(
+                      props.shortname,
+                      variation.type,
+                      variation.price
+                    )
+                  }
+                  className="s-box__btn"
+                >
+                  +
+                </button>
               </div>
-            );
-          })
-        }
-      </div>
+            </div>
+          );
+        })
+      }
     </div>
   );
 }

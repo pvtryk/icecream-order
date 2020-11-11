@@ -6,6 +6,14 @@ import SummaryItem from './SummaryItem/SummaryItem';
 import './Summary.scss';
 
 function Summary(props) {
+  const {cart, icecreams} = props;
+  let prices = [];
+
+  let summaryClasses = ['summary'];
+
+  if (props.summaryType === true) {
+    summaryClasses.push('summary--mobile');
+  }
   
   const isSomething = (
     <div className="summary__info">
@@ -13,17 +21,8 @@ function Summary(props) {
     </div>
   );
 
-  const {cart, icecreams} = props;
-
-  // TODO HERE: 
-  // 1. IF IN CART IS SOMETHING - DISPLAY IT.
-  // 2. SHOW PRORUCT VARIATIONS
-
-  let prices = [];
   const summaryItems = Object.keys(cart).map(key => {
     const ic = icecreams[key].variation;
-    // console.log(Object.keys(ic).find((key) => ic[key] === 'small'));
-    // console.log(ic);
     const name = icecreams[key].fullname;
     const shortName = icecreams[key].shortname;
     const itemCart = cart[key];
@@ -36,47 +35,21 @@ function Summary(props) {
         [element.type]: element.price,
       };
     }
-
-    // console.log(prices);
-
-  
     
     return Object.keys(itemCart).map((size) => {
       const price = prices[shortName][size];
       const value = itemCart[size];
-      console.log(value);
 
       if (value !== 0) {
         return <SummaryItem key={shortName + size} name={name} shortName={shortName} size={size} ic={icecreams} price={price} value={value} />;
       }
+      return false;
     });
 
   });
-
-  // let small = 0; // let large = 0;
-  const OLDsummaryItems = Object.keys(cart).map(igKey => {
-      return [...Array(cart[igKey])].map(value => {
-        if (value.small >= 1 || value.large >= 1) {
-          // small = small + value.small;
-          // large = large + value.large;
-
-          return (
-            <SummaryItem
-            key={icecreams[igKey].shortname}
-            // prices={prices}
-            // small={value.small}
-            // large={value.large}
-            // name={icecreams[igKey].fullname}
-            />
-          );
-        }
-        return false;
-      });
-    });
-   
-
+  
   return (
-    <div className="summary">
+    <div className={summaryClasses.join(' ')}>
       <h2 className="summary__title">Your Order</h2>
 
       {!props.purchasable && isSomething}
@@ -103,7 +76,8 @@ const mapStateToProaps = (state) => {
   return {
     icecreams: state.ic.icecreams,
     cart: state.ic.cart,
-    totalPrice: state.ic.totalPrice
+    totalPrice: state.ic.totalPrice,
+    summaryType: state.ic.summaryType,
   };
 };
 

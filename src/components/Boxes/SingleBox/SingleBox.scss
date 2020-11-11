@@ -2,69 +2,103 @@
 
 .s-box {
   background-color: $color-bg;
-  margin-bottom: 50px;
-  // flex: 0 0 28%;
-  flex: 0 0 44%;
+  // flex: 0 0 44%;
+  // flex: 0 0 320px;
+  // box-shadow: 0 5px 12px 6px rgba(#000000, .5);
+  padding: 10px;
+  margin: 0 5px 50px 5px;
+  flex: 0 0 calc(50% - 10px);
+  max-width: calc(50% - 10px);
+  
+  @media #{$sm} {
+    flex: 0 0 calc(33.333% - 10px);
+  }
+  @media #{$lg} {
+    padding: 15px 20px;
+  }
 
   &__image {
     box-shadow: 0 5px 12px 6px rgba($color-bg-alt, .5);
     background-color: #ffffff;
-    height: 200px;
+    // height: 200px;
     margin-bottom: 15px;
+    position: relative;
+
+    &::after {
+      content: '';
+      padding-bottom: 100%;
+      display: block;
+    }
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
   }
 
   &__name {
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
+    @extend %product-title;
     margin-bottom: 12px;
-  }
-
-  &__options {
-    @include flex(space-between, stretch, wrap);
+    text-align: center;
   }
 
   &__item {
-    flex: 0 0 30%;
-    text-align: center;
-    margin-bottom: 15px;
+    @include flex(flex-start, flex-start, nowrap);
+    margin: 0 -10px 15px -10px;
+  }
+
+  &__col {
+    width: 100%;
+    margin: 0 10px;
+
+    &--buttons {
+      @include flex(flex-end, flex-start, nowrap);
+      margin-left: auto;
+    }
   }
 
   &__type {
-    text-align: center;
-    font-size: 16px;
+    @extend %product-type;
+    text-transform: capitalize;
     margin-bottom: 5px;
   }
 
   &__price {
-    text-align: center;
-    font-weight: 700;
-    font-size: 16px;
+    @extend %product-price;
     margin-top: 5px;
   }
   
   &__btn {
-    @include transition;
-    width: 40px;
-    height: 25px;
+    @extend %product-price;
+    @include transition($duration: .2s);
+    width: 30px;
+    height: 20px;
     border-radius: 999px;
-    margin: 0 2.5px;
-    background-color: $color-primary;
-    color: $color-text-white;
-    font-weight: 700;
+    margin-left: 3px;
+    border: solid 2px $color-primary;
+    background-color: transparent;
+    color: $color-primary;
+    display: block;
+    padding: 0;
+
+    @media #{$md} {
+      width: 40px;
+      height: 22px;
+      margin-left: 5px;
+    }
 
     &[disabled] {
-      opacity: .2;
       cursor: default;
+      opacity: 0;
+      visibility: hidden;
     }
     &:hover:not([disabled]) {
-      background-color: darken($color-primary, 10%);
+      background-color: $color-primary;
+      color: $color-text-white;
     }
   }
 }

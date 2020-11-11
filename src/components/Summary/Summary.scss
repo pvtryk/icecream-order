@@ -1,20 +1,31 @@
 @import '../../styles/reusable.scss';
 
 .summary {
-  height: 100%;
-  background-color: rgba($color-bg-alt, .2);
-  padding: 60px 30px;
-  position: relative;
-  // position: sticky;
-  // top: 0;
-
-  &.scrolled{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 15px;
-    left: 15px;
+  @include transition;
+  position: fixed;
+  right: -320px;
+  top: 0;
+  padding: 30px 15px;
+  width: 100%;
+  max-width: 320px;
+  height: 100vh;
+  background-color: $color-summary-box;
+  z-index: 99;
+  
+  @media #{$lg} {
+    position: relative;
+    padding: 60px 30px;
+    height: 100%;
+    // background-color: rgba($color-bg-alt, .2);
   }
+
+  // &.scrolled{
+  //   position: absolute;
+  //   top: 0;
+  //   bottom: 0;
+  //   right: 15px;
+  //   left: 15px;
+  // }
 
   &__title {
     font-weight: bold;
@@ -43,5 +54,10 @@
     font-size: 14px;
     padding: 0 30px;
     display: inline-block;
+  }
+
+  &--mobile {
+    left: auto;
+    right: 0;
   }
 }

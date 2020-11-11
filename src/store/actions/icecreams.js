@@ -45,3 +45,10 @@ export const initIcecream = () => {
       })
   }
 }
+
+export const openSummary = (summaryType) => {
+  return {
+    type: actionType.OPEN_SUMMARY,
+    summaryType: summaryType,
+  };
+}

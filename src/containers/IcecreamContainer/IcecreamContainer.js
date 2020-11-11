@@ -84,7 +84,7 @@ class IcecreamContainer extends PureComponent {
   }
 }
 
-const mapStateToProaps = state => {
+const mapStateToProps = state => {
   return {
     icecreams: state.ic.icecreams,
     cart: state.ic.cart
@@ -97,4 +97,4 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-export default connect(mapStateToProaps, mapDispatchToProps)(IcecreamContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(IcecreamContainer);

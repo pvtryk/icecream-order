@@ -5,9 +5,15 @@
 
   &__name {
     display: block;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 400;
     margin-bottom: 6px;
+    
+    strong {
+      font-size: 16px;
+      font-weight: 700;
+      margin-right: 10px;
+    }
   }
 
   &__wrap {

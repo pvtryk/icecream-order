@@ -1,21 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import * as action from '../../store/actions/index'
 
 import './TopBar.scss';
-import IcecreamLogo from  '../../assets/images/lzblogo.png';
+import IcecreamLogo from  '../../assets/images/example-logo.png';
 import cartIcon from  '../../assets/images/i-cart.svg';
+import userIcon from  '../../assets/images/i-user.svg';
 
 function TopBar(props) {
-
   // to remove
-  let cartClasses = ['topbar__cart'];
-  if (props.summaryType === true) {
-    cartClasses.push('cart-open');
-  }
+  // let cartClasses = ['topbar__cart'];
+  // if (props.summaryType === true) {
+  //   cartClasses.push('cart-open');
+  // }
 
-  // TODO: ON ADD ITEM TO CART, HIGHLIGHT CART ICON
+  // TODO: ON ADD ITEM TO CART, HIGHLIGHT OR BOUNCE CART ICON
 
   return (
     <header className="topbar">
@@ -26,14 +27,28 @@ function TopBar(props) {
               <div className="topbar__logo">
                 <img src={IcecreamLogo} alt="Lody" />
               </div>
-              <div className="topbar__icon">
-                <span
+              <div className="topbar__icons">
+                <div className="topbar__auth">
+                  {/* TODO: REDIRECT TO AUTH PAGE */}
+                  <Link to="/auth">
+                    Login
+                  </Link>
+                </div>
+                <div className="topbar__icon topbar__user">
+                  {/* TODO: REDIRECT TO USER PROFILE PAGE */}
+                  <span>
+                    <img src={userIcon} alt="User profile" />
+                  </span>
+                </div>
+
+                <div
+                  className="topbar__icon topbar__cart"
                   onClick={props.openSummary}
-                  className={cartClasses.join(' ')}
                 >
                   <img src={cartIcon} alt="Cart" />
-                </span>
+                </div>
               </div>
+              {/* __icons */}
             </div>
           </div>
         </div>

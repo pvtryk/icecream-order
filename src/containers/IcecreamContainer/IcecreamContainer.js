@@ -55,8 +55,7 @@ class IcecreamContainer extends PureComponent {
                   path="/"
                   render={() => (
                     <Boxes
-                      // addIcecream={this.props.onIcecreamAdd}
-                      // removeIcecream={this.props.onIcecreamRemove}
+                      purchasable={this.state.purchasable}
                     />
                   )}
                 />
@@ -71,10 +70,8 @@ class IcecreamContainer extends PureComponent {
                   )}
                 />
               </div>
-              <div className="col-12 col-lg-4 icecreams__relative">
-                <Summary
-                  purchasable={this.state.purchasable}
-                />
+              <div className="col-12 col-lg-4 icecreams__summary">
+                <Summary purchasable={this.state.purchasable} />
               </div>
             </div>
           </div>

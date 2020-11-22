@@ -15,4 +15,24 @@
     font-size: 18px;
     font-weight: 700;
   }
+
+  &__link {
+    text-align: center;
+    padding: 15px 0 60px 0;
+
+    @media #{$lg} {
+      display: none;
+    }
+  }
+
+  &__btn {
+    background-color: $color-secondary;
+    color: $color-primary;
+    border-radius: 8px;
+    line-height: 36px;
+    border: solid 2px $color-secondary;
+    font-size: 14px;
+    padding: 0 30px;
+    display: inline-block;
+  }
 }

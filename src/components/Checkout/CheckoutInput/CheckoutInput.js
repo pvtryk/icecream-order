@@ -1,3 +1,4 @@
+// TODO: REMOVE COMPONENT, replaced by InputField
 import React from 'react';
 import './CheckoutInput.scss';
 

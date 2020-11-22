@@ -1,7 +1,12 @@
 @import '../../styles/reusable.scss';
 
 .checkout-container {
-  padding: 20px 60px;
+  padding: 20px 15px;
+  
+  @media #{$lg} {
+    padding: 20px 60px;
+  }
+
   &__form {
 
   }

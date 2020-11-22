@@ -1,11 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import * as action from '../../store/actions/index';
+
 import SingleBox from './SingleBox/SingleBox';
 import Loader from '../UI/Loader/Loader';
 
 import './Boxes.scss';
 
 function Boxes(props) {
+  
+  // TODO: Close summary after route change
+  // useEffect(() => {
+  //   console.log(props.summaryType);
+  //   return () => {
+  //     if (props.summaryType) {
+  //       props.openSummary();
+  //     }
+  //   };
+  // });
+
   const icecreamsObject = Object.getOwnPropertyNames(props.icecreams);
   let icereamLoaded = <Loader />
 
@@ -33,7 +48,12 @@ function Boxes(props) {
 
   return (
     <div className="m-boxes">
-      <div className="m-boxes__wrap">{ icereamLoaded }</div>
+      <div className="m-boxes__wrap">{icereamLoaded}</div>
+      <div className="m-boxes__link">
+        {props.purchasable && (
+          <Link to="/checkout" className="m-boxes__btn">Checkout</Link>
+        )}
+      </div>
     </div>
   );
 }
@@ -44,7 +64,14 @@ const mapStateToProps = (state) => {
     icecreams: state.ic.icecreams,
     cart: state.ic.cart,
     fetchError: state.ic.fetchError,
+    summaryType: state.ic.summaryType,
   };
 };
 
-export default connect(mapStateToProps, null)(Boxes);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    openSummary: () => dispatch(action.openSummary()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Boxes);

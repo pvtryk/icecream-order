@@ -3,8 +3,9 @@
 .icecreams {
   min-height: 100vh;
 
-  &__relative {
+  &__summary {
     position: relative;
+    background-color: $color-summary-box;
   }
 
   &__content {

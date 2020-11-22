@@ -11,6 +11,7 @@ import { BrowserRouter } from 'react-router-dom';
 // import reducer from './store/reducer';
 import icecreamsReducer from './store/reducers/icecreams';
 import orderReducer from './store/reducers/order';
+import authReducer from './store/reducers/auth';
 
 import App from './App';
 
@@ -35,6 +36,7 @@ const logger = (store) => {
 const mainReducer = combineReducers({
   ic: icecreamsReducer,
   order: orderReducer,
+  auth: authReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

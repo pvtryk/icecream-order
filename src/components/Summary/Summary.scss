@@ -13,13 +13,16 @@
   z-index: 99;
   
   @media #{$lg} {
-    position: relative;
+    position: static;
+    right: 0;
+    left: auto;
+    max-width: none;
     padding: 60px 30px;
     height: 100%;
     // background-color: rgba($color-bg-alt, .2);
   }
 
-  // &.scrolled{
+  // &.scrolled {
   //   position: absolute;
   //   top: 0;
   //   bottom: 0;

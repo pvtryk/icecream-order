@@ -1,0 +1,28 @@
+@import '../../styles/reusable.scss';
+
+
+.auth {
+
+  margin: 50px 15px;
+
+  &__inner {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px 15px;
+    border: solid 2px $color-secondary;
+    margin: 0 auto;
+  }
+
+  &__title {
+    @extend %h1;
+    text-align: center;
+  }
+
+  &__message {
+    @extend %p;
+    color: $color-error;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+}

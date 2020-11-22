@@ -1,5 +1,13 @@
+// ICECREAMS
 export const ADD_ICECREAM = 'ADD_ICECREAM';
 export const REMOVE_ICECREAM = 'REMOVE_ICECREAM';
 export const SET_ICECREAM = 'SET_ICECREAM';
 export const FETCH_FAIL_ICECREAM = 'FETCH_FAIL_ICECREAM';
 export const OPEN_SUMMARY = 'OPEN_SUMMARY';
+
+// AUTH
+
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAIL = 'AUTH_FAIL';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';

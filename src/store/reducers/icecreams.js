@@ -79,7 +79,7 @@ const fetchFailIcecream = (state, action) => {
 }
 
 const openSummary = (state, action) => {
-  console.log('open summary action', !state.summaryType );
+  console.log('cos sie dzieje xd');
   return {
     ...state,
     summaryType: !state.summaryType,

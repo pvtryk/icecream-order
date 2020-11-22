@@ -4,11 +4,13 @@ import { withRouter } from 'react-router-dom';
 import axios from '../../axios-orders';
 import CheckoutInput from '../../components/Checkout/CheckoutInput/CheckoutInput';
 import Button from '../../components/UI/Button/Button';
+import InputField from '../../components/UI/InputField/InputField';
 
 import './CheckoutContainer.scss';
 
 // TODO:
 // 1. Add adddress input with hints based on google maps & openstreet maps
+// 2. CHECKBOX FOR ACCEPTANCE
 
 class CheckoutContainer extends Component {
   state = {
@@ -69,6 +71,7 @@ class CheckoutContainer extends Component {
         value: '',
         validation: {
           required: true,
+          regex: 'email',
           message: 'Enter correct e-mail address.',
         },
         valid: false,
@@ -128,6 +131,8 @@ class CheckoutContainer extends Component {
   };
   
   componentDidMount() {
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' }); 
+    
     if ( Object.getOwnPropertyNames(this.props.cart).length === 0 ) {
       this.props.history.push('/');
     }
@@ -136,8 +141,10 @@ class CheckoutContainer extends Component {
   checkValidity(value, rules) {
     let isValid = true;
     const postalRegex = /\d{2}-\d{3}/g;
-    const telRegex = /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/g;
-
+    // const telRegex = /(?:<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/g;
+    const telRegex = /(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/g;
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
     if (rules.required) {
       isValid = value.trim() !== '' && isValid;
     }
@@ -151,10 +158,15 @@ class CheckoutContainer extends Component {
       // isValid = telRegex.test(String(value)) && isValid;
       isValid = value.match(telRegex) && isValid;
     }
+    
+    if (rules.regex === 'email') {
+      isValid = emailRegex.test(String(value).toLowerCase());
+    }
 
     if (rules.maxLength) {
       isValid = value.length === rules.maxLength && isValid;
     }
+
 
     return isValid;
   }
@@ -207,6 +219,7 @@ class CheckoutContainer extends Component {
     }
     const order = {
       formData: formData,
+      cart: this.props.cart,
       price: this.props.price,
     };
 
@@ -242,7 +255,7 @@ class CheckoutContainer extends Component {
           onSubmit={this.formSubmitHandler}
         >
           {formElements.map((input) => (
-            <CheckoutInput
+            <InputField
               key={input.id}
               inputType={input.options.elementType}
               labelEl={input.options.labelEl}

@@ -74,12 +74,14 @@ const setIcecream = (state, action) => {
 const fetchFailIcecream = (state, action) => {
   return {
     ...state,
-    fetchError: true
-  }
+    icecreams: {},
+    cart: {},
+    totalPrice: 0,
+    fetchError: true,
+  };
 }
 
 const openSummary = (state, action) => {
-  console.log('cos sie dzieje xd');
   return {
     ...state,
     summaryType: !state.summaryType,

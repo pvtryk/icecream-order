@@ -32,9 +32,9 @@ export const fetchFailIcecream = () => {
   }
 }
 
-export const initIcecream = () => {
+export const initIcecream = (token) => {
   return dispatch => {
-    axios.get('icecreams.json')
+    axios.get(`icecreams.json?auth=${token}`)
       .then(res => {
         console.log('res', res);
         dispatch(setIcecream(res.data));

@@ -18,21 +18,20 @@ function TopBar(props) {
 
   // TODO: ON ADD ITEM TO CART, HIGHLIGHT OR BOUNCE CART ICON
 
+  let authUrl = !props.token ? <Link to="/auth">Login</Link> : <Link to="/logout">Logout</Link>;
+
   return (
     <header className="topbar">
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
             <div className="topbar__wrap">
-              <div className="topbar__logo">
+              <Link to="/" className="topbar__logo">
                 <img src={IcecreamLogo} alt="Lody" />
-              </div>
+              </Link>
               <div className="topbar__icons">
                 <div className="topbar__auth">
-                  {/* TODO: REDIRECT TO AUTH PAGE */}
-                  <Link to="/auth">
-                    Login
-                  </Link>
+                  {authUrl}
                 </div>
                 <div className="topbar__icon topbar__user">
                   {/* TODO: REDIRECT TO USER PROFILE PAGE */}
@@ -57,9 +56,10 @@ function TopBar(props) {
   );
 }
 
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
   return {
     summaryType: state.ic.summaryType,
+    token: state.auth.token
   }
 }
 

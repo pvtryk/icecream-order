@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as action from '../../store/actions/index';
+import { Redirect } from 'react-router-dom';
 
 import InputField from '../../components/UI/InputField/InputField';
 import Button from '../../components/UI/Button/Button';
@@ -113,6 +114,7 @@ class AuthContainer extends Component {
     let formType = this.state.isSignIn ? 'Log in' : 'Sign Up';
     let formElements = [];
     let errorMessage = null;
+    let redirectAfterAuth;
 
     for (const key in this.state.authForm) {
       formElements.push({
@@ -145,20 +147,23 @@ class AuthContainer extends Component {
       errorMessage = this.props.error.message
     }
 
+    if (this.props.isAuth) {
+      redirectAfterAuth = <Redirect to="/" />
+    }
+
     return (
       <div className="auth">
+        {redirectAfterAuth}
         <div className="auth__inner">
           <h1 className="auth__title">{formType}</h1>
-          { errorMessage && (
-            <p className="auth__message">{ errorMessage }</p>
-          )}
+          {errorMessage && <p className="auth__message">{errorMessage}</p>}
           <form className="auth__form" onSubmit={this.formSubmitHandler}>
             {form}
             <Button name="Submit!" />
           </form>
           <a href="#" className="auth__button" onClick={this.switchFormType}>
             Go to
-            { this.state.isSignIn ? ' Register' : ' Log In'}
+            {this.state.isSignIn ? ' Register' : ' Log In'}
           </a>
         </div>
       </div>
@@ -169,7 +174,8 @@ class AuthContainer extends Component {
 const mapStateToProps = (props) => {
   return {
     loading: props.auth.loading,
-    error: props.auth.error
+    error: props.auth.error,
+    isAuth: props.auth.token !== null
   }
 }
 const mapDispatchToProps = (dispatch) => {

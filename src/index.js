@@ -8,10 +8,9 @@ import thunk from 'redux-thunk';
 
 import { BrowserRouter } from 'react-router-dom';
 
-// import reducer from './store/reducer';
+import authReducer from './store/reducers/auth';
 import icecreamsReducer from './store/reducers/icecreams';
 import orderReducer from './store/reducers/order';
-import authReducer from './store/reducers/auth';
 
 import App from './App';
 
@@ -19,8 +18,6 @@ import './styles/reset.scss';
 import './styles/reusable.scss';
 import './styles/bootstrap.scss';
 import './styles/base.scss';
-
-// const store = createStore(reducer);
 
 const logger = (store) => {
   return (next) => {
@@ -34,9 +31,9 @@ const logger = (store) => {
 };
 
 const mainReducer = combineReducers({
+  auth: authReducer,
   ic: icecreamsReducer,
   order: orderReducer,
-  auth: authReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

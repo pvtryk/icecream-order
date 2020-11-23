@@ -133,7 +133,7 @@ class CheckoutContainer extends Component {
   componentDidMount() {
     window.scroll({ top: 0, left: 0, behavior: 'smooth' }); 
     
-    if ( Object.getOwnPropertyNames(this.props.cart).length === 0 ) {
+    if ( Object.getOwnPropertyNames(this.props.cart).length === 0 || this.props.token === null) {
       this.props.history.push('/');
     }
   }
@@ -209,6 +209,7 @@ class CheckoutContainer extends Component {
     this.setState({ orderForm: updatedForm, formIsValid: formIsValid });
   };
 
+  // TODO: ADD REDUX ACTION FOR POST DATA
   formSubmitHandler = (event) => {
     event.preventDefault();
     this.checkValidityOnSubmit();
@@ -221,11 +222,12 @@ class CheckoutContainer extends Component {
       formData: formData,
       cart: this.props.cart,
       price: this.props.price,
+      
     };
 
     if (this.state.formIsValid) {
       axios
-        .post('/orders.json', order)
+        .post(`/orders.json?auth=${this.props.token}`, order)
         .then((res) => {
           console.log('[SUCCESS] form sending!', res);
           this.props.history.push('/thank-you');
@@ -280,8 +282,9 @@ const mapStateToProps = props => {
   return {
     icecreams: props.ic.icecreams,
     cart: props.ic.cart,
-    price: props.ic.totalPrice
+    price: props.ic.totalPrice,
+    token: props.auth.token
   }
 }
 
-export default connect(mapStateToProps)(withRouter(CheckoutContainer));
+export default connect(mapStateToProps, null)(withRouter(CheckoutContainer));

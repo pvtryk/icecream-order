@@ -7,5 +7,7 @@ export {
 // export {} from './order.js'
 
 export {
-  auth
+  auth,
+  logout,
+  checkAuthOnStart
 } from './auth';

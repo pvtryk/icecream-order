@@ -8,9 +8,6 @@ export const authStart = () => {
 }
 
 export const authSuccess = (token, id) => {
-  // const token = authData.idToken;
-  // const id = authData.localId;
-
   return {
     type: actionType.AUTH_SUCCESS,
     token: token,

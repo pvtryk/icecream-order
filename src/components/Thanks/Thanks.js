@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './Thanks.scss';
 
-const Thanks = (props) => {
+const Thanks = props => {
   return (
     <div className="thanks">
       <h1>Thank you for order!</h1>

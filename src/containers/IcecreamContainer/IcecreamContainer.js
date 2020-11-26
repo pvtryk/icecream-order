@@ -19,18 +19,16 @@ class IcecreamContainer extends PureComponent {
 
     if (this.props.token !== prevProps.token) {
       this.props.onInitIcecream(this.props.token);
-      console.log('xdd');
     }
   }
-  
+
   componentDidMount() {
-    // TODO: CHECK IF IT IS CORRECT FIX WHEN PROPS FROM REDUX IS EMPTY
     this.props.onInitIcecream(this.props.token);
-    console.log('[icecreamContainer] mounted');
+
+    if (this.props.token === null) {
+      this.props.history.push('/auth');
+    }
   }
-  // componentDidUpdate() {
-  //   this.updatePurchase();
-  // }
 
   // update purchasable state
   updatePurchase() {
@@ -63,7 +61,15 @@ class IcecreamContainer extends PureComponent {
                 <Route
                   exact
                   path="/"
-                  render={() => <Boxes purchasable={this.state.purchasable} />}
+                  render={() => (
+                    <Boxes 
+                      purchasable={this.state.purchasable}
+                      icecreams={this.props.icecreams}
+                      cart={this.props.cart}
+                      prices={this.props.prices}
+                      fetchError={this.props.fetchError}
+                    />
+                  )}
                 />
                 <Route
                   path="/checkout"
@@ -91,7 +97,9 @@ const mapStateToProps = state => {
   return {
     icecreams: state.ic.icecreams,
     cart: state.ic.cart,
-    token: state.auth.token
+    token: state.auth.token,
+    prices: state.ic.prices,
+    fetchError: state.ic.fetchError,
   }
 }
 

@@ -36,12 +36,10 @@ export const initIcecream = (token) => {
   return dispatch => {
     axios.get(`icecreams.json?auth=${token}`)
       .then(res => {
-        console.log('res', res);
         dispatch(setIcecream(res.data));
       })
       .catch(err => {
         dispatch(fetchFailIcecream());
-        console.log('err', err);
       })
   }
 }

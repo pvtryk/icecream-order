@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import InputField from '../../components/UI/InputField/InputField';
 import Button from '../../components/UI/Button/Button';
 import Loader from '../../components/UI/Loader/Loader';
+import { checkValidity } from '../../shared/utility';
 import './AuthContainer.scss';
 
 class AuthContainer extends Component {
@@ -57,26 +58,6 @@ class AuthContainer extends Component {
 
   }
 
-  // TODO: REFACTOR, THIS IS A COPY CheckoutContainer
-  checkValidity(value, rules) {
-    let isValid = true;
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid;
-    }
-
-    if (rules.regex === 'email') {
-      isValid = emailRegex.test(String(value).toLowerCase());
-    }
-    // new rules
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-
-    return isValid;
-  }
-
   inputChangedHandler = (event, inputId) => {
     const updatedForm = {
       ...this.state.authForm,
@@ -85,7 +66,7 @@ class AuthContainer extends Component {
       ...updatedForm[inputId],
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(
+    updatedFormElement.valid = checkValidity(
       updatedFormElement.value,
       updatedFormElement.validation
     );

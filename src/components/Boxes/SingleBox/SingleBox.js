@@ -5,7 +5,7 @@ import * as action from '../../../store/actions/index';
 import './SingleBox.scss';
 import BoxImage from '../../../assets/images/product-box.png';
 
-function SingleBox(props) {
+const SingleBox = props => {
   return (
     <div className="s-box">
       <div className="s-box__image">

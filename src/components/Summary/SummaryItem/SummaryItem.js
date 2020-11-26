@@ -1,7 +1,7 @@
 import React from 'react';
 import './SummaryItem.scss';
 
-function SummaryItem(props) {
+const SummaryItem = props => {
 
   return (
     <li className="summary-item">

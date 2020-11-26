@@ -5,7 +5,8 @@ import SummaryItem from './SummaryItem/SummaryItem';
 
 import './Summary.scss';
 
-function Summary(props) {
+const Summary = props => {
+  // TODO: CLOSE SUMMARY ON REDIRECT
   const {cart, icecreams} = props;
   let prices = [];
 

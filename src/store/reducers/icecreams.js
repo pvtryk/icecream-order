@@ -92,13 +92,13 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.ADD_ICECREAM:
       return addIcecream(state, action);
-    case actionType.REMOVE_ICECREAM:
+    case actionType.ICECREAM_REMOVE:
       return removeIcecream(state, action);
-    case actionType.SET_ICECREAM:
+    case actionType.ICECREAM_SET:
       return setIcecream(state, action);
-    case actionType.FETCH_FAIL_ICECREAM:
+    case actionType.ICECREAM_FETCH_FAIL:
       return fetchFailIcecream(state, action);
-    case actionType.OPEN_SUMMARY:
+    case actionType.SUMMARY_OPEN:
       return openSummary(state, action);
     default:
       return state;

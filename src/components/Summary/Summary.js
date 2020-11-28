@@ -7,6 +7,7 @@ import './Summary.scss';
 
 const Summary = props => {
   // TODO: CLOSE SUMMARY ON REDIRECT
+  // TODO: HIDE BUTTON CHECKOUT ON CHECKOUT PAGE
   const {cart, icecreams} = props;
   let prices = [];
 

@@ -1,5 +1,5 @@
 import * as actionType from './actionTypes';
-import axios from '../../axios/axios-icecreams';
+
 
 export const addIcecream = (icName, icSize, icPrice) => {
   return {
@@ -32,16 +32,11 @@ export const fetchFailIcecream = () => {
   }
 }
 
-export const initIcecream = (token) => {
-  return dispatch => {
-    axios.get(`icecreams.json?auth=${token}`)
-      .then(res => {
-        dispatch(setIcecream(res.data));
-      })
-      .catch(err => {
-        dispatch(fetchFailIcecream());
-      })
-  }
+export const icecreamInit = (token) => {
+  return {
+    type: actionType.ICECREAM_INIT,
+    token: token
+  };
 }
 
 export const openSummary = (summaryType) => {

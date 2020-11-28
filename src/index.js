@@ -5,30 +5,27 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 
 import { BrowserRouter } from 'react-router-dom';
 
+// reducers
 import authReducer from './store/reducers/auth';
 import icecreamsReducer from './store/reducers/icecreams';
 import orderReducer from './store/reducers/order';
+// sagas
+import { watchAuth, watchIcecreams } from './store/sagas';
 
+// components/containers
 import App from './App';
 
+// styles
 import './styles/reset.scss';
 import './styles/reusable.scss';
 import './styles/bootstrap.scss';
 import './styles/base.scss';
 
-const logger = (store) => {
-  return (next) => {
-    return (action) => {
-      // console.log('[Middleware] Dispatching', action);
-      const result = next(action);
-      // console.log('[Middleware] next state', store.getState());
-      return result;
-    };
-  };
-};
+const sagaMiddleware = createSagaMiddleware();
 
 const mainReducer = combineReducers({
   auth: authReducer,
@@ -40,8 +37,12 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   mainReducer,
-  composeEnhancers(applyMiddleware(logger, thunk))
+  composeEnhancers( applyMiddleware(thunk, sagaMiddleware) )
 );
+
+// INIT REDUX-SAGA
+sagaMiddleware.run(watchAuth);
+sagaMiddleware.run(watchIcecreams);
 
 const appIndex = (
   <Provider store={store}>

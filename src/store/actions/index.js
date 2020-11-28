@@ -1,13 +1,20 @@
 export {
+  icecreamInit,
+  setIcecream,
+  fetchFailIcecream,
   addIcecream,
   removeIcecream,
-  initIcecream,
   openSummary
 } from './icecreams';
 // export {} from './order.js'
 
 export {
   auth,
+  authStart,
+  authSuccess,
+  authFail,
   logout,
-  checkAuthOnStart
+  logoutSucceed,
+  checkAuthTimeout,
+  checkAuthOnStart,
 } from './auth';

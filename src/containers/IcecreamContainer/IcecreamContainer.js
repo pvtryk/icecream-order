@@ -18,12 +18,12 @@ class IcecreamContainer extends PureComponent {
     this.updatePurchase();
 
     if (this.props.token !== prevProps.token) {
-      this.props.onInitIcecream(this.props.token);
+      this.props.onicecreamInit(this.props.token);
     }
   }
 
   componentDidMount() {
-    this.props.onInitIcecream(this.props.token);
+    this.props.onicecreamInit(this.props.token);
 
     if (this.props.token === null) {
       this.props.history.push('/auth');
@@ -105,7 +105,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onInitIcecream: (token) => dispatch(action.initIcecream(token))
+    onicecreamInit: (token) => dispatch(action.icecreamInit(token))
   };
 }
 

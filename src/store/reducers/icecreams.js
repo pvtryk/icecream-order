@@ -90,7 +90,7 @@ const openSummary = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionType.ADD_ICECREAM:
+    case actionType.ICECREAM_ADD:
       return addIcecream(state, action);
     case actionType.ICECREAM_REMOVE:
       return removeIcecream(state, action);

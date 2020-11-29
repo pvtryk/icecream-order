@@ -9,6 +9,7 @@ import Loader from '../../components/UI/Loader/Loader';
 import { checkValidity } from '../../shared/utility';
 import './AuthContainer.scss';
 
+// TODO: REMOVE INPUT VALIDATION ON LOGIN FORM
 class AuthContainer extends Component {
   state = {
     authForm: {
@@ -142,10 +143,12 @@ class AuthContainer extends Component {
             {form}
             <Button name="Submit!" />
           </form>
-          <a href="#" className="auth__button" onClick={this.switchFormType}>
-            Go to
-            {this.state.isSignIn ? ' Register' : ' Log In'}
-          </a>
+          <div className="auth__button-wrap">
+            <span className="auth__button" onClick={this.switchFormType}>
+              Go to
+              {this.state.isSignIn ? ' Register' : ' Log In'}
+            </span>
+          </div>
         </div>
       </div>
     );

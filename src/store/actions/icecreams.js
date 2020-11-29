@@ -3,7 +3,7 @@ import * as actionType from './actionTypes';
 
 export const addIcecream = (icName, icSize, icPrice) => {
   return {
-    type: actionType.ADD_ICECREAM,
+    type: actionType.ICECREAM_ADD,
     icecreamName: icName,
     icecreamSize: icSize,
     icecreamPrice: icPrice

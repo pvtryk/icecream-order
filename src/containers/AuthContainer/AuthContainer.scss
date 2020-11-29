@@ -2,7 +2,6 @@
 
 
 .auth {
-
   margin: 50px 15px;
 
   &__inner {
@@ -25,4 +24,19 @@
     margin: 20px 0;
   }
 
+  &__button-wrap {
+    text-align: center;
+    margin: 20px 0 0 0;
+  }
+
+  &__button {
+    @include transition;
+    @extend %p;
+    display: inline-block;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-secondary;
+    }
+  }
 }

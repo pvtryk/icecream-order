@@ -1,4 +1,4 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery, takeLatest } from 'redux-saga/effects';
 
 import * as actionType from '../actions/actionTypes';
 
@@ -10,6 +10,7 @@ import {
 } from './auth';
 
 import { icecreamInitSaga } from './icecreams';
+import { orderPostSaga, orderGetSaga } from './order';
 
 export function* watchAuth() {
   yield takeEvery(actionType.AUTH_CHECK_TIMEOUT, checkAuthTimeoutSaga);
@@ -19,5 +20,10 @@ export function* watchAuth() {
 }
 
 export function* watchIcecreams() {
-  yield takeEvery(actionType.ICECREAM_INIT, icecreamInitSaga)
+  yield takeEvery(actionType.ICECREAM_INIT, icecreamInitSaga);
+}
+
+export function* watchOrder() {
+  yield takeLatest(actionType.ORDER_POST, orderPostSaga);
+  yield takeEvery(actionType.ORDER_GET, orderGetSaga);
 }

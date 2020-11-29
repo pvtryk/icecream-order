@@ -6,7 +6,17 @@ export {
   removeIcecream,
   openSummary
 } from './icecreams';
-// export {} from './order.js'
+
+export {
+  orderPost,
+  orderPostStart,
+  orderPostSuccess,
+  orderPostFail,
+  orderGet,
+  orderGetStart,
+  orderGetSuccess,
+  orderGetFail,
+} from './order.js';
 
 export {
   auth,

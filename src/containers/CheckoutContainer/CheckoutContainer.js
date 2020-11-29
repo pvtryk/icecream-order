@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import axios from '../../axios-orders';
 import Button from '../../components/UI/Button/Button';
 import InputField from '../../components/UI/InputField/InputField';
 import { checkValidity } from '../../shared/utility';
+
+// TODO: CHANGE ACTION TO ACTIONS FOR EVERY ACTIONS IMPORT
+import * as action from '../../store/actions/index';
 
 import './CheckoutContainer.scss';
 
@@ -186,26 +188,18 @@ class CheckoutContainer extends Component {
     for (const formEl in this.state.orderForm) {
       formData[formEl] = this.state.orderForm[formEl].value;
     }
-    const order = {
-      formData: formData,
-      cart: this.props.cart,
-      price: this.props.price,
-      
-    };
-
+    
     if (this.state.formIsValid) {
-      axios
-        .post(`/orders.json?auth=${this.props.token}`, order)
-        .then((res) => {
-          console.log('[SUCCESS] form sending!', res);
-          this.props.history.push('/thank-you');
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.props.onOrderPost(
+        formData,
+        this.props.cart,
+        this.props.price,
+        this.props.token,
+        this.props.userId
+      );
+      this.props.history.push('/thank-you');
     } else {
       window.scroll({ top: 0, left: 0, behavior: 'smooth' }); 
-      console.log('[ERROR] form submitting!');
     }
   };
 
@@ -251,8 +245,16 @@ const mapStateToProps = props => {
     icecreams: props.ic.icecreams,
     cart: props.ic.cart,
     price: props.ic.totalPrice,
-    token: props.auth.token
+    token: props.auth.token,
+    userId: props.auth.userId
   }
 }
 
-export default connect(mapStateToProps, null)(withRouter(CheckoutContainer));
+const mapDispatchToProps = dispatch => {
+  return {
+    onOrderPost: (formData, cart, price, isValid, token) =>
+      dispatch(action.orderPost(formData, cart, price, isValid, token)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CheckoutContainer));

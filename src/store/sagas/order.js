@@ -12,8 +12,7 @@ export function* orderPostSaga(action) {
     yield put(actions.orderPostSuccess());
 
   } catch (error) {
-    // TODO: check error text
-    yield put(actions.orderPostFail(error.response.data.error));
+    yield put(actions.orderPostFail(error.response));
   }
 }
 

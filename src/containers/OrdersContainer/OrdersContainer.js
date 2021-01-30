@@ -8,20 +8,19 @@ import * as action from '../../store/actions/index';
 import './OrdersContainer.scss';
 
 // TODO: v2 - advanced sorting - price, date, status
-
-
 const OrdersContainer = (props) => {
+  const {token, userId, onOrderGet} = props;
 
   const getOrders = useCallback(() => {
-    props.onOrderGet(props.token, props.userId);
-  }, [props.token, props.userId]);
+    onOrderGet(token, userId);
+  }, [token, userId, onOrderGet]);
 
   useEffect(() => {
-    if (props.token !== null && props.userId !== null) {
+    if (token !== null && userId !== null) {
       getOrders();
     }
 
-  }, [props.token, props.userId]);
+  }, [token, userId, getOrders]);
 
   const ordersObject = Object.getOwnPropertyNames(props.userOrders);
   let orders;

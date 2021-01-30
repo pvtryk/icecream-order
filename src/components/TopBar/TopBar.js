@@ -10,9 +10,14 @@ import cartIcon from  '../../assets/images/i-cart.svg';
 import userIcon from  '../../assets/images/i-user.svg';
 import ordersIcon from  '../../assets/images/i-orders-list.svg';
 import logoutIcon from  '../../assets/images/i-exit.svg';
+import { useEffect } from 'react';
 
 const TopBar = props => {
   // TODO: ON ADD ITEM TO CART, HIGHLIGHT OR BOUNCE CART ICON
+
+  useEffect(() => {
+    // clg
+  });
 
   let authUrl = !props.token ? (
     <Link to="/auth">

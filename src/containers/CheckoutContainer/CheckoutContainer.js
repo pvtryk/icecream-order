@@ -188,15 +188,19 @@ class CheckoutContainer extends Component {
     for (const formEl in this.state.orderForm) {
       formData[formEl] = this.state.orderForm[formEl].value;
     }
-    
+
+    const token = this.props.token;
+    const order = {
+      formData: formData,
+      cart: this.props.cart,
+      price: this.props.price,
+      date: new Date(),
+      userId: this.props.userId,
+    };
+
+    // TODO: FIX PUSH TO THANK YOU PAGE IF POST NOT SEND
     if (this.state.formIsValid) {
-      this.props.onOrderPost(
-        formData,
-        this.props.cart,
-        this.props.price,
-        this.props.token,
-        this.props.userId
-      );
+      this.props.onOrderPost(order, token);
       this.props.history.push('/thank-you');
     } else {
       window.scroll({ top: 0, left: 0, behavior: 'smooth' }); 
@@ -218,6 +222,7 @@ class CheckoutContainer extends Component {
           className="checkout-container__form"
           onSubmit={this.formSubmitHandler}
         >
+
           {formElements.map((input) => (
             <InputField
               key={input.id}
@@ -252,8 +257,8 @@ const mapStateToProps = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderPost: (formData, cart, price, isValid, token) =>
-      dispatch(action.orderPost(formData, cart, price, isValid, token)),
+    onOrderPost: (order, token) =>
+      dispatch(action.orderPost(order, token)),
   };
 }
 

@@ -85,6 +85,7 @@ class AuthContainer extends Component {
 
   formSubmitHandler = (event) => {
     event.preventDefault();
+
     this.props.onAuth(
       this.state.authForm.email.value,
       this.state.authForm.password.value,

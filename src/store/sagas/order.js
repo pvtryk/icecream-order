@@ -7,15 +7,8 @@ export function* orderPostSaga(action) {
 
   yield put(actions.orderPostStart());
 
-  const order = {
-    formData: action.formData,
-    cart: action.cart,
-    price: action.price,
-    userId: action.userId,
-  };
-
   try {
-    yield axios.post(`/orders.json?auth=${action.token}`, order);
+    yield axios.post(`/orders.json?auth=${action.token}`, action.order);
     yield put(actions.orderPostSuccess());
 
   } catch (error) {

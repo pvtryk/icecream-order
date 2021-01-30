@@ -42,9 +42,7 @@ const IcecreamContainer = props => {
   }, [token, onIcecreamInit, history]);
 
   useEffect(() => {
-    // if (Object.getOwnPropertyNames(props.cart).length !== 0) {
       updatePurchase();
-    // }
   }, [updatePurchase]);
 
   return (

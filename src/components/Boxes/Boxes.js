@@ -9,14 +9,14 @@ import './Boxes.scss';
 const Boxes = props => {
 
   const icecreamsObject = Object.getOwnPropertyNames(props.icecreams);
-  let icereamLoaded = <Loader />
+  let icecream = <Loader />
 
   if (icecreamsObject.length >= 1) {
     const icecreams = Object.values(props.icecreams).map((icKey) => {
       return icKey;
     });
 
-    icereamLoaded = icecreams.map((val) => {
+    icecream = icecreams.map((val) => {
       return (
         <SingleBox
           key={val.shortname}
@@ -28,14 +28,16 @@ const Boxes = props => {
         />
       );
     });
-  } else if (props.fetchError) {
-    icereamLoaded = <p className="m-boxes__error">Ouch! Something went wrong</p>;
+  }
+
+  if (icecreamsObject.length === 0 && props.fetchError) {
+    icecream = <p className="m-boxes__error">Ouch! Something went wrong</p>;
   }
   
 
   return (
     <div className="m-boxes">
-      <div className="m-boxes__wrap">{icereamLoaded}</div>
+      <div className="m-boxes__wrap">{icecream}</div>
       <div className="m-boxes__link">
         { props.purchasable && (
           <Link to="/checkout" className="m-boxes__btn">Checkout</Link>

@@ -1,6 +1,5 @@
 import * as actionType from './actionTypes';
 
-
 export const addIcecream = (icName, icSize, icPrice) => {
   return {
     type: actionType.ICECREAM_ADD,

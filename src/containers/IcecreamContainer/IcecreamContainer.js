@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import Boxes from '../../components/Boxes/Boxes';
@@ -9,89 +9,84 @@ import * as action from '../../store/actions/index';
 
 import './IcecreamContainer.scss';
 
-class IcecreamContainer extends PureComponent {
-  state = {
-    purchasable: false,
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    this.updatePurchase();
-
-    if (this.props.token !== prevProps.token) {
-      this.props.onicecreamInit(this.props.token);
-    }
-  }
-
-  componentDidMount() {
-    this.props.onicecreamInit(this.props.token);
-
-    if (this.props.token === null) {
-      this.props.history.push('/auth');
-    }
-  }
+const IcecreamContainer = props => {
+  const [purchasable, setPurchasable] = useState(false);
 
   // update purchasable state
-  updatePurchase() {
+  const updatePurchase = () => {
     let finalValue = 0;
 
-    const cart = {
-      ...this.props.cart,
-    };
+    const cart = props.cart;
 
     for (const key in cart) {
       const element = cart[key];
+
       for (const value in cart[key]) {
         const newValue = element[value];
         finalValue += newValue;
       }
     }
 
-    this.setState({
-      purchasable: finalValue > 0,
-    });
+    setPurchasable(finalValue > 0);
   }
 
-  render() {
-    return (
+  useEffect(() => {
+
+    if (props.token) {
+      props.onIcecreamInit(props.token);
+    }
+
+    if (props.token === null) {
+      props.history.push('/auth');
+    }
+  }, [props.token]);
+
+  useEffect(() => {
+    // if (Object.getOwnPropertyNames(props.cart).length !== 0) {
+      updatePurchase();
+    // }
+  }, [props.cart]);
+
+  return (
       <Fragment>
         <div className="icecreams">
           <div className="container-fluid">
             <div className="row">
               <div className="col-12 col-lg-8 icecreams__content">
                 <Route
-                  exact
-                  path="/"
-                  render={() => (
-                    <Boxes 
-                      purchasable={this.state.purchasable}
-                      icecreams={this.props.icecreams}
-                      cart={this.props.cart}
-                      prices={this.props.prices}
-                      fetchError={this.props.fetchError}
-                    />
-                  )}
+                    exact
+                    path="/"
+                    render={() => (
+                        <Boxes
+                            purchasable={purchasable}
+                            icecreams={props.icecreams}
+                            cart={props.cart}
+                            prices={props.prices}
+                            fetchError={props.fetchError}
+                        />
+                    )}
                 />
                 <Route
-                  path="/checkout"
-                  render={() => (
-                    <CheckoutContainer
-                      {...this.state}
-                      isAuthed={true}
-                      ic={this.state.icecreams}
-                    />
-                  )}
+                    path="/checkout"
+                    render={() => (
+                        <CheckoutContainer
+                            purchasable={purchasable}
+                            isAuthed={true}
+                        />
+                    )}
                 />
               </div>
               <div className="col-12 col-lg-4 icecreams__summary">
-                <Summary purchasable={this.state.purchasable} />
+                <Summary purchasable={purchasable} />
               </div>
             </div>
           </div>
         </div>
       </Fragment>
-    );
-  }
+  );
+
 }
+
 
 const mapStateToProps = state => {
   return {
@@ -105,7 +100,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onicecreamInit: (token) => dispatch(action.icecreamInit(token))
+    onIcecreamInit: (token) => dispatch(action.icecreamInit(token))
   };
 }
 

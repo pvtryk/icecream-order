@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useCallback, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import Boxes from '../../components/Boxes/Boxes';
@@ -11,12 +11,13 @@ import './IcecreamContainer.scss';
 
 const IcecreamContainer = props => {
   const [purchasable, setPurchasable] = useState(false);
+  const {cart, token, history, onIcecreamInit} = props;
 
   // update purchasable state
-  const updatePurchase = () => {
+  const updatePurchase = useCallback(() => {
     let finalValue = 0;
 
-    const cart = props.cart;
+    // const cart = props.cart;
 
     for (const key in cart) {
       const element = cart[key];
@@ -28,24 +29,23 @@ const IcecreamContainer = props => {
     }
 
     setPurchasable(finalValue > 0);
-  }
+  }, [cart]);
 
   useEffect(() => {
-
-    if (props.token) {
-      props.onIcecreamInit(props.token);
+    if (token) {
+      onIcecreamInit(token);
     }
 
-    if (props.token === null) {
-      props.history.push('/auth');
+    if (token === null) {
+      history.push('/auth');
     }
-  }, [props.token]);
+  }, [token, onIcecreamInit, history]);
 
   useEffect(() => {
     // if (Object.getOwnPropertyNames(props.cart).length !== 0) {
       updatePurchase();
     // }
-  }, [props.cart]);
+  }, [updatePurchase]);
 
   return (
       <Fragment>

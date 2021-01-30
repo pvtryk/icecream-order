@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { connect } from 'react-redux';
 import OrderBox from '../../components/Orders/OrderBox/OrderBox'
 import Loader from '../../components/UI/Loader/Loader';
@@ -9,59 +9,67 @@ import './OrdersContainer.scss';
 
 // TODO: v2 - advanced sorting - price, date, status
 
-class OrdersContainer extends Component {
-  // TODO: OGARNAC CZEMU ROBI DWA ZAPYTANIA, PROBLEM PEWNIE Z CDM I CDU
 
-  componentDidMount() {
-    this.props.onOrderGet(this.props.token, this.props.userId);
-  }
-  
-  componentDidUpdate(prevProps) {
-    if (this.props.token !== prevProps.token) {
-      this.props.onOrderGet(this.props.token, this.props.userId);
-    }
-  }
+const OrdersContainer = (props) => {
 
-  render() {
-    const ordersObject = Object.getOwnPropertyNames(this.props.userOrders);
-    let orders;
+  const getOrders = useCallback(() => {
+    props.onOrderGet(props.token, props.userId);
+  }, [props.token, props.userId]);
 
-    if (this.props.loading) {
-      orders = <Loader />
+  useEffect(() => {
+    if (props.token !== null && props.userId !== null) {
+      getOrders();
     }
 
-    if (ordersObject.length >= 1) {
-      const userOrders = Object.values(this.props.userOrders).map((item) => {
-        return item;
-      });
-  
-      orders = userOrders.map(single => {
-        console.log(single);
-        return (
-          <OrderBox
+  }, [props.token, props.userId]);
+
+  const ordersObject = Object.getOwnPropertyNames(props.userOrders);
+  let orders;
+
+  if (props.loading) {
+    orders = <Loader />
+  }
+
+  if (!props.loading && ordersObject.length >= 1) {
+    // TODO: DOUBLE RENDER FUNCTION - WHAT TO DO
+
+    // version 1
+    const ordersArray = [];
+    for (const key in props.userOrders) {
+      ordersArray.push(props.userOrders[key]);
+    }
+
+    // version 2
+    // const userOrders = Object.values(props.userOrders).map((item) => {
+    //   return item;
+    // });
+    // console.log(props.userOrders);
+    // console.log(userOrders)
+
+    orders = ordersArray.map(single => {
+      return (
+        <OrderBox
             key={single.date}
             data={single}
-          />
-        )
-      })
-    }
-
-    if (!this.props.loading && ordersObject.length === 0) {
-      orders = <p>You do not have any order</p>
-    }
-
-    
-    return (
-      <section className="orders">
-        <div className="orders__header">
-          <h1 className="orders__title">Orders</h1>
-          <p className="orders__desc">Hi, [name], there are you orders</p>
-        </div>
-
-        <div className="orders__wrap">{orders}</div>
-      </section>
-    );
+        />
+      )
+    })
   }
+
+  if (!props.loading && ordersObject.length === 0) {
+    orders = <p>You do not have any order</p>
+  }
+
+  return (
+    <section className="orders">
+      <div className="orders__header">
+        <h1 className="orders__title">Orders</h1>
+        <p className="orders__desc">Hi, [name], there are you orders</p>
+      </div>
+
+      <div className="orders__wrap">{orders}</div>
+    </section>
+  );
 }
 
 const mapStateToProps = props => {

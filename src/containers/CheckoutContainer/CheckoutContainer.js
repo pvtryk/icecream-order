@@ -22,7 +22,7 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'text',
-        autocomplete: 'given-name',
+        autoComplete: 'given-name',
         name: 'given-name'
       },
       value: '',
@@ -39,7 +39,7 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'text',
-        autocomplete: 'family-name',
+        autoComplete: 'family-name',
         name: 'family-name'
       },
       value: '',
@@ -56,7 +56,7 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'tel',
-        autocomplete: 'tel',
+        autoComplete: 'tel',
         name: 'tel'
       },
       value: '',
@@ -74,7 +74,7 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'email',
-        autocomplete: 'email',
+        autoComplete: 'email',
         name: 'email'
       },
       value: '',
@@ -92,7 +92,7 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'text',
-        autocomplete: 'street-address',
+        autoComplete: 'street-address',
         name: 'street-address'
       },
       value: '',
@@ -109,7 +109,7 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'text',
-        autocomplete: 'address-level2',
+        autoComplete: 'address-level2',
         name: 'address-level2'
       },
       value: '',
@@ -126,7 +126,7 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'text',
-        autocomplete: 'postal-code',
+        autoComplete: 'postal-code',
         name: 'postal-code',
         placeholder: '__-___'
       },

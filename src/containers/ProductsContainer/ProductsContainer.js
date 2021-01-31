@@ -7,9 +7,9 @@ import CheckoutContainer from '../CheckoutContainer/CheckoutContainer';
 
 import * as action from '../../store/actions/index';
 
-import './IcecreamContainer.scss';
+import './ProductsContainer.scss';
 
-const IcecreamContainer = props => {
+const ProductsContainer = props => {
   const [purchasable, setPurchasable] = useState(false);
   const {cart, token, history, onIcecreamInit} = props;
 
@@ -102,4 +102,4 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(IcecreamContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

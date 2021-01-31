@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Layout from './components/Layout/Layout';
-import IcecreamContainer from './containers/IcecreamContainer/IcecreamContainer';
+import ProductsContainer from './containers/ProductsContainer/ProductsContainer';
 import Thanks from './components/Thanks/Thanks';
 import AuthContainer from './containers/AuthContainer/AuthContainer';
 import OrdersContainer from './containers/OrdersContainer/OrdersContainer';
@@ -26,7 +26,7 @@ const App = props => {
           <Route path="/auth" component={AuthContainer} />
           <Route path="/orders" component={OrdersContainer} />
           <Route path="/logout" component={Logout} />
-          <Route path="/" component={IcecreamContainer} />
+          <Route path="/" component={ProductsContainer} />
         </Switch>
       </Layout>
     </div>

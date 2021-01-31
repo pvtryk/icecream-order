@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {useEffect} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -11,27 +11,26 @@ import Logout from './containers/AuthContainer/Logout/Logout';
 
 import * as action from './store/actions/index';
 
-class App extends Component {
+const App = props => {
+
+  useEffect(() => {
+    console.log('SPRAWDZANIE AUTHA');
+    props.checkAuth();
+  });
   
-  componentDidMount() {
-    this.props.checkAuth();
-  }
-  
-  render() {
-    return (
-      <div className="App">
-        <Layout>
-          <Switch>
-            <Route path="/thank-you" component={Thanks} />
-            <Route path="/auth" component={AuthContainer} />
-            <Route path="/orders" component={OrdersContainer} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/" component={IcecreamContainer} />
-          </Switch>
-        </Layout>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Layout>
+        <Switch>
+          <Route path="/thank-you" component={Thanks} />
+          <Route path="/auth" component={AuthContainer} />
+          <Route path="/orders" component={OrdersContainer} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/" component={IcecreamContainer} />
+        </Switch>
+      </Layout>
+    </div>
+  );
 }
 
 const mapStateToProps = props => {

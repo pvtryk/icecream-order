@@ -9,7 +9,7 @@ export function* orderPostSaga(action) {
   yield put(actions.orderPostStart());
 
   try {
-    yield axios.post(`/orders.jon?auth=${action.token}`, action.order);
+    yield axios.post(`/orders.json?auth=${action.token}`, action.order);
     yield put(actions.orderPostSuccess());
     history.push('/thank-you');
 

@@ -22,6 +22,8 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'text',
+        autocomplete: 'given-name',
+        name: 'given-name'
       },
       value: '',
       validation: {
@@ -37,6 +39,8 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'text',
+        autocomplete: 'family-name',
+        name: 'family-name'
       },
       value: '',
       validation: {
@@ -52,6 +56,8 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'tel',
+        autocomplete: 'tel',
+        name: 'tel'
       },
       value: '',
       validation: {
@@ -68,6 +74,8 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'email',
+        autocomplete: 'email',
+        name: 'email'
       },
       value: '',
       validation: {
@@ -84,6 +92,8 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'text',
+        autocomplete: 'street-address',
+        name: 'street-address'
       },
       value: '',
       validation: {
@@ -99,6 +109,8 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'text',
+        autocomplete: 'address-level2',
+        name: 'address-level2'
       },
       value: '',
       validation: {
@@ -114,6 +126,9 @@ const CheckoutContainer = props => {
       additionalClass: '',
       config: {
         type: 'text',
+        autocomplete: 'postal-code',
+        name: 'postal-code',
+        placeholder: '__-___'
       },
       value: '',
       validation: {
@@ -121,7 +136,7 @@ const CheckoutContainer = props => {
         regex: 'postal',
         maxLength: 6,
         message: 'Enter postal code.',
-        tip: 'Example: 01-000'
+        tip: 'Example: 01-000',
       },
       valid: false,
       touched: false,

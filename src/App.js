@@ -14,7 +14,6 @@ import * as action from './store/actions/index';
 const App = props => {
 
   useEffect(() => {
-    console.log('SPRAWDZANIE AUTHA');
     props.checkAuth();
   });
   

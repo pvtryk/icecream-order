@@ -20,6 +20,7 @@ const AuthContainer = props => {
       additionalClass: '',
       config: {
         type: 'email',
+        name: 'email'
       },
       value: '',
       validation: {
@@ -35,6 +36,7 @@ const AuthContainer = props => {
       additionalClass: '',
       config: {
         type: 'password',
+        name: 'password'
       },
       value: '',
       validation: {

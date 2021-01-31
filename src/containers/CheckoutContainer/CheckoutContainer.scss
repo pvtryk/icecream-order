@@ -8,6 +8,12 @@
   }
 
   &__form {
+  }
 
+  &__error {
+    @extend %p;
+    color: $color-error;
+    text-align: center;
+    margin: 20px 0;
   }
 }

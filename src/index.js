@@ -7,7 +7,8 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 // import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import history from './history';
 
 // reducers
 import authReducer from './store/reducers/auth';
@@ -48,11 +49,11 @@ sagaMiddleware.run(watchOrder);
 
 const appIndex = (
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </BrowserRouter>
+    </Router>
   </Provider>
 )
 

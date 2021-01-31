@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import * as action from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
@@ -50,10 +50,6 @@ const AuthContainer = props => {
   const [isSignIn, setIsSignIn] = useState(true);
 
   const { formIsValid, inputChangedHandler } = useInputChanged();
-
-  useEffect(() => {
-    console.log(formIsValid);
-  })
 
   const switchFormType = (event) => {
     event.preventDefault();

@@ -28,13 +28,9 @@ const useInputChanged = () => {
     }
 
     setFormIsValid(formValidity);
-    console.log('cos sie dzieje', updatedForm);
 
     return updatedForm;
-
-    // this.setState({ authForm: updatedForm, formIsValid: formIsValid });
   }
-  console.log('here i am');
 
   return {
     formIsValid: formIsValid,

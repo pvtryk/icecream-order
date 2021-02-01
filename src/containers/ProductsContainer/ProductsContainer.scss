@@ -1,11 +1,60 @@
 @import '../../styles/reusable.scss';
 
 .icecreams {
-  min-height: 100vh;
+  //min-height: 100vh;
+
+  &__inner {
+    @include flex(flex-start, flex-start, nowrap);
+    position: relative;
+  }
+
+  &__mask {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    //left: 0;
+    width: 400px;
+    background-color: $color-bg-alt;
+  }
 
   &__summary {
-    position: relative;
-    background-color: $color-summary-box;
+    position: sticky;
+    top: 78px;
+    //background-color: $color-summary-box;
+    background-color: $color-bg-alt;
+    width: 100%;
+    max-width: 400px;
+    flex: 0 0 400px;
+    //height: 100vh;
+  }
+
+  &__content {
+    margin: 0 10px;
+    width: 100%;
+    max-width: 1280px;
+    //-ms-overflow-style: none;
+    //scrollbar-width: none;
+
+    @media #{$md} {
+      margin-top: 28px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 20px;
+    }
+    @media #{$lg} {
+      //overflow: auto;
+      //max-height: calc(100vh - 108px);
+      padding-bottom: 50px;
+    }
+    @media #{$xl} {
+      padding: 0 24px 50px 24px;
+    }
+    //
+    //&::-webkit-scrollbar {
+    //  display: none;
+    //}
   }
 
   &__content {

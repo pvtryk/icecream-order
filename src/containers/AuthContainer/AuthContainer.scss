@@ -1,37 +1,80 @@
 @import '../../styles/reusable.scss';
 
-
 .auth {
-  margin: 50px 15px;
+  padding: 10px 15px 30px 15px;
+  position: relative;
+
+  @media #{$md} {
+    padding: 60px 15px;
+  }
+  @media #{$lg} {
+    padding: 80px 15px;
+  }
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #e9ecef;
+    z-index: -1;
+  }
+
+  &__header {
+    margin-bottom: 15px;
+    text-align: center;
+
+    img {
+      height: 40px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+
+      @media #{$md} {
+        height: 60px;
+      }
+    }
+  }
 
   &__inner {
+    @extend %shadow-small;
     width: 100%;
-    max-width: 600px;
-    padding: 30px 15px;
-    border: solid 2px $color-secondary;
+    max-width: 500px;
+    padding: 40px 15px;
+    background-color: $color-bg;
+    border-radius: 24px;
     margin: 0 auto;
+
+    @media #{$md} {
+      padding: 60px 20px;
+    }
   }
 
   &__title {
     @extend %h1;
     text-align: center;
+    color: $color-text;
   }
 
   &__message {
-    @extend %p;
+    @extend %p-small;
     color: $color-error;
     text-align: center;
     margin: 20px 0;
   }
 
-  &__button-wrap {
+  &__footer {
     text-align: center;
     margin: 20px 0 0 0;
   }
 
-  &__button {
-    @include transition;
-    @extend %p;
+  &__switch {
+    @include transition();
+    @extend %h4;
+    font-weight: 500;
+    color: $color-text;
     display: inline-block;
     cursor: pointer;
 

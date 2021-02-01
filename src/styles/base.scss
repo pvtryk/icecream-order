@@ -1,4 +1,6 @@
 @import './reusable.scss';
+@import url('https://fonts.googleapis.com/css2?family=Krub:wght@300;400;500;600;700&display=swap');
+
 // selection
 ::selection {
     background: $color-primary;
@@ -16,6 +18,25 @@ body {
 }
 
 main {
-  overflow: hidden;
-  padding-top: 90px;
+  //overflow: hidden;
+  padding-top: 78px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: $color-text;
+  -webkit-box-shadow: 0 0 0px 1000px $color-bg inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+*::selection {
+  background-color: rgba($color-primary, .3);
+  color: $color-text-white;
 }

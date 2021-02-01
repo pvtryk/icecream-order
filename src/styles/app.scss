@@ -1,0 +1,11 @@
+@import "reusable";
+
+.app-container {
+}
+
+.main {
+  @media #{$lg} {
+    //height: 100vh;
+    //overflow: hidden;
+  }
+}

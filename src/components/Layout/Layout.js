@@ -5,8 +5,9 @@ const Layout = props => {
 
   return (
     <Fragment>
-      <TopBar />
-      <main>
+      { props.isAuth !== null ? <TopBar /> : '' }
+
+      <main className="main">
         {props.children}
       </main>
     </Fragment>

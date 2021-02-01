@@ -1,17 +1,22 @@
 // colors
-$color-primary: #14213d;
-$color-secondary: #fca311;
-$color-bg-alt: #e5e5e5;
+//$color-primary: #37323e;
+$color-primary: #2b2d42;
+$color-secondary: #88b4ea;
+
 $color-bg: #ffffff;
+$color-bg-alt: #444554;
 $color-bg-shadow: #000000;
+
+$color-text: #2b2d42;
 $color-text-white: #ffffff;
+
 $color-black: #000000;
 $color-error: #FF2244;
 $color-disabled: #333533;
 $color-summary-box: #dddddd;
 
 // font
-$font-main: 'Helvetica', sans-serif;
+$font-main: 'Krub', sans-serif;
 
 // mixins
 @mixin flex($x: flex-start, $y: flex-start, $wrap: wrap) {
@@ -114,6 +119,48 @@ $xxl: "only screen and (min-width: #{$min-xxl})";
   }
 }
 
+%h2 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 1.33;
+
+  @media #{$md} {
+    font-size: 24px;
+  }
+  @media #{$lg} {
+    font-size: 28px;
+  }
+}
+
+%h3 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 1.33;
+
+  @media #{$md} {
+    font-size: 20px;
+  }
+  @media #{$lg} {
+    font-size: 22px;
+  }
+}
+
+%h4 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 1.33;
+
+  @media #{$md} {
+    font-size: 18px;
+  }
+  @media #{$lg} {
+    font-size: 20px;
+  }
+}
+
 %p {
   font-size: 14px;
   font-weight: 400;
@@ -126,4 +173,48 @@ $xxl: "only screen and (min-width: #{$min-xxl})";
   @media #{$lg} {
     font-size: 16px;
   }
+}
+
+%p-small {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: normal;
+}
+
+// elements
+%button-styles {
+  @include transition($duration: 0.2s, $ease: ease-in);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background-color: $color-secondary;
+  color: $color-text-white;
+  border-radius: 999px;
+  line-height: 40px;
+  border: solid 2px $color-secondary;
+  padding: 0 15px;
+  min-width: 165px;
+  display: inline-block;
+  //background-clip: padding-box;
+
+  &:hover {
+    background-color: transparent;
+    color: $color-secondary;
+  }
+
+  &[disabled] {
+    background-color: transparent;
+    border-color: rgba($color-disabled, .5);
+    color: rgba($color-disabled, .5);
+    cursor: default;
+  }
+}
+
+%shadow-small {
+  box-shadow: 0 0 5px 1px rgba($color-bg-shadow, .05);
+}
+
+%shadow-medium {
+  box-shadow: 0 0 5px 1px rgba($color-bg-shadow, .1);
 }

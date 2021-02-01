@@ -9,6 +9,7 @@ import Button from '../../components/UI/Button/Button';
 import Loader from '../../components/UI/Loader/Loader';
 import { showErrorMessage } from '../../shared/utility';
 import './AuthContainer.scss';
+import appLogo from "../../assets/images/example-logo.png";
 
 // TODO: REMOVE INPUT VALIDATION ON LOGIN FORM
 const AuthContainer = props => {
@@ -118,6 +119,9 @@ const AuthContainer = props => {
     <div className="auth">
       {redirectAfterAuth}
 
+      <div className="auth__header">
+        <img src={appLogo} alt="logo" />
+      </div>
       <div className="auth__inner">
         <h1 className="auth__title">{formType}</h1>
         {errorMessage && <p className="auth__message">{errorMessage}</p>}
@@ -125,12 +129,14 @@ const AuthContainer = props => {
           {form}
           <Button name="Submit!" disabled={!formIsValid} />
         </form>
-        <div className="auth__button-wrap">
-          <span className="auth__button" onClick={switchFormType}>
-            Go to
-            {isSignIn ? ' Register' : ' Log In'}
-          </span>
-        </div>
+        {/*<div className="auth__button-wrap">*/}
+        {/*</div>*/}
+      </div>
+      <div className="auth__footer">
+        <span className="auth__switch" onClick={switchFormType}>
+          Go to
+          {isSignIn ? ' Register' : ' Log In'}
+        </span>
       </div>
     </div>
   );

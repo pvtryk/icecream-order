@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import * as action from '../../store/actions/index'
 
 import './TopBar.scss';
-import IcecreamLogo from  '../../assets/images/example-logo.png';
+import appLogo from  '../../assets/images/example-logo.png';
 import cartIcon from  '../../assets/images/i-cart.svg';
 import userIcon from  '../../assets/images/i-user.svg';
 import ordersIcon from  '../../assets/images/i-orders-list.svg';
@@ -36,7 +36,7 @@ const TopBar = props => {
           <div className="col-12">
             <div className="topbar__wrap">
               <Link to="/" className="topbar__logo">
-                <img src={IcecreamLogo} alt="Lody" />
+                <img src={appLogo} alt="Logo" />
               </Link>
               <div className="topbar__icons">
                 <div className="topbar__icon topbar__auth">{authUrl}</div>

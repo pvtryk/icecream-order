@@ -1,6 +1,6 @@
 import React, {Fragment, useCallback, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Boxes from '../../components/Boxes/Boxes';
 import Summary from '../../components/Summary/Summary';
 import CheckoutContainer from '../CheckoutContainer/CheckoutContainer';
@@ -48,35 +48,36 @@ const ProductsContainer = props => {
   return (
       <Fragment>
         <div className="icecreams">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-12 col-lg-8 icecreams__content">
+          <div className="icecreams__inner">
+            <div className="icecreams__mask"></div>
+            <div className="icecreams__content">
+              <Switch>
                 <Route
-                    exact
-                    path="/"
-                    render={() => (
-                        <Boxes
-                            purchasable={purchasable}
-                            icecreams={props.icecreams}
-                            cart={props.cart}
-                            prices={props.prices}
-                            fetchError={props.fetchError}
-                        />
-                    )}
+                  exact
+                  path="/"
+                  render={() => (
+                    <Boxes
+                      purchasable={purchasable}
+                      icecreams={props.icecreams}
+                      cart={props.cart}
+                      prices={props.prices}
+                      fetchError={props.fetchError}
+                    />
+                  )}
                 />
                 <Route
-                    path="/checkout"
-                    render={() => (
-                        <CheckoutContainer
-                            purchasable={purchasable}
-                            isAuthed={true}
-                        />
-                    )}
+                  path="/checkout"
+                  render={() => (
+                    <CheckoutContainer
+                      purchasable={purchasable}
+                      // isAuthed={true}
+                    />
+                  )}
                 />
-              </div>
-              <div className="col-12 col-lg-4 icecreams__summary">
-                <Summary purchasable={purchasable} />
-              </div>
+              </Switch>
+            </div>
+            <div className="icecreams__summary">
+              <Summary purchasable={purchasable} />
             </div>
           </div>
         </div>

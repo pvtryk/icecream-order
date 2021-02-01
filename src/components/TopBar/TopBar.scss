@@ -1,6 +1,7 @@
 @import '../../styles/reusable.scss';
 
 .topbar {
+  @extend %shadow-medium;
   position: fixed;
   top: 0;
   left: 0;
@@ -8,7 +9,6 @@
   z-index: 9999;
   padding: 15px 0;
   background-color: $color-bg;
-  box-shadow: 0 0 4px 0 rgba($color-black, .2);
 
   &__wrap {
     @include flex(flex-start, center, nowrap);
@@ -39,7 +39,7 @@
   }
 
   &__icon {
-    margin-left: 15px;
+    margin-left: 18px;
     height: 20px;
     cursor: pointer;
     font-size: 0;

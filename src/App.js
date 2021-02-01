@@ -11,6 +11,8 @@ import Logout from './containers/AuthContainer/Logout/Logout';
 
 import * as action from './store/actions/index';
 
+import '../src/styles/app.scss';
+
 const App = props => {
 
   useEffect(() => {
@@ -18,8 +20,8 @@ const App = props => {
   });
   
   return (
-    <div className="App">
-      <Layout>
+    <div className="app-container">
+      <Layout isAuth={props.token}>
         <Switch>
           <Route path="/thank-you" component={Thanks} />
           <Route path="/auth" component={AuthContainer} />

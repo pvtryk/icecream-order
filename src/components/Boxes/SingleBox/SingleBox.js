@@ -3,54 +3,61 @@ import { connect } from 'react-redux';
 import * as action from '../../../store/actions/index';
 
 import './SingleBox.scss';
-import BoxImage from '../../../assets/images/product-box.png';
+import BoxImage from '../../../assets/images/placeholder-image.png';
+import plusIcon from '../../../assets/images/plus-1.svg';
+import minusIcon from '../../../assets/images/minus-1.svg';
 
 const SingleBox = props => {
+
   return (
     <div className="s-box">
       <div className="s-box__image">
         <img src={BoxImage} alt=""/>
       </div>
-      <p className="s-box__name">{props.fullname}</p>
-      {
-        props.variations.map(variation => {
-          return (
-            <div className="s-box__item" key={variation.type}>
-              <div className="s-box__col">
-                <p className="s-box__type">{variation.type}</p>
-                <p className="s-box__price">{variation.price.toFixed(2)} $</p>
+      <div className="s-box__content">
+        <p className="s-box__name">{props.fullname}</p>
+        {
+          props.variations.map(variation => {
+            const { type, price} = variation;
+
+            return (
+              <div className="s-box__item" key={type}>
+                <div className="s-box__col">
+                  <p className="s-box__type">Size: <strong>{type}</strong></p>
+                  <p className="s-box__price">{price.toFixed(2)} $</p>
+                </div>
+                <div className="s-box__col s-box__col--buttons">
+                  <button
+                    onClick={() =>
+                      props.onIcecreamRemove(
+                        props.shortname,
+                        type,
+                        price
+                      )
+                    }
+                    disabled={props.cart[type] <= 0}
+                    className="s-box__btn"
+                  >
+                    <img src={minusIcon} alt="Decrement"/>
+                  </button>
+                  <button
+                    onClick={() =>
+                      props.onIcecreamAdd(
+                        props.shortname,
+                        type,
+                        price
+                      )
+                    }
+                    className="s-box__btn"
+                  >
+                    <img src={plusIcon} alt="Increment"/>
+                  </button>
+                </div>
               </div>
-              <div className="s-box__col s-box__col--buttons">
-                <button
-                  onClick={() =>
-                    props.onIcecreamRemove(
-                      props.shortname,
-                      variation.type,
-                      variation.price
-                    )
-                  }
-                  disabled={props.cart[variation.type] <= 0 ? true : false}
-                  className="s-box__btn"
-                >
-                  -
-                </button>
-                <button
-                  onClick={() =>
-                    props.onIcecreamAdd(
-                      props.shortname,
-                      variation.type,
-                      variation.price
-                    )
-                  }
-                  className="s-box__btn"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-          );
-        })
-      }
+            );
+          })
+        }
+      </div>
     </div>
   );
 }

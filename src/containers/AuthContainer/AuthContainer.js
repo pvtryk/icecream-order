@@ -122,16 +122,16 @@ const AuthContainer = props => {
       <div className="auth__header">
         <img src={appLogo} alt="logo" />
       </div>
+
       <div className="auth__inner">
         <h1 className="auth__title">{formType}</h1>
         {errorMessage && <p className="auth__message">{errorMessage}</p>}
         <form className="auth__form" onSubmit={formSubmitHandler}>
           {form}
-          <Button name="Submit!" disabled={!formIsValid} />
+          { !props.loading && <Button name="Submit!" disabled={!formIsValid} /> }
         </form>
-        {/*<div className="auth__button-wrap">*/}
-        {/*</div>*/}
       </div>
+
       <div className="auth__footer">
         <span className="auth__switch" onClick={switchFormType}>
           Go to

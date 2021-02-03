@@ -1,11 +1,12 @@
 @import '../../styles/reusable.scss';
 
 .m-boxes {
-  //background-color: $color-bg;
-  
+
   &__wrap {
-    @include flex(flex-start, stretch, wrap);
-    margin: 0 -5px;
+    @media #{$sm} {
+      @include flex(flex-start, stretch, wrap);
+      margin: 0 -5px;
+    }
   }
 
   &__error {

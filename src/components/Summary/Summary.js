@@ -60,13 +60,15 @@ const Summary = props => {
 
       {props.purchasable && (
         <div className="summary__footer">
-          <div className="summary__summary">
-            <p>Summary: {props.totalPrice.toFixed(2)} $</p>
-            <div className="summary__btn-wrap">
-              <Link to="/checkout" className="summary__btn">
-                Checkout
-              </Link>
-            </div>
+          <div className="summary__cart">
+            <p className="summary__cart-text">Summary:</p>
+            <p className="summary__cart-text summary__cart-text--value">{props.totalPrice.toFixed(2)} $</p>
+          </div>
+
+          <div className="summary__btn-wrap">
+            <Link to="/checkout" className="summary__btn">
+              Checkout
+            </Link>
           </div>
         </div>
       )}
@@ -74,7 +76,7 @@ const Summary = props => {
   );
 }
 
-const mapStateToProaps = (state) => {
+const mapStateToProps = (state) => {
   return {
     icecreams: state.ic.icecreams,
     cart: state.ic.cart,
@@ -83,4 +85,4 @@ const mapStateToProaps = (state) => {
   };
 };
 
-export default connect(mapStateToProaps, null)(Summary);
+export default connect(mapStateToProps, null)(Summary);

@@ -1,6 +1,6 @@
 @import '../../styles/reusable.scss';
 
-.icecreams {
+.products {
   //min-height: 100vh;
 
   &__inner {
@@ -9,25 +9,30 @@
   }
 
   &__mask {
-    content: '';
     position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
-    //left: 0;
     width: 400px;
     background-color: $color-bg-alt;
+
+    @media (max-width: $max-md) {
+      display: none;
+    }
   }
 
   &__summary {
-    position: sticky;
-    top: 78px;
-    //background-color: $color-summary-box;
-    background-color: $color-bg-alt;
-    width: 100%;
-    max-width: 400px;
-    flex: 0 0 400px;
-    //height: 100vh;
+    //position: absolute;
+    //background-color: $color-bg-alt;
+    position: absolute;
+
+    @media #{$lg} {
+      position: sticky;
+      top: 78px;
+      width: 100%;
+      max-width: 400px;
+      flex: 0 0 400px;
+    }
   }
 
   &__content {

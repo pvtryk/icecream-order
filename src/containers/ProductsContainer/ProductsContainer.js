@@ -47,10 +47,10 @@ const ProductsContainer = props => {
 
   return (
       <Fragment>
-        <div className="icecreams">
-          <div className="icecreams__inner">
-            <div className="icecreams__mask"></div>
-            <div className="icecreams__content">
+        <div className="products">
+          <div className="products__inner">
+            <div className="products__mask"></div>
+            <div className="products__content">
               <Switch>
                 <Route
                   exact
@@ -76,7 +76,7 @@ const ProductsContainer = props => {
                 />
               </Switch>
             </div>
-            <div className="icecreams__summary">
+            <div className="products__summary">
               <Summary purchasable={purchasable} />
             </div>
           </div>

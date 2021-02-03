@@ -13,6 +13,7 @@
   }
 
   &__name {
+    @extend %p-small;
     display: block;
     margin-bottom: 6px;
 

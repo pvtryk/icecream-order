@@ -39,6 +39,7 @@
   }
 
   &__icon {
+    position: relative;
     margin-left: 18px;
     height: 20px;
     cursor: pointer;
@@ -63,6 +64,21 @@
   &__cart {
     @media #{$lg} {
       display: none;
+    }
+
+    &-quantity {
+      position: absolute;
+      z-index: 1;
+      font-size: 12px;
+      bottom: -4px;
+      right: -4px;
+      background-color: $color-primary;
+      border-radius: 999px;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      color: $color-text-white;
+      text-align: center;
     }
   }
 }

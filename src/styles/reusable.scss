@@ -195,6 +195,11 @@ $xxl: "only screen and (min-width: #{$min-xxl})";
     color: rgba($color-disabled, .5);
     cursor: default;
   }
+
+  &--large {
+    min-width: 280px;
+    line-height: 48px;
+  }
 }
 
 %shadow-small {

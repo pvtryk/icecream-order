@@ -11,13 +11,11 @@ import './ProductsContainer.scss';
 
 const ProductsContainer = props => {
   const [purchasable, setPurchasable] = useState(false);
-  const {cart, token, history, onIcecreamInit} = props;
+  const {cart, token, history, onIcecreamInit, closeSummary} = props;
 
   // update purchasable state
   const updatePurchase = useCallback(() => {
     let finalValue = 0;
-
-    // const cart = props.cart;
 
     for (const key in cart) {
       const element = cart[key];
@@ -44,6 +42,10 @@ const ProductsContainer = props => {
   useEffect(() => {
       updatePurchase();
   }, [updatePurchase]);
+
+  useEffect(() => {
+    closeSummary();
+  }, [history.location.pathname, closeSummary]);
 
   return (
       <Fragment>
@@ -99,7 +101,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIcecreamInit: (token) => dispatch(action.icecreamInit(token))
+    onIcecreamInit: (token) => dispatch(action.icecreamInit(token)),
+    closeSummary: () => dispatch(action.closeSummary())
   };
 }
 

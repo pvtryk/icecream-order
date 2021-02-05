@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -10,14 +10,23 @@ import cartIcon from  '../../assets/images/i-cart.svg';
 import userIcon from  '../../assets/images/i-user.svg';
 import ordersIcon from  '../../assets/images/i-orders-list.svg';
 import logoutIcon from  '../../assets/images/i-exit.svg';
-import { useEffect } from 'react';
 
 const TopBar = props => {
-  // TODO: ON ADD ITEM TO CART, HIGHLIGHT OR BOUNCE CART ICON
+  const [cartElements, setCartElements] = useState(0);
 
   useEffect(() => {
-    // clg
-  });
+    let finalValue = 0;
+
+    for (const key in props.cart) {
+      const element = props.cart[key];
+
+      for (const value in props.cart[key]) {
+        const newValue = element[value];
+        finalValue += newValue;
+      }
+      setCartElements(finalValue);
+    }
+  }, [props.cart])
 
   let authUrl = !props.token ? (
     <Link to="/auth">
@@ -59,9 +68,10 @@ const TopBar = props => {
 
                 <div
                   className="topbar__icon topbar__cart"
-                  onClick={props.openSummary}
+                  onClick={props.toggleSummary}
                 >
                   <img src={cartIcon} alt="Cart" />
+                  { cartElements > 0 && <span className="topbar__cart-quantity">{ cartElements }</span> }
                 </div>
               </div>
               {/* __icons */}
@@ -76,13 +86,14 @@ const TopBar = props => {
 const mapStateToProps = state => {
   return {
     summaryType: state.ic.summaryType,
-    token: state.auth.token
+    token: state.auth.token,
+    cart: state.ic.cart
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    openSummary: () => dispatch(action.openSummary())
+    toggleSummary: () => dispatch(action.toggleSummary())
   }
 }
 

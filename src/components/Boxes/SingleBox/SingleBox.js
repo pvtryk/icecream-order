@@ -12,7 +12,8 @@ const SingleBox = props => {
   return (
     <div className="s-box">
       <div className="s-box__image">
-        <img src={BoxImage} alt=""/>
+        {/*<img src={BoxImage} alt=""/>*/}
+        <img src={props.image} alt=""/>
       </div>
       <div className="s-box__content">
         <p className="s-box__name">{props.fullname}</p>

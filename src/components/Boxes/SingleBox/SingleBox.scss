@@ -17,14 +17,13 @@
   }
 
   &__image {
-    //box-shadow: 0 5px 10px 0 rgba($color-bg-shadow, .1);
     background-color: #ffffff;
-    //margin-bottom: 15px;
     position: relative;
 
     &::after {
       content: '';
-      padding-bottom: 56%;
+      //padding-bottom: 56%;
+      padding-bottom: 72%;
       display: block;
     }
 

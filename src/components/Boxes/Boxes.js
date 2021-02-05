@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 
 import SingleBox from './SingleBox/SingleBox';
 import Loader from '../UI/Loader/Loader';
+import prod1 from '../../assets/images/prod1.jpg'
+import prod2 from '../../assets/images/prod2.jpg'
+import prod3 from '../../assets/images/prod3.jpg'
 
 import './Boxes.scss';
 
@@ -16,7 +19,7 @@ const Boxes = props => {
       return icKey;
     });
 
-    icecream = icecreams.map((val) => {
+    icecream = icecreams.map((val, index) => {
       return (
         <SingleBox
           key={val.shortname}
@@ -25,6 +28,7 @@ const Boxes = props => {
           shortname={val.shortname}
           variations={val.variation}
           cart={props.cart[val.shortname]}
+          image={index % 2 ? prod1 : index % 3 ? prod3 : prod2}
         />
       );
     });

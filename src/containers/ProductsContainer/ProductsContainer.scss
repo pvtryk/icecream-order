@@ -22,8 +22,6 @@
   }
 
   &__summary {
-    //position: absolute;
-    //background-color: $color-bg-alt;
     position: absolute;
 
     @media #{$lg} {
@@ -39,24 +37,21 @@
     margin: 0 10px;
     width: 100%;
     max-width: 1280px;
+    padding: 10px 0 60px 0;
     //-ms-overflow-style: none;
     //scrollbar-width: none;
 
     @media #{$md} {
-      margin-top: 28px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 20px;
+      margin: 0 auto;
+      padding: 28px 15px 30px;
     }
     @media #{$lg} {
-      //overflow: auto;
-      //max-height: calc(100vh - 108px);
-      padding-bottom: 50px;
+      padding: 30px 15px 80px;
     }
-    @media #{$xl} {
-      padding: 0 24px 50px 24px;
+    @media #{$xxl} {
+      padding: 30px 30px 50px;
     }
-    //
+
     //&::-webkit-scrollbar {
     //  display: none;
     //}

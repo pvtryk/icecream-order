@@ -6,6 +6,7 @@ export const ICECREAM_SET = 'ICECREAM_SET';
 export const ICECREAM_FETCH_FAIL = 'ICECREAM_FETCH_FAIL';
 
 export const SUMMARY_OPEN = 'SUMMARY_OPEN';
+export const SUMMARY_CLOSE = 'SUMMARY_CLOSE';
 
 // ORDERS - POST
 export const ORDER_POST = 'ORDER_POST';

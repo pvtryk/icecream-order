@@ -5,7 +5,7 @@ const InputField = (props) => {
   let inputEl = null;
   let errorMessage;
   let tipMessage;
-  const inputClasses = ['input-field__input'];
+  const inputClasses = ['input-field'];
 
   if (props.additionalClass) {
     inputClasses.push(props.additionalClass);
@@ -24,7 +24,7 @@ const InputField = (props) => {
     case 'input':
       inputEl = (
         <input
-          className={inputClasses.join(' ')}
+          className="input-field__input"
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
@@ -35,7 +35,7 @@ const InputField = (props) => {
     case 'email':
       inputEl = (
         <input
-          className={inputClasses.join(' ')}
+          className="input-field__input"
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
@@ -46,7 +46,7 @@ const InputField = (props) => {
     case 'password':
       inputEl = (
         <input
-          className={inputClasses.join(' ')}
+          className="input-field__input"
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
@@ -55,7 +55,7 @@ const InputField = (props) => {
     break;
     
     case 'textarea':
-      inputEl = <textarea />;
+      inputEl = <textarea {...props.elementConfig} />;
     break;
     
     default:
@@ -63,7 +63,7 @@ const InputField = (props) => {
   }
 
   return (
-    <div className="input-field">
+    <div className={inputClasses.join(' ')} >
       <label className="input-field__label">{props.labelEl}</label>
       {inputEl}
       {errorMessage}

@@ -5,5 +5,10 @@
   
   &__btn {
     @extend %button-styles;
+
+    &--large {
+      @extend %button-styles--large;
+      margin-top: 30px;
+    }
   }
 }

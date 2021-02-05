@@ -19,7 +19,7 @@ const CheckoutContainer = props => {
     firstName: {
       elementType: 'input',
       labelEl: 'First name',
-      additionalClass: '',
+      additionalClass: 'input-field--half',
       config: {
         type: 'text',
         autoComplete: 'given-name',
@@ -36,7 +36,7 @@ const CheckoutContainer = props => {
     secondName: {
       elementType: 'input',
       labelEl: 'Second name',
-      additionalClass: '',
+      additionalClass: 'input-field--half',
       config: {
         type: 'text',
         autoComplete: 'family-name',
@@ -53,7 +53,7 @@ const CheckoutContainer = props => {
     phoneNumber: {
       elementType: 'input',
       labelEl: 'Phone number',
-      additionalClass: '',
+      additionalClass: 'input-field--half',
       config: {
         type: 'tel',
         autoComplete: 'tel',
@@ -71,7 +71,7 @@ const CheckoutContainer = props => {
     email: {
       elementType: 'email',
       labelEl: 'E-mail',
-      additionalClass: '',
+      additionalClass: 'input-field--half',
       config: {
         type: 'email',
         autoComplete: 'email',
@@ -89,7 +89,7 @@ const CheckoutContainer = props => {
     address: {
       elementType: 'input',
       labelEl: 'Shipping address',
-      additionalClass: '',
+      additionalClass: 'input-field--half',
       config: {
         type: 'text',
         autoComplete: 'street-address',
@@ -106,7 +106,7 @@ const CheckoutContainer = props => {
     city: {
       elementType: 'input',
       labelEl: 'City',
-      additionalClass: '',
+      additionalClass: 'input-field--half',
       config: {
         type: 'text',
         autoComplete: 'address-level2',
@@ -123,7 +123,7 @@ const CheckoutContainer = props => {
     postal: {
       elementType: 'input',
       labelEl: 'Postal code',
-      additionalClass: '',
+      additionalClass: 'input-field--half',
       config: {
         type: 'text',
         autoComplete: 'postal-code',
@@ -186,7 +186,6 @@ const CheckoutContainer = props => {
     setCheckoutForm(inputs);
   }
 
-  // TODO: ADD REDUX ACTION FOR POST DATA
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
@@ -246,7 +245,7 @@ const CheckoutContainer = props => {
             changed={(event) => inputHandler(event, input.id)}
           />
         ))}
-        <Button name="Order Now!" />
+        <Button name="Order Now!" types={['large', 'icon']} />
       </form>
     </div>
   );

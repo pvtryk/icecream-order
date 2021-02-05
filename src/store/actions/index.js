@@ -4,7 +4,8 @@ export {
   fetchFailIcecream,
   addIcecream,
   removeIcecream,
-  openSummary
+  toggleSummary,
+  closeSummary
 } from './icecreams';
 
 export {

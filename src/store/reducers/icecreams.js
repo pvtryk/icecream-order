@@ -81,11 +81,18 @@ const fetchFailIcecream = (state, action) => {
   };
 }
 
-const openSummary = (state, action) => {
+const toggleSummary = (state, action) => {
   return {
     ...state,
     summaryType: !state.summaryType,
   };
+}
+
+const closeSummary = (state, action) => {
+  return {
+    ...state,
+    summaryType: false
+  }
 }
 
 const reducer = (state = initialState, action) => {
@@ -99,7 +106,9 @@ const reducer = (state = initialState, action) => {
     case actionType.ICECREAM_FETCH_FAIL:
       return fetchFailIcecream(state, action);
     case actionType.SUMMARY_OPEN:
-      return openSummary(state, action);
+      return toggleSummary(state, action);
+    case actionType.SUMMARY_CLOSE:
+      return closeSummary(state, action);
     default:
       return state;
   }

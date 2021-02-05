@@ -38,9 +38,15 @@ export const icecreamInit = (token) => {
   };
 }
 
-export const openSummary = (summaryType) => {
+export const toggleSummary = (summaryType) => {
   return {
     type: actionType.SUMMARY_OPEN,
     summaryType: summaryType,
   };
+}
+
+export const closeSummary = () => {
+  return {
+    type: actionType.SUMMARY_CLOSE,
+  }
 }

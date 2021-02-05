@@ -10,13 +10,21 @@
     font-weight: 300;
     position: absolute;
     top: 100%;
-    left: 0;
-    padding-top: 2px;
+    left: 20px;
+    padding-top: 5px;
+
+    @media #{$md} {
+      left: 30px;
+    }
 
     &.input-tip {
       left: auto;
       right: 0;
       color: $color-text;
+
+      @media #{$md} {
+        right: 30px;
+      }
     }
   }
 
@@ -43,6 +51,13 @@
 
     &.invalid {
       border-color: $color-error;
+    }
+  }
+
+  &--half {
+    @media #{$md} {
+      padding: 0 10px;
+      flex: 0 0 50%;
     }
   }
 }

@@ -11,21 +11,18 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.ORDER_POST_START:
-      console.log('start');
       return {
         ...state,
         postError: null,
         postLoading: true,
       };
     case actionType.ORDER_POST_SUCCESS:
-      console.log('sukces');
       return {
         ...state,
         postLoading: false,
         postError: null,
       };
     case actionType.ORDER_POST_FAIL:
-      console.log('fail');
       return {
         ...state,
         postLoading: false,

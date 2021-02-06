@@ -58,7 +58,6 @@ const TopBar = props => {
                       </Link>
                     </div>
                     <div className="topbar__icon topbar__user">
-                      {/* TODO: REDIRECT TO USER PROFILE PAGE */}
                       <Link to="/orders">
                         <img src={ordersIcon} alt="User profile" />
                       </Link>

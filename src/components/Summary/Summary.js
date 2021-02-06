@@ -6,13 +6,12 @@ import SummaryItem from './SummaryItem/SummaryItem';
 import './Summary.scss';
 
 const Summary = props => {
-  // TODO: HIDE BUTTON CHECKOUT ON CHECKOUT PAGE
-  const {cart, icecreams} = props;
+  const {cart, icecreams, summaryType, pagePath} = props;
   let prices = [];
-
+  let ctaButton = null;
   let summaryClasses = ['summary'];
 
-  if (props.summaryType === true) {
+  if (summaryType === true) {
     summaryClasses.push('summary--mobile');
   }
   
@@ -21,6 +20,12 @@ const Summary = props => {
       <p>Your cart is empty</p>
     </div>
   );
+
+  if (pagePath) {
+    ctaButton = <Link to="/checkout" className="summary__btn">Checkout</Link>
+  } else {
+    ctaButton = <Link to="/" className="summary__btn">Back to order</Link>
+  }
 
   const summaryItems = Object.keys(cart).map(key => {
     const ic = icecreams[key].variation;
@@ -65,9 +70,7 @@ const Summary = props => {
           </div>
 
           <div className="summary__btn-wrap">
-            <Link to="/checkout" className="summary__btn">
-              Checkout
-            </Link>
+            { ctaButton }
           </div>
         </div>
       )}

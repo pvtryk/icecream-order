@@ -11,6 +11,7 @@ import './ProductsContainer.scss';
 
 const ProductsContainer = props => {
   const [purchasable, setPurchasable] = useState(false);
+  const [isProductsPage, setIsProductsPage] = useState(true);
   const {cart, token, history, onIcecreamInit, closeSummary} = props;
 
   // update purchasable state
@@ -47,6 +48,10 @@ const ProductsContainer = props => {
     closeSummary();
   }, [history.location.pathname, closeSummary]);
 
+  useEffect(() => {
+    history.location.pathname === '/' ? setIsProductsPage(true) : setIsProductsPage(false);
+  }, [history.location.pathname])
+
   return (
       <Fragment>
         <div className="products">
@@ -72,14 +77,13 @@ const ProductsContainer = props => {
                   render={() => (
                     <CheckoutContainer
                       purchasable={purchasable}
-                      // isAuthed={true}
                     />
                   )}
                 />
               </Switch>
             </div>
             <div className="products__summary">
-              <Summary purchasable={purchasable} />
+              <Summary purchasable={purchasable} pagePath={isProductsPage} />
             </div>
           </div>
         </div>

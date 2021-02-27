@@ -89,9 +89,7 @@ const ProductsContainer = props => {
         </div>
       </Fragment>
   );
-
 }
-
 
 const mapStateToProps = state => {
   return {

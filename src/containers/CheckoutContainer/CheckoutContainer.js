@@ -251,14 +251,14 @@ const CheckoutContainer = props => {
   );
 }
 
-const mapStateToProps = props => {
+const mapStateToProps = state => {
   return {
-    // icecreams: props.ic.icecreams,
-    cart: props.ic.cart,
-    price: props.ic.totalPrice,
-    token: props.auth.token,
-    userId: props.auth.userId,
-    postError: props.order.postError,
+    // icecreams: state.ic.icecreams,
+    cart: state.ic.cart,
+    price: state.ic.totalPrice,
+    token: state.auth.token,
+    userId: state.auth.userId,
+    postError: state.order.postError,
   }
 }
 

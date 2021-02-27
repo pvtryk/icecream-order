@@ -78,7 +78,7 @@ const Summary = props => {
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     icecreams: state.ic.icecreams,
     cart: state.ic.cart,

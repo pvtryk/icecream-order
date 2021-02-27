@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as action from '../../../store/actions/index';
 
 import './SingleBox.scss';
-import BoxImage from '../../../assets/images/placeholder-image.png';
+// import BoxImage from '../../../assets/images/placeholder-image.png';
 import plusIcon from '../../../assets/images/plus-1.svg';
 import minusIcon from '../../../assets/images/minus-1.svg';
 

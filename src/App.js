@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import history from "./history";
 
 import Layout from './components/Layout/Layout';
 import ProductsContainer from './containers/ProductsContainer/ProductsContainer';
@@ -14,14 +15,19 @@ import * as action from './store/actions/index';
 import '../src/styles/app.scss';
 
 const App = props => {
+  const { token, checkAuth } = props;
 
   useEffect(() => {
-    props.checkAuth();
+    checkAuth();
+
+    if (token === null) {
+      history.push('/auth');
+    }
   });
   
   return (
     <div className="app-container">
-      <Layout isAuth={props.token}>
+      <Layout isAuth={token}>
         <Switch>
           <Route path="/thank-you" component={Thanks} />
           <Route path="/auth" component={AuthContainer} />
@@ -34,9 +40,9 @@ const App = props => {
   );
 }
 
-const mapStateToProps = props => {
+const mapStateToProps = state => {
   return {
-    token: props.auth.token
+    token: state.auth.token
   }
 }
 

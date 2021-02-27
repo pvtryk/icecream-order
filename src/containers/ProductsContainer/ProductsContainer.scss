@@ -1,7 +1,6 @@
 @import '../../styles/reusable.scss';
 
 .products {
-  //min-height: 100vh;
 
   &__inner {
     @include flex(flex-start, flex-start, nowrap);

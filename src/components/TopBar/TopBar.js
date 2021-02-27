@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {useLocation} from "react-router-dom";
 
 import * as action from '../../store/actions/index'
 
@@ -13,6 +14,32 @@ import logoutIcon from  '../../assets/images/i-exit.svg';
 
 const TopBar = props => {
   const [cartElements, setCartElements] = useState(0);
+  const [cartOption, setCartOption] = useState(null);
+  const currentPath = useLocation().pathname;
+
+  // todo: imporove speed - cart lagging on path change
+  useEffect(() => {
+    if (currentPath === '/' || currentPath === '/checkout') {
+      setCartOption(
+        <div
+          className="topbar__icon topbar__cart"
+          onClick={props.toggleSummary}
+        >
+          <img src={cartIcon} alt="Cart" />
+          { cartElements > 0 && <span className="topbar__cart-quantity">{ cartElements }</span> }
+        </div>
+      );
+    } else {
+      setCartOption(
+        <div className="topbar__icon topbar__cart">
+          <Link to="/">
+            <img src={cartIcon} alt="Products" />
+          </Link>
+        </div>
+      );
+    }
+
+  }, [currentPath, setCartOption, cartElements, props.toggleSummary]);
 
   useEffect(() => {
     let finalValue = 0;
@@ -26,7 +53,7 @@ const TopBar = props => {
       }
       setCartElements(finalValue);
     }
-  }, [props.cart])
+  }, [props.cart]);
 
   let authUrl = !props.token ? (
     <Link to="/auth">
@@ -52,7 +79,6 @@ const TopBar = props => {
                 {props.token && (
                   <>
                     <div className="topbar__icon topbar__user">
-                      {/* TODO: REDIRECT TO USER PROFILE PAGE */}
                       <Link to="/profile">
                         <img src={userIcon} alt="User profile" />
                       </Link>
@@ -65,13 +91,8 @@ const TopBar = props => {
                   </>
                 )}
 
-                <div
-                  className="topbar__icon topbar__cart"
-                  onClick={props.toggleSummary}
-                >
-                  <img src={cartIcon} alt="Cart" />
-                  { cartElements > 0 && <span className="topbar__cart-quantity">{ cartElements }</span> }
-                </div>
+                { cartOption }
+
               </div>
               {/* __icons */}
             </div>

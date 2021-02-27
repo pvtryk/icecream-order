@@ -18,4 +18,8 @@
     @extend %p;
     color: $color-primary;
   }
+
+  &__wrap {
+    margin: 0 15px;
+  }
 }

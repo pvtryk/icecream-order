@@ -142,11 +142,11 @@ const AuthContainer = props => {
   );
 }
 
-const mapStateToProps = (props) => {
+const mapStateToProps = state => {
   return {
-    loading: props.auth.loading,
-    error: props.auth.error,
-    isAuth: props.auth.token !== null
+    loading: state.auth.loading,
+    error: state.auth.error,
+    isAuth: state.auth.token !== null
   }
 }
 const mapDispatchToProps = (dispatch) => {

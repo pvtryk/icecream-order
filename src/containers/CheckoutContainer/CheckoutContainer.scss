@@ -1,16 +1,8 @@
 @import '../../styles/reusable.scss';
 
 .checkout-container {
-  //padding: 20px 15px;
-  //padding-bottom: 30px;
-
-  @media #{$lg} {
-    //padding: 20px 60px;
-    //padding-bottom: 40px;
-  }
 
   &__form {
-
     @media #{$md} {
       @include flex(flex-start, stretch, wrap);
       margin: 0 -10px;

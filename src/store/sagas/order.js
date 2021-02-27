@@ -23,6 +23,8 @@ export function* orderGetSaga(action) {
 
   try {
     const response = yield axios.get(`/orders.json?auth=${action.token}&orderBy="userId"&equalTo="${action.userId}"`);
+    // console.log(response);
+    // console.log(response.data);
     yield put(actions.orderGetSuccess(response.data));
 
   } catch (error) {

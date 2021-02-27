@@ -9,7 +9,9 @@ import './OrdersContainer.scss';
 
 // TODO: v2 - advanced sorting - price, date, status
 const OrdersContainer = (props) => {
-  const {token, userId, onOrderGet} = props;
+  const {token, userId, onOrderGet, userOrders, loading} = props;
+  const ordersObject = Object.getOwnPropertyNames(userOrders);
+  let orders;
 
   const getOrders = useCallback(() => {
     onOrderGet(token, userId);
@@ -22,40 +24,29 @@ const OrdersContainer = (props) => {
 
   }, [token, userId, getOrders]);
 
-  const ordersObject = Object.getOwnPropertyNames(props.userOrders);
-  let orders;
-
-  if (props.loading) {
+  if (loading) {
     orders = <Loader />
   }
 
-  if (!props.loading && ordersObject.length >= 1) {
+  if (!loading && ordersObject.length >= 1) {
     // TODO: DOUBLE RENDER FUNCTION - WHAT TO DO
+    const userOrdersArray = Object.values(userOrders).map((item) => {
+      return item;
+    });
 
-    // version 1
-    const ordersArray = [];
-    for (const key in props.userOrders) {
-      ordersArray.push(props.userOrders[key]);
-    }
-
-    // version 2
-    // const userOrders = Object.values(props.userOrders).map((item) => {
-    //   return item;
-    // });
-    // console.log(props.userOrders);
-    // console.log(userOrders)
-
-    orders = ordersArray.map(single => {
-      return (
-        <OrderBox
-            key={single.date}
-            data={single}
-        />
-      )
-    })
+    orders = userOrdersArray
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .map(single => {
+        return (
+          <OrderBox
+              key={single.date}
+              data={single}
+          />
+        )
+      })
   }
 
-  if (!props.loading && ordersObject.length === 0) {
+  if (!loading && ordersObject.length === 0) {
     orders = <p>You do not have any order</p>
   }
 
@@ -71,12 +62,12 @@ const OrdersContainer = (props) => {
   );
 }
 
-const mapStateToProps = props => {
+const mapStateToProps = state => {
   return {
-    token: props.auth.token,
-    userId: props.auth.userId,
-    userOrders: props.order.userOrders,
-    loading: props.order.getLoading
+    token: state.auth.token,
+    userId: state.auth.userId,
+    userOrders: state.order.userOrders,
+    loading: state.order.getLoading
   };
 };
 

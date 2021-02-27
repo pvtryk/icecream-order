@@ -36,6 +36,7 @@ export const orderGetStart = () => {
 }
 
 export const orderGetSuccess = (data) => {
+  // console.log('data', data);
   return {
     type: actionType.ORDER_GET_SUCCESS,
     data: data

@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/icecream-order/static/css/main.0eed23ec.chunk.css",
+    "main.js": "/icecream-order/static/js/main.54a6efc1.chunk.js",
+    "main.js.map": "/icecream-order/static/js/main.54a6efc1.chunk.js.map",
+    "runtime-main.js": "/icecream-order/static/js/runtime-main.1cbd7140.js",
+    "runtime-main.js.map": "/icecream-order/static/js/runtime-main.1cbd7140.js.map",
+    "static/js/2.84aba308.chunk.js": "/icecream-order/static/js/2.84aba308.chunk.js",
+    "static/js/2.84aba308.chunk.js.map": "/icecream-order/static/js/2.84aba308.chunk.js.map",
+    "index.html": "/icecream-order/index.html",
+    "static/css/main.0eed23ec.chunk.css.map": "/icecream-order/static/css/main.0eed23ec.chunk.css.map",
+    "static/js/2.84aba308.chunk.js.LICENSE.txt": "/icecream-order/static/js/2.84aba308.chunk.js.LICENSE.txt",
+    "static/media/example-logo.2c3a0d47.png": "/icecream-order/static/media/example-logo.2c3a0d47.png",
+    "static/media/i-cart.393d2d72.svg": "/icecream-order/static/media/i-cart.393d2d72.svg",
+    "static/media/i-exit.98d53023.svg": "/icecream-order/static/media/i-exit.98d53023.svg",
+    "static/media/i-orders-list.ef69039a.svg": "/icecream-order/static/media/i-orders-list.ef69039a.svg",
+    "static/media/i-user.8cab7b59.svg": "/icecream-order/static/media/i-user.8cab7b59.svg",
+    "static/media/minus-1.4ce538bf.svg": "/icecream-order/static/media/minus-1.4ce538bf.svg",
+    "static/media/plus-1.3570cd54.svg": "/icecream-order/static/media/plus-1.3570cd54.svg",
+    "static/media/prod1.fd047d0c.jpg": "/icecream-order/static/media/prod1.fd047d0c.jpg",
+    "static/media/prod2.fd2afd15.jpg": "/icecream-order/static/media/prod2.fd2afd15.jpg",
+    "static/media/prod3.be71dbd0.jpg": "/icecream-order/static/media/prod3.be71dbd0.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1cbd7140.js",
+    "static/js/2.84aba308.chunk.js",
+    "static/css/main.0eed23ec.chunk.css",
+    "static/js/main.54a6efc1.chunk.js"
+  ]
+}

@@ -1,0 +1,36 @@
+@import '../../../styles/reusable.scss';
+
+.s-order-box {
+  @extend %shadow-small;
+  background-color: $color-bg;
+  margin: 0 auto 40px auto;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px 15px;
+
+  &__date {
+    @extend %p;
+    color: $color-text;
+    margin-bottom: 20px;
+
+    span {
+      color: $color-secondary;
+      font-weight: 600;
+    }
+  }
+
+  &__text {
+    @extend %p;
+    color: $color-text;
+    margin-bottom: 10px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    span {
+      font-weight: 700;
+    }
+  }
+}

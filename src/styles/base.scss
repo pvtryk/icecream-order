@@ -1,0 +1,49 @@
+@import './reusable.scss';
+@import url('https://fonts.googleapis.com/css2?family=Krub:wght@300;400;500;600;700&display=swap');
+
+::selection {
+    background: $color-primary;
+    color: $color-bg;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+}
+
+body {
+  font-family: $font-main;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $color-bg-secondary;
+}
+
+main {
+  padding-top: 78px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: $color-text;
+  -webkit-box-shadow: 0 0 0px 1000px $color-bg inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+*::selection {
+  background-color: rgba($color-primary, .3);
+  color: $color-text-white;
+}

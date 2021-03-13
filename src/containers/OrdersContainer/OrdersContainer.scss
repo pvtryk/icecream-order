@@ -1,0 +1,23 @@
+@import '../../styles/reusable.scss';
+
+.orders {
+  &__header {
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  &__title {
+    @extend %h1;
+    color: $color-primary;
+    margin-bottom: 10px;
+  }
+
+  &__desc {
+    @extend %p;
+    color: $color-primary;
+  }
+
+  &__wrap {
+    margin: 0 15px;
+  }
+}

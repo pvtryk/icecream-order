@@ -1,0 +1,14 @@
+@import '../../../styles/reusable.scss';
+
+.button {
+  text-align: center;
+  
+  &__btn {
+    @extend %button-styles;
+
+    &--large {
+      @extend %button-styles--large;
+      margin-top: 30px;
+    }
+  }
+}

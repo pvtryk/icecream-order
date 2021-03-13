@@ -1,0 +1,80 @@
+@import '../../styles/reusable.scss';
+
+.summary {
+  @include transition;
+  position: fixed;
+  right: -320px;
+  top: 0;
+  padding: 100px 15px 50px 15px;
+  width: 100%;
+  max-width: 320px;
+  height: 100vh;
+  z-index: 99;
+  background-color: $color-bg-alt;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  @media #{$lg} {
+    position: static;
+    width: auto;
+    max-width: none;
+    padding: 60px 30px;
+    height: auto;
+  }
+
+  &__title {
+    @extend %h2;
+    color: $color-text-white;
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  &__list {}
+
+  &__info {
+    @extend %p;
+    color: $color-text-white;
+    text-align: center;
+    padding-top: 30px;
+  }
+
+  &__btn-wrap {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  &__footer {
+  }
+
+  &__cart {
+    @include flex(flex-start, flex-start, nowrap);
+
+    &-text {
+      @extend %p;
+      flex: 0 0 50%;
+      padding-top: 20px;
+      color: $color-text-white;
+      font-weight: 500;
+
+      &--value {
+        text-align: right;
+        font-weight: 700;
+        border-top: solid 3px rgba($color-text-white, .2);
+      }
+    }
+  }
+
+  &__btn {
+    @extend %button-styles;
+  }
+
+  &--mobile {
+    left: auto;
+    right: 0;
+  }
+}

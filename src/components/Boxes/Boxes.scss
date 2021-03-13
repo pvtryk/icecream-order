@@ -1,0 +1,32 @@
+@import '../../styles/reusable.scss';
+
+.m-boxes {
+
+  &__wrap {
+    @media #{$sm} {
+      @include flex(flex-start, stretch, wrap);
+      margin: 0 -5px;
+    }
+  }
+
+  &__error {
+    padding: 60px 0;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &__link {
+    text-align: center;
+    padding-top: 15px;
+
+    @media #{$lg} {
+      display: none;
+    }
+  }
+
+  &__btn {
+    @extend %button-styles;
+  }
+}

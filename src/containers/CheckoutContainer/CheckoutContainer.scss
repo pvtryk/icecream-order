@@ -1,0 +1,22 @@
+@import '../../styles/reusable.scss';
+
+.checkout-container {
+
+  &__form {
+    @media #{$md} {
+      @include flex(flex-start, stretch, wrap);
+      margin: 0 -10px;
+    }
+
+    .button {
+      flex: 0 0 100%;
+    }
+  }
+
+  &__error {
+    @extend %p;
+    color: $color-error;
+    text-align: center;
+    margin: 20px 0;
+  }
+}

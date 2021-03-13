@@ -8,17 +8,17 @@ import plusIcon from '../../../assets/images/plus-1.svg';
 import minusIcon from '../../../assets/images/minus-1.svg';
 
 const SingleBox = props => {
+  const { image, fullname, shortname, cart, variations, onIcecreamRemove, onIcecreamAdd } = props;
 
   return (
     <div className="s-box">
       <div className="s-box__image">
-        {/*<img src={BoxImage} alt=""/>*/}
-        <img src={props.image} alt=""/>
+        <img src={image} alt="Icecream Box"/>
       </div>
       <div className="s-box__content">
-        <p className="s-box__name">{props.fullname}</p>
+        <p className="s-box__name">{fullname}</p>
         {
-          props.variations.map(variation => {
+          variations.map(variation => {
             const { type, price} = variation;
 
             return (
@@ -30,21 +30,21 @@ const SingleBox = props => {
                 <div className="s-box__col s-box__col--buttons">
                   <button
                     onClick={() =>
-                      props.onIcecreamRemove(
-                        props.shortname,
+                      onIcecreamRemove(
+                        shortname,
                         type,
                         price
                       )
                     }
-                    disabled={props.cart[type] <= 0}
+                    disabled={cart[type] <= 0}
                     className="s-box__btn"
                   >
                     <img src={minusIcon} alt="Decrement"/>
                   </button>
                   <button
                     onClick={() =>
-                      props.onIcecreamAdd(
-                        props.shortname,
+                      onIcecreamAdd(
+                        shortname,
                         type,
                         price
                       )

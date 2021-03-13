@@ -1,5 +1,5 @@
 import { put } from 'redux-saga/effects';
-import axios from '../../axios/axios-orders';
+import axios from '../../axios/axios';
 import history from "../../history";
 
 import * as actions from '../actions/index';
@@ -23,8 +23,6 @@ export function* orderGetSaga(action) {
 
   try {
     const response = yield axios.get(`/orders.json?auth=${action.token}&orderBy="userId"&equalTo="${action.userId}"`);
-    // console.log(response);
-    // console.log(response.data);
     yield put(actions.orderGetSuccess(response.data));
 
   } catch (error) {

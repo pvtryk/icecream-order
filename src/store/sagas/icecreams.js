@@ -1,5 +1,5 @@
 import { put } from 'redux-saga/effects';
-import axios from '../../axios/axios-icecreams';
+import axios from '../../axios/axios';
 
 import * as actions from '../actions/index';
 

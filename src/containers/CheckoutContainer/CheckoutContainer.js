@@ -5,14 +5,13 @@ import useInputChanged from '../../hooks/useInputChanged';
 import Button from '../../components/UI/Button/Button';
 import InputField from '../../components/UI/InputField/InputField';
 
-// TODO: CHANGE ACTION TO ACTIONS FOR EVERY ACTIONS IMPORT
 import * as action from '../../store/actions/index';
 
 import './CheckoutContainer.scss';
 
 // TODO in v2:
 // 1. Add adddress input with hints based on google maps & openstreet maps
-// 2. CHECKBOX FOR ACCEPTANCE
+// 2. CHECKBOX FOR ACCEPTANCE TERMS
 
 const CheckoutContainer = props => {
   const checkoutInitialState = {
@@ -142,6 +141,7 @@ const CheckoutContainer = props => {
       touched: false,
     },
   }
+  const { cart, token, history, postError, onOrderPost } = props;
 
   const [checkoutForm, setCheckoutForm] = useState(checkoutInitialState);
   const [errorWithPost, setErrorWithPost] = useState(null);
@@ -150,17 +150,17 @@ const CheckoutContainer = props => {
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
 
-    if ( Object.getOwnPropertyNames(props.cart).length === 0 || props.token === null) {
-      props.history.push('/');
+    if ( Object.getOwnPropertyNames(cart).length === 0 || token === null) {
+      history.push('/');
     }
-  }, [props.cart, props.token, props.history]);
+  }, [cart, token, history]);
 
   useEffect(() => {
-    if (formIsValid && props.postError !== null) {
+    if (formIsValid && postError !== null) {
       setErrorWithPost(<p className="checkout-container__error">Ouch! Something went wrong</p>);
       window.scroll({ top: 0, left: 0, behavior: 'smooth' });
     }
-  }, [formIsValid, props.postError]);
+  }, [formIsValid, postError]);
 
   const inputHandler = (event, inputId) => {
     const newVal = inputChangedHandler(checkoutForm, event, inputId);
@@ -207,7 +207,7 @@ const CheckoutContainer = props => {
     };
 
     if (formIsValid) {
-      props.onOrderPost(order, token);
+      onOrderPost(order, token);
     } else {
       window.scroll({ top: 0, left: 0, behavior: 'smooth' });
     }
@@ -253,7 +253,6 @@ const CheckoutContainer = props => {
 
 const mapStateToProps = state => {
   return {
-    // icecreams: state.ic.icecreams,
     cart: state.ic.cart,
     price: state.ic.totalPrice,
     token: state.auth.token,

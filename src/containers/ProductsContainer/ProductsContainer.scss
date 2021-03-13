@@ -37,8 +37,6 @@
     width: 100%;
     max-width: 1280px;
     padding: 10px 0 60px 0;
-    //-ms-overflow-style: none;
-    //scrollbar-width: none;
 
     @media #{$md} {
       margin: 0 auto;
@@ -50,13 +48,7 @@
     @media #{$xxl} {
       padding: 30px 30px 50px;
     }
-
-    //&::-webkit-scrollbar {
-    //  display: none;
-    //}
   }
 
-  &__content {
-    
-  }
+  &__content {}
 }

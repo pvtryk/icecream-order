@@ -7,7 +7,7 @@
   left: 0;
   right: 0;
   z-index: 9999;
-  padding: 15px 0;
+  padding: 15px 15px;
   background-color: $color-bg;
 
   &__wrap {
@@ -55,10 +55,6 @@
       height: 100%;
       object-fit: contain;
     }
-  }
-
-  &__user {
-
   }
 
   &__cart {

@@ -4,7 +4,6 @@ import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-// import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 
 import { Router } from 'react-router-dom';
@@ -23,7 +22,6 @@ import App from './App';
 // styles
 import './styles/reset.scss';
 import './styles/reusable.scss';
-import './styles/bootstrap.scss';
 import './styles/base.scss';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -38,7 +36,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   mainReducer,
-  // composeEnhancers( applyMiddleware( thunk, sagaMiddleware) )
   composeEnhancers( applyMiddleware( sagaMiddleware ) )
 );
 

@@ -2,32 +2,33 @@ import React from 'react';
 import './InputField.scss';
 
 const InputField = (props) => {
+  const { additionalClass, valid, touched, tip, message, inputType, elementConfig, value, changed, labelEl } = props;
   let inputEl = null;
   let errorMessage;
   let tipMessage;
   const inputClasses = ['input-field'];
 
-  if (props.additionalClass) {
-    inputClasses.push(props.additionalClass);
+  if (additionalClass) {
+    inputClasses.push(additionalClass);
   }
 
-  if (props.valid && props.touched) {
+  if (valid && touched) {
     inputClasses.push('invalid');
-    errorMessage = <span>{props.message}</span>;
+    errorMessage = <span>{message}</span>;
   }
 
-  if (props.tip !== undefined && props.valid && props.touched) {
-    tipMessage = <span className="input-tip">{props.tip}</span>;
+  if (tip !== undefined && valid && touched) {
+    tipMessage = <span className="input-tip">{tip}</span>;
   }
 
-  switch (props.inputType) {
+  switch (inputType) {
     case 'input':
       inputEl = (
         <input
           className="input-field__input"
-          {...props.elementConfig}
-          value={props.value}
-          onChange={props.changed}
+          {...elementConfig}
+          value={value}
+          onChange={changed}
         />
       );
     break;
@@ -36,9 +37,9 @@ const InputField = (props) => {
       inputEl = (
         <input
           className="input-field__input"
-          {...props.elementConfig}
-          value={props.value}
-          onChange={props.changed}
+          {...elementConfig}
+          value={value}
+          onChange={changed}
         />
       );
     break;
@@ -47,15 +48,15 @@ const InputField = (props) => {
       inputEl = (
         <input
           className="input-field__input"
-          {...props.elementConfig}
-          value={props.value}
-          onChange={props.changed}
+          {...elementConfig}
+          value={value}
+          onChange={changed}
         />
       );
     break;
     
     case 'textarea':
-      inputEl = <textarea {...props.elementConfig} />;
+      inputEl = <textarea {...elementConfig} />;
     break;
     
     default:
@@ -64,7 +65,7 @@ const InputField = (props) => {
 
   return (
     <div className={inputClasses.join(' ')} >
-      <label className="input-field__label">{props.labelEl}</label>
+      <label className="input-field__label">{labelEl}</label>
       {inputEl}
       {errorMessage}
       {tipMessage}

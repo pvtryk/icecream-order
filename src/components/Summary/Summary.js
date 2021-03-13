@@ -6,7 +6,7 @@ import SummaryItem from './SummaryItem/SummaryItem';
 import './Summary.scss';
 
 const Summary = props => {
-  const {cart, icecreams, summaryType, pagePath} = props;
+  const { cart, icecreams, summaryType, pagePath, purchasable, totalPrice } = props;
   let prices = [];
   let ctaButton = null;
   let summaryClasses = ['summary'];
@@ -58,15 +58,15 @@ const Summary = props => {
     <div className={summaryClasses.join(' ')}>
       <h2 className="summary__title">Your Order</h2>
 
-      {!props.purchasable && isSomething}
+      {!purchasable && isSomething}
 
       <ol className="summary__list">{summaryItems}</ol>
 
-      {props.purchasable && (
+      {purchasable && (
         <div className="summary__footer">
           <div className="summary__cart">
             <p className="summary__cart-text">Summary:</p>
-            <p className="summary__cart-text summary__cart-text--value">{props.totalPrice.toFixed(2)} $</p>
+            <p className="summary__cart-text summary__cart-text--value">{totalPrice.toFixed(2)} $</p>
           </div>
 
           <div className="summary__btn-wrap">

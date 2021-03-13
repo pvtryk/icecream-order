@@ -1,5 +1,4 @@
 // colors
-//$color-primary: #37323e;
 $color-primary: #2b2d42;
 $color-secondary: #88b4ea;
 
@@ -66,20 +65,6 @@ $xl: "only screen and (min-width: #{$min-xl})";
 $xxl: "only screen and (min-width: #{$min-xxl})";
 
 // typography
-%product-price {
-  font-size: 12px;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: normal;
-
-  @media #{$md} {
-    font-size: 14px;
-  }
-  @media #{$lg} {
-    font-size: 15px;
-  }
-}
-
 %h1 {
   font-size: 20px;
   font-weight: 700;
@@ -182,7 +167,6 @@ $xxl: "only screen and (min-width: #{$min-xxl})";
   padding: 0 15px;
   min-width: 165px;
   display: inline-block;
-  //background-clip: padding-box;
 
   &:hover {
     background-color: transparent;

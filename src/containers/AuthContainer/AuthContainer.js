@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import * as action from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
 import useInputChanged from '../../hooks/useInputChanged';
-
 import InputField from '../../components/UI/InputField/InputField';
 import Button from '../../components/UI/Button/Button';
 import Loader from '../../components/UI/Loader/Loader';
 import { showErrorMessage } from '../../shared/utility';
+
 import './AuthContainer.scss';
 import appLogo from "../../assets/images/example-logo.png";
 
-// TODO: REMOVE INPUT VALIDATION ON LOGIN FORM
 const AuthContainer = props => {
 
   const authInitialState = {
@@ -120,12 +119,13 @@ const AuthContainer = props => {
       {redirectAfterAuth}
 
       <div className="auth__header">
-        <img src={appLogo} alt="logo" />
+        <img src={ appLogo } alt="logo" />
       </div>
 
       <div className="auth__inner">
         <h1 className="auth__title">{formType}</h1>
         {errorMessage && <p className="auth__message">{errorMessage}</p>}
+
         <form className="auth__form" onSubmit={formSubmitHandler}>
           {form}
           { !props.loading && <Button name="Submit!" disabled={!formIsValid} /> }

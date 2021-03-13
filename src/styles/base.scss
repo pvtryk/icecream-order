@@ -1,14 +1,21 @@
 @import './reusable.scss';
 @import url('https://fonts.googleapis.com/css2?family=Krub:wght@300;400;500;600;700&display=swap');
 
-// selection
 ::selection {
     background: $color-primary;
     color: $color-bg;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 html {
   -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
 }
 
 body {
@@ -19,7 +26,6 @@ body {
 }
 
 main {
-  //overflow: hidden;
   padding-top: 78px;
 }
 

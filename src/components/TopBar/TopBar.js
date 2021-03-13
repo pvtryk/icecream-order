@@ -16,14 +16,14 @@ const TopBar = props => {
   const [cartElements, setCartElements] = useState(0);
   const [cartOption, setCartOption] = useState(null);
   const currentPath = useLocation().pathname;
+  const { cart, token, toggleSummary } = props;
 
-  // todo: imporove speed - cart lagging on path change
   useEffect(() => {
     if (currentPath === '/' || currentPath === '/checkout') {
       setCartOption(
         <div
           className="topbar__icon topbar__cart"
-          onClick={props.toggleSummary}
+          onClick={toggleSummary}
         >
           <img src={cartIcon} alt="Cart" />
           { cartElements > 0 && <span className="topbar__cart-quantity">{ cartElements }</span> }
@@ -39,25 +39,25 @@ const TopBar = props => {
       );
     }
 
-  }, [currentPath, setCartOption, cartElements, props.toggleSummary]);
+  }, [currentPath, setCartOption, cartElements, toggleSummary]);
 
   useEffect(() => {
     let finalValue = 0;
 
-    for (const key in props.cart) {
-      const element = props.cart[key];
+    for (const key in cart) {
+      const element = cart[key];
 
-      for (const value in props.cart[key]) {
+      for (const value in cart[key]) {
         const newValue = element[value];
         finalValue += newValue;
       }
       setCartElements(finalValue);
     }
-  }, [props.cart]);
+  }, [cart]);
 
-  let authUrl = !props.token ? (
+  let authUrl = !token ? (
     <Link to="/auth">
-      <img src={userIcon} alt="User profile" />
+      <img src={userIcon} alt="Login" />
     </Link>
   ) : (
     <Link to="/logout">
@@ -67,36 +67,25 @@ const TopBar = props => {
 
   return (
     <header className="topbar">
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-12">
-            <div className="topbar__wrap">
-              <Link to="/" className="topbar__logo">
-                <img src={appLogo} alt="Logo" />
-              </Link>
-              <div className="topbar__icons">
-                <div className="topbar__icon topbar__auth">{authUrl}</div>
-                {props.token && (
-                  <>
-                    <div className="topbar__icon topbar__user">
-                      <Link to="/profile">
-                        <img src={userIcon} alt="User profile" />
-                      </Link>
-                    </div>
-                    <div className="topbar__icon topbar__user">
-                      <Link to="/orders">
-                        <img src={ordersIcon} alt="User profile" />
-                      </Link>
-                    </div>
-                  </>
-                )}
-
-                { cartOption }
-
+      <div className="topbar__inner">
+        <div className="topbar__wrap">
+          <Link to="/" className="topbar__logo">
+            <img src={appLogo} alt="Logo" />
+          </Link>
+          <div className="topbar__icons">
+            <div className="topbar__icon topbar__auth">{authUrl}</div>
+            {token && (
+              <div className="topbar__icon topbar__user">
+                <Link to="/orders">
+                  <img src={ordersIcon} alt="Orders" />
+                </Link>
               </div>
-              {/* __icons */}
-            </div>
+            )}
+
+            { cartOption }
+
           </div>
+          {/* __icons */}
         </div>
       </div>
     </header>

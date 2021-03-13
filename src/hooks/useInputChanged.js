@@ -20,7 +20,6 @@ const useInputChanged = () => {
     updatedFormElement.touched = true;
     updatedForm[inputId] = updatedFormElement;
 
-    // check if form is valid
     let formValidity = true;
 
     for (const inputId in updatedForm) {

@@ -29,7 +29,6 @@ const OrdersContainer = (props) => {
   }
 
   if (!loading && ordersObject.length >= 1) {
-    // TODO: DOUBLE RENDER FUNCTION - WHAT TO DO
     const userOrdersArray = Object.values(userOrders).map((item) => {
       return item;
     });
@@ -54,7 +53,7 @@ const OrdersContainer = (props) => {
     <section className="orders">
       <div className="orders__header">
         <h1 className="orders__title">Orders</h1>
-        <p className="orders__desc">Hi, [name], there are you orders</p>
+        <p className="orders__desc">Hello, there are you orders</p>
       </div>
 
       <div className="orders__wrap">{orders}</div>
